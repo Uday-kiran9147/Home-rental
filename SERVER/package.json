@@ -9,6 +9,7 @@
   "author": "uday kiran",
   "license": "ISC",
   "dependencies": {
+    "mongodb": "^5.1.0",
     "nodemon": "^2.0.21"
   }
 }

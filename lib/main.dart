@@ -85,15 +85,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -107,7 +104,13 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               Divider(),
-              DashBoard(),
+              // DashBoard(),
+              Padding(
+                padding: const EdgeInsets.only(left: 30,right: 30),
+                child: TextFormField(
+                  decoration: InputDecoration(hintText: "where..?"),
+                ),
+              ),
               Divider(),
               Places(),
             ],

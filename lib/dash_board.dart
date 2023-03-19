@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
-  const DashBoard({super.key});
+
+   DashBoard({super.key});
 
   @override
   Widget build(BuildContext context) {
+  Size size=MediaQuery.of(context).size;
+
     return Container(
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: size.height * 0.15,
       child: SingleChildScrollView(
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -43,7 +46,6 @@ class DashBoard extends StatelessWidget {
               },
             ),
           ),
-          Divider(),
           TextButton(
             child: Text("week"),
             onPressed: () {},

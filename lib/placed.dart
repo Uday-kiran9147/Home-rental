@@ -8,18 +8,28 @@ class Places extends StatefulWidget {
 }
 
 class _PlacesState extends State<Places> {
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return DefaultTabController(
         length: 15,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Container(
-              height: MediaQuery.of(context).size.height * 0.17, child: _tab()),
+              height: MediaQuery.of(context).size.height * 0.15, child:
+                  _tab()),
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
+            height: MediaQuery.of(context).size.height,
             child: TabBarView(
               children: [
                 _tabBarView(context),
+                // EditableText(
+                //     controller: _controller,
+                //     focusNode: FocusNode(),
+                //     style: TextStyle(color: Colors.purple),
+                //     cursorColor: Colors.deepOrange,
+                //     backgroundCursorColor: Colors.red),
                 _tabBarView(context),
                 _tabBarView(context),
 
@@ -98,7 +108,7 @@ class _PlacesState extends State<Places> {
 
 Widget _tabBarView(BuildContext context) {
   return GridView.builder(
-    // padding: EdgeInsets.all(4),
+    padding: EdgeInsets.all(4),
     clipBehavior: Clip.antiAlias,
     // physics: NeverScrollableScrollPhysics(),
     shrinkWrap: false,
@@ -137,7 +147,7 @@ Widget _tabBarView(BuildContext context) {
               ),
             ),
             Text('location'),
-            Text('3,45,000/-')
+            Text('\$3,45,000/-')
           ],
         ),
       );
