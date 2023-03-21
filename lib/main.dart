@@ -81,6 +81,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'House Rental\'s',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -105,11 +106,25 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Divider(),
               // DashBoard(),
-              Padding(
-                padding: const EdgeInsets.only(left: 30,right: 30),
-                child: TextFormField(
-                  decoration: InputDecoration(hintText: "where..?"),
-                ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width*0.95,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left:8.0,right: 10),
+                      child: TextFormField(
+                        
+                        decoration: InputDecoration(hintText: "where..?"),
+                      ),
+                    ),
+                  ),
+                  Icon(
+                    weight: 40,
+                    Icons.more_vert_outlined,
+                    size: 25,
+                    color: Color(0xFF5F6368),
+                  ),
+                ],
               ),
               Divider(),
               Places(),
