@@ -84,8 +84,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'House Rental\'s',
       theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+          primarySwatch: Colors.green, accentColor: Colors.cyan.shade300),
       home: MyHomePage(),
     );
   }
@@ -97,6 +96,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String controller = "";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -109,20 +109,28 @@ class _MyHomePageState extends State<MyHomePage> {
               Row(
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width*0.95,
+                    width: MediaQuery.of(context).size.width * 0.89,
                     child: Padding(
-                      padding: const EdgeInsets.only(left:8.0,right: 10),
+                      padding: const EdgeInsets.only(left: 8.0, right: 10),
                       child: TextFormField(
-                        
+                        onChanged: (value) {
+                          controller = value.toString();
+                        },
                         decoration: InputDecoration(hintText: "where..?"),
                       ),
                     ),
                   ),
-                  Icon(
-                    weight: 40,
-                    Icons.more_vert_outlined,
-                    size: 25,
-                    color: Color(0xFF5F6368),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.10,
+                    child: IconButton(
+                      onPressed: () {
+                        print(controller);
+                      },
+                      // weight: 40,
+                      icon: Icon(Icons.more_vert_outlined),
+                      // size: 25,
+                      color: Color(0xFF5F6368),
+                    ),
                   ),
                 ],
               ),

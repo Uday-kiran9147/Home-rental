@@ -17,8 +17,7 @@ class _PlacesState extends State<Places> {
         length: 15,
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           Container(
-              height: MediaQuery.of(context).size.height * 0.16, child:
-                  _tab()),
+              height: MediaQuery.of(context).size.height * 0.16, child: _tab()),
           Container(
             height: MediaQuery.of(context).size.height,
             child: TabBarView(

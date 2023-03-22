@@ -1,4 +1,4 @@
-const url='mongodb+srv://uday:TestDataBase@testingcluster.hmcvuvv.mongodb.net/?retryWrites=true&w=majority'
+const url = 'mongodb+srv://uday:TestDataBase@testingcluster.hmcvuvv.mongodb.net/?retryWrites=true&w=majority'
 
 const { MongoClient } = require("mongodb");
 
