@@ -58,12 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: 'Home',
                       ),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.favorite),
-                        label: 'Favorites',
+                        icon: Icon(Icons.category_rounded),
+                        label: 'Categories',
                       ),
                       BottomNavigationBarItem(
-                          icon: Icon(Icons.category_rounded),
-                          label: 'Categories')
+                          icon: Icon(
+                            Icons.favorite,
+                          ),
+                          label: ' Favorites')
                     ],
                     currentIndex: selectedIndex,
                     onTap: (value) {
@@ -88,11 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       NavigationRailDestination(
                         icon: Icon(Icons.favorite),
-                        label: Text('Favorites'),
+                        label: Text('Categories '),
                       ),
                       NavigationRailDestination(
                           icon: Icon(Icons.category_rounded),
-                          label: Text('categories'))
+                          label: Text('Favorites'))
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {

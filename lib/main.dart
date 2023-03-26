@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/provider/appstate.dart';
+import 'package:houserental/screens/house_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
 import 'widgets/home_Item.dart';
@@ -13,8 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => MyAppState())],
       child: MaterialApp(
         title: 'Home-Rent',
         theme: ThemeData(
@@ -22,6 +23,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         home: MyHomePage(),
+        // routes: {
+        // '/':(context) => HomeImplement(),
+        // HouseDetailScreen.routeName:(context) => HouseDetailScreen(title: ,)
+        // },
       ),
     );
   }
@@ -48,13 +53,10 @@ class HomeImplement extends StatelessWidget {
                   country: val.country,
                   locality: val.locality,
                   price: val.price,
-                  housename: val.housename,
+                  HouseTitle: val.housename,
                 ))
             .toList(),
-        gridDelegate:
-            SliverGridDelegateWithMaxCrossAxisExtent(
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 8,
-              maxCrossAxisExtent: 400));
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            mainAxisSpacing: 4, crossAxisSpacing: 8, maxCrossAxisExtent: 400));
   }
 }
