@@ -5,7 +5,7 @@ class HomeProduct {
   String locality;
   int price;
   String housename;
-  List<String> category;
+  String category;
    HomeProduct({
     required this.state,
     required this.country,
