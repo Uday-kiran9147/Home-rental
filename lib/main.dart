@@ -1,145 +1,142 @@
+
 import 'package:flutter/material.dart';
-import 'package:houserental/dash_board.dart';
-import 'package:houserental/placed.dart';
-
-// void main() {
-//   runApp(MyHomePagee());
-// }
-
-// class MyHomePagee extends StatefulWidget {
-//   @override
-//   _MyHomePageeState createState() => _MyHomePageeState();
-// }
-
-// class _MyHomePageeState extends State<MyHomePagee> with SingleTickerProviderStateMixin {
-//   late TabController _tabController;
-//   List<String> _tabTitles = ["Tab 1", "Tab 2", "Tab 3"];
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _tabController = TabController(length: _tabTitles.length, vsync: this);
-//   }
-
-//   @override
-//   void dispose() {
-//     _tabController.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: Text("My App"),
-//           bottom: TabBar(
-//             controller: _tabController,
-//             tabs: _tabTitles.map((title) => Tab(text: title)).toList(),
-//           ),
-//         ),
-//         body: IndexedStack(
-//           index: _tabController.index,
-//           children: [
-//             _buildGridView(0),
-//             _buildGridView(1),
-//             _buildGridView(2),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildGridView(int tabIndex) {
-//     return GridView.builder(
-//       itemCount: 20,
-//       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//         crossAxisCount: 2,
-//         crossAxisSpacing: 10,
-//         mainAxisSpacing: 10,
-//       ),
-//       itemBuilder: (BuildContext context, int index) {
-//         return Container(
-//           color: Colors.blueGrey,
-//           child: Center(
-//             child: Text("Tab $tabIndex - Item $index"),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+import 'package:houserental/provider/appstate.dart';
+import 'package:provider/provider.dart';
+import 'screens/home_screen.dart';
+import 'widgets/card.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'House Rental\'s',
-      theme: ThemeData(
-          primarySwatch: Colors.green, accentColor: Colors.cyan.shade300),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  String controller = "";
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Divider(),
-              // DashBoard(),
-              Row(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.89,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 10),
-                      child: TextFormField(
-                        onChanged: (value) {
-                          controller = value.toString();
-                        },
-                        decoration: InputDecoration(hintText: "where..?"),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.10,
-                    child: IconButton(
-                      onPressed: () {
-                        print(controller);
-                      },
-                      // weight: 40,
-                      icon: Icon(Icons.more_vert_outlined),
-                      // size: 25,
-                      color: Color(0xFF5F6368),
-                    ),
-                  ),
-                ],
-              ),
-              Divider(),
-              Places(),
-            ],
-          ),
+    return ChangeNotifierProvider(
+      create: (context) => MyAppState(),
+      child: MaterialApp(
+        title: 'Namer App',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
+        home: MyHomePage(),
       ),
     );
   }
 }
+
+
+
+class HomeImplement extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var pair = appState.current;
+
+    IconData icon;
+    if (appState.favorites.contains(pair)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+
+          SizedBox(height: 10),
+           BigCard(pair: pair),
+          SizedBox(height: 10),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                onPressed: () {
+                  appState.toggleFavorite();
+                },
+                icon: Icon(icon),
+                label: Text('Like'),
+              ),
+              SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  appState.getNext();
+                },
+                child: Text('Next'),
+              ),
+            ],
+          ),
+          // Spacer(flex: 2),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+// class HistoryListView extends StatefulWidget {
+//   const HistoryListView({Key? key}) : super(key: key);
+
+//   @override
+//   State<HistoryListView> createState() => _HistoryListViewState();
+// }
+
+// class _HistoryListViewState extends State<HistoryListView> {
+//   /// Needed so that [MyAppState] can tell [AnimatedList] below to animate
+//   /// new items.
+//   final _key = GlobalKey();
+
+//   /// Used to "fade out" the history items at the top, to suggest continuation.
+//   static const Gradient _maskingGradient = LinearGradient(
+//     // This gradient goes from fully transparent to fully opaque black...
+//     colors: [Colors.transparent, Colors.black],
+//     // ... from the top (transparent) to half (0.5) of the way to the bottom.
+//     stops: [0.0, 0.5],
+//     begin: Alignment.topCenter,
+//     end: Alignment.bottomCenter,
+//   );
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final appState = context.watch<MyAppState>();
+//     appState.historyListKey = _key;
+
+//     return ShaderMask(
+//       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
+//       // This blend mode takes the opacity of the shader (i.e. our gradient)
+//       // and applies it to the destination (i.e. our animated list).
+//       blendMode: BlendMode.dstIn,
+//       child: AnimatedList(
+//         key: _key,
+//         reverse: true,
+//         padding: EdgeInsets.only(top: 100),
+//         initialItemCount: appState.history.length,
+//         itemBuilder: (context, index, animation) {
+//           final text = appState.history[index];
+//           return SizeTransition(
+//             sizeFactor: animation,
+//             child: Center(
+//               child: TextButton.icon(
+//                 onPressed: () {
+//                   appState.toggleFavorite(text);
+//                 },
+//                 icon: appState.favorites.contains(text)
+//                     ? Icon(Icons.favorite, size: 12)
+//                     : Icon(Icons.heart_broken_outlined),
+//                 label: Text(
+//                   text.asLowerCase,
+//                   semanticsLabel: text.asPascalCase,
+//                 ),
+//               ),
+//             ),
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
