@@ -1,0 +1,87 @@
+[
+    {
+        "propertyid": "12345",
+        "housetitle": "Apartment with Balcony",
+        "photos": [
+            "https://a0.muscache.com/im/pictures/2cc611a2-bc98-4c41-89b9-7c533b2d455b.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/2cc611a2-bc98-4c41-89b9-7c533b2d455b.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/2cc611a2-bc98-4c41-89b9-7c533b2d455b.jpg?im_w=1200"
+        ],
+        "address": {
+            "country": "United States",
+            "state": "washington",
+            "zipcode": "20001",
+            "street": "churchil community"
+        },
+        "checkintime": "11:30-AM",
+        "checkouttime": "10:00-AM",
+        "cleaningfee": 17000,
+        "bedcount": 4,
+        "category": [
+            "pool",
+            "beach"
+        ],
+        "houserules": [
+            "Treat People and Property With Respect.",
+            "Knock on Closed Doors Before Entering.",
+            "Pick up After Yourself.",
+            "Electronics Curfew.",
+            "Make Amends When You Hurt Someone.",
+            "Tell the Truth.",
+            "Practice Good Dental and Body Hygiene.",
+            "Attend Family Meetings."
+        ]
+    },
+    {
+        "propertyid": "1",
+        "housetitle": "Sample Property 1",
+        "photos": [
+            "https://randomurl.com/photo1.jpg",
+            "https://randomurl.com/photo2.jpg"
+        ],
+        "address": {
+            "country": "USA",
+            "state": "New York",
+            "zipcode": "10001",
+            "street": "Main Street"
+        },
+        "checkintime": "10 AM",
+        "checkouttime": "9 AM",
+        "cleaningfee": 100,
+        "bedcount": 2,
+        "category": [
+            "apartment",
+            "island"
+        ],
+        "houserules": [
+            "No smoking",
+            "No pets"
+        ]
+    },
+    {
+        "propertyid": "2",
+        "housetitle": "Sample Property 2",
+        "photos": [
+            "https://randomurl.com/photo3.jpg",
+            "https://randomurl.com/photo4.jpg"
+        ],
+        "address": {
+            "country": "USA",
+            "state": "California",
+            "zipcode": "98765",
+            "street": "Second Street"
+        },
+        "checkintime": "10 AM",
+        "checkouttime": "9 AM",
+        "cleaningfee": 120,
+        "bedcount": 3,
+        "category": [
+            "apartment",
+            "vacation"
+        ],
+        "houserules": [
+            "No smoking",
+            "No pets"
+        ]
+    }
+]

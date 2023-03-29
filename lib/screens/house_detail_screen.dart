@@ -41,6 +41,8 @@ class HouseDetailScreen extends StatelessWidget {
             ),
             Text('${country}, ${state}, ${locality}'),
             Text(price.toString()),
+            Divider(),
+            Text('List of Offerings')
           ],
         ),
       ),
