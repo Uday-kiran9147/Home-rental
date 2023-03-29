@@ -17,6 +17,9 @@ async function run() {
     const movie = await movies.findOne(query);
 
     console.log(movie);
+    console.log('--------------------------------------------------------------------------------------------------------------------')
+    const count=await movies.count();
+    console.log(count);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/dummy.dart';
 
-class MyAppState extends ChangeNotifier {
+class MyAppState with ChangeNotifier {
   var current = WordPair.random();
   var history = <WordPair>[];
 

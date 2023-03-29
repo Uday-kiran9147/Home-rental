@@ -23,7 +23,7 @@ class HomeItem extends StatelessWidget {
 
   void selectedHome(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context)=>HouseDetailScreen(title: HouseTitle)));
+        .push(MaterialPageRoute(builder: (context)=>HouseDetailScreen(title: HouseTitle, country: country, state: state, locality: locality, price: price)));
   }
 
   @override

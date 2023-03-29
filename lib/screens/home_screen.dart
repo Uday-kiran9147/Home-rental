@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 
 import '../main.dart';
@@ -27,6 +28,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         page = FavoritesPage();
         break;
+      case 3:
+        page = AccountScreen();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -52,7 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(child: mainArea),
                 SafeArea(
                   child: BottomNavigationBar(
-                    items: [
+                    unselectedItemColor: Colors.black38,
+                    selectedItemColor: Theme.of(context).primaryColor,
+                    items: <BottomNavigationBarItem>[
                       BottomNavigationBarItem(
                         icon: Icon(Icons.home),
                         label: 'Home',
@@ -65,7 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           icon: Icon(
                             Icons.favorite,
                           ),
-                          label: ' Favorites')
+                          label: ' Favorites'),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.account_circle_sharp,
+                          ),
+                          label: ' Account')
                     ],
                     currentIndex: selectedIndex,
                     onTap: (value) {
@@ -89,12 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Text('Home'),
                       ),
                       NavigationRailDestination(
-                        icon: Icon(Icons.favorite),
+                        icon: Icon(Icons.category_rounded),
                         label: Text('Categories '),
                       ),
                       NavigationRailDestination(
-                          icon: Icon(Icons.category_rounded),
-                          label: Text('Favorites'))
+                          icon: Icon(Icons.favorite), label: Text('Favorites')),
+                      NavigationRailDestination(
+                          icon: Icon(Icons.account_circle_rounded),
+                          label: Text('Account'))
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {
