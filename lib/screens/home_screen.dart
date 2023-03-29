@@ -5,7 +5,7 @@ import 'package:houserental/screens/categoty_screen.dart';
 import '../main.dart';
 import 'favourites_screen.dart';
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget { 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -93,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 SafeArea(
                   child: NavigationRail(
+                    backgroundColor: Colors.white70,
                     extended: constraints.maxWidth >= 600,
                     destinations: [
                       NavigationRailDestination(

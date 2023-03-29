@@ -1,11 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:houserental/models/dummy.dart';
 import 'package:houserental/screens/house_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/appstate.dart';
 
-class HomeItem extends StatelessWidget {
+class HomeItem extends StatefulWidget {
   // const HomeItem({super.key});
   String state;
   String country;
@@ -21,14 +22,25 @@ class HomeItem extends StatelessWidget {
     required this.HouseTitle,
   }) : super(key: key);
 
+  @override
+  State<HomeItem> createState() => _HomeItemState();
+}
+
+class _HomeItemState extends State<HomeItem> {
   void selectedHome(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context)=>HouseDetailScreen(title: HouseTitle, country: country, state: state, locality: locality, price: price)));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => HouseDetailScreen(
+            title: widget.HouseTitle,
+            country: widget.country,
+            state: widget.state,
+            locality: widget.locality,
+            price: widget.price)));
   }
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    HomeProduct selectedHouse=appState.homeList.firstWhere((element) => element.housename== widget.HouseTitle,);
 
     return InkWell(
       onTap: () {
@@ -48,7 +60,18 @@ class HomeItem extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
                     ),
-                    child: Center(child: Text("Picture Here"))
+                    child: Stack(
+                      children: [
+                        Center(child: Text("Picture Here")),
+                        IconButton(
+                            onPressed: () {
+                              appState.toggleFavorite(selectedHouse);
+                            },
+                            icon: appState.isFavourite(widget.HouseTitle)
+                                ? Icon(Icons.favorite)
+                                : Icon(Icons.favorite_border))
+                      ],
+                    )
                     //  Image.network(
                     //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaeuzwxd3_92sIUBtn-XwY3IW54qYJ5rh5Wg&usqp=CAU',
                     //   height: 250,
@@ -60,9 +83,9 @@ class HomeItem extends StatelessWidget {
                 // height: MediaQuery.of(context).size.height * 0.2
               ),
             ),
-            Text(HouseTitle),
-            Text(price.toString()),
-            Text("${state}, ${country}, ${locality}"),
+            Text(widget.HouseTitle),
+            Text(widget.price.toString()),
+            Text("${widget.state}, ${widget.country}, ${widget.locality}"),
           ],
         ),
       ),

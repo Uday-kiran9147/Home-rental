@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 import '../models/dummy.dart';
+import '../widgets/home_Item.dart';
 
 class MyAppState with ChangeNotifier {
   var current = WordPair.random();
@@ -17,25 +18,28 @@ class MyAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  var favoriteslist = <WordPair>[];
+  List<HomeProduct> favoriteslist = <HomeProduct>[];
 
-  void toggleFavorite([WordPair? pair]) {
-    pair = pair ?? current;
-    if (favoriteslist.contains(pair)) {
-      favoriteslist.remove(pair);
+  void toggleFavorite(HomeProduct homeitem) {
+    // homeitem = homeitem;
+    if (favoriteslist.contains(homeitem)) {
+      favoriteslist.remove(homeitem);
     } else {
-      favoriteslist.add(pair);
+      favoriteslist.add(homeitem);
     }
     notifyListeners();
   }
 
-  void removeFavorite(WordPair pair) {
+   bool isFavourite(String Housename) {
+    return homeList.any((element) => element.housename== Housename);
+  }
+
+  void removeFavorite(HomeProduct pair) {
     favoriteslist.remove(pair);
     notifyListeners();
   }
 
-  
-   List<HomeProduct> homeList = [
+  List<HomeProduct> homeList = [
     HomeProduct(
         state: "Hyderabad",
         country: "India",
@@ -114,5 +118,4 @@ class MyAppState with ChangeNotifier {
         housename: "Villa with Master Bedroom",
         category: 'Terrace')
   ];
-
 }
