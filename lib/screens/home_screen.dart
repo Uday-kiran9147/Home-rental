@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 
@@ -30,6 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 3:
         page = AccountScreen();
+        break;
+        case 4:
+        page=ImagePick();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -76,7 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           icon: Icon(
                             Icons.account_circle_sharp,
                           ),
-                          label: ' Account')
+                          label: ' Account'),
+                          BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.cloud_upload_outlined,
+                          ),
+                          label: 'Rent a House')
                     ],
                     currentIndex: selectedIndex,
                     onTap: (value) {
@@ -108,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           icon: Icon(Icons.favorite), label: Text('Favorites')),
                       NavigationRailDestination(
                           icon: Icon(Icons.account_circle_rounded),
-                          label: Text('Account'))
+                          label: Text('Account')),
+                          NavigationRailDestination(icon: Icon(Icons.cloud_upload_outlined), label: Text('Rent a House'))
                     ],
                     selectedIndex: selectedIndex,
                     onDestinationSelected: (value) {

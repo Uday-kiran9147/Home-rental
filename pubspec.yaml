@@ -40,6 +40,9 @@ dependencies:
   google_fonts: ^4.0.3
   json_serializable: ^6.6.1
   json_annotation: ^4.8.0
+  multi_image_picker: ^4.8.01
+  image_picker: ^0.8.7+1
+  flutter_exif_rotation: ^0.5.1
 
 dev_dependencies:
   flutter_test:
