@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 class HouseDetailScreen extends StatelessWidget {
+
   String title;
+  String id;
   String country;
   String state;
   String locality;
@@ -10,6 +12,7 @@ class HouseDetailScreen extends StatelessWidget {
 
   HouseDetailScreen({
     Key? key,
+    required this.id,
     required this.title,
     required this.country,
     required this.state,

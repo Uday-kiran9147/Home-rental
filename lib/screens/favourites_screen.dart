@@ -37,6 +37,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 400),
             itemBuilder: (context, index) => HomeItem(
+              id: appState.favoriteslist[index].id,
                 state: appState.favoriteslist[index].state,
                 country: appState.favoriteslist[index].country,
                 locality: appState.favoriteslist[index].locality,

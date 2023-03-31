@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         title: 'Home-Rent',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 207, 184, 9)),
+          colorScheme:
+              ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 207, 184, 9)),
         ),
         home: SafeArea(child: MyHomePage()),
         // routes: {
@@ -35,8 +36,6 @@ class HomeImplement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
     // IconData icon;
     // if (appState.favorites.contains(pair)) {
     //   icon = Icons.favorite;
@@ -48,6 +47,7 @@ class HomeImplement extends StatelessWidget {
         padding: EdgeInsets.all(15),
         children: appState.homeList
             .map((val) => HomeItem(
+                  id: val.id,
                   state: val.state,
                   country: val.country,
                   locality: val.locality,

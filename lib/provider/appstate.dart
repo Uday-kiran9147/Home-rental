@@ -5,23 +5,9 @@ import '../models/dummy.dart';
 import '../widgets/home_Item.dart';
 
 class MyAppState with ChangeNotifier {
-  var current = WordPair.random();
-  var history = <WordPair>[];
-
-  GlobalKey? historyListKey;
-
-  void getNext() {
-    history.insert(0, current);
-    var animatedList = historyListKey?.currentState as AnimatedListState?;
-    animatedList?.insertItem(0);
-    current = WordPair.random();
-    notifyListeners();
-  }
-
   List<HomeProduct> favoriteslist = <HomeProduct>[];
 
   void toggleFavorite(HomeProduct homeitem) {
-    // homeitem = homeitem;
     if (favoriteslist.contains(homeitem)) {
       favoriteslist.remove(homeitem);
     } else {
@@ -30,24 +16,26 @@ class MyAppState with ChangeNotifier {
     notifyListeners();
   }
 
-   bool isFavourite(String Housename) {
-    return homeList.any((element) => element.housename== Housename);
+  bool isFavourite(String houseID) {
+    return favoriteslist.any((element) => element.id == houseID);
   }
 
-  void removeFavorite(HomeProduct pair) {
-    favoriteslist.remove(pair);
+  void removeFavorite(HomeProduct houseTitle) {
+    favoriteslist.remove(houseTitle);
     notifyListeners();
   }
 
   List<HomeProduct> homeList = [
     HomeProduct(
+        id: '01',
         state: "Hyderabad",
         country: "India",
         locality: "Mgbs",
         price: 22000,
-        housename: "Villa with master Bedroom",
+        housename: "Villa with master Bus station",
         category: 'Pool'),
     HomeProduct(
+        id: '02',
         state: "Maharashtra",
         country: "India",
         locality: "Pune",
@@ -55,6 +43,7 @@ class MyAppState with ChangeNotifier {
         housename: "Apartment with Balcony",
         category: 'Garden'),
     HomeProduct(
+        id: '03',
         state: "Karnataka",
         country: "India",
         locality: "Bangalore",
@@ -62,6 +51,7 @@ class MyAppState with ChangeNotifier {
         housename: "Villa with Private Pool",
         category: 'Balcony'),
     HomeProduct(
+        id: '04',
         state: "Goa",
         country: "India",
         locality: "Baga",
@@ -69,6 +59,7 @@ class MyAppState with ChangeNotifier {
         housename: "Bungalow with Modern Interiors",
         category: 'Garden'),
     HomeProduct(
+        id: '05',
         state: "West Bengal",
         country: "India",
         locality: "Kolkata",
@@ -76,6 +67,7 @@ class MyAppState with ChangeNotifier {
         housename: "Cottage with Private Garden",
         category: 'Terrace'),
     HomeProduct(
+        id: '06',
         state: "Uttar Pradesh",
         country: "India",
         locality: "Lucknow",
@@ -83,20 +75,23 @@ class MyAppState with ChangeNotifier {
         housename: "Villa with Private Gym",
         category: 'Balcony'),
     HomeProduct(
+        id: '07',
         state: "Delhi",
         country: "India",
         locality: "Rohini",
         price: 21000,
-        housename: "Apartment with Balcony",
+        housename: "Apartment with Balcony delhi",
         category: 'Terrace'),
     HomeProduct(
+        id: '08',
         state: "Haryana",
         country: "India",
         locality: "Gurgaon",
         price: 25000,
-        housename: "Villa with Private Garden",
+        housename: "Gurgaon Villa with Private Garden",
         category: 'Garden'),
     HomeProduct(
+        id: '09',
         state: "Rajasthan",
         country: "India",
         locality: "Jaipur",
@@ -104,6 +99,7 @@ class MyAppState with ChangeNotifier {
         housename: "Bungalow with Modern Interiors",
         category: 'Pool'),
     HomeProduct(
+        id: '10',
         state: "Gujarat",
         country: "India",
         locality: "Ahmedabad",
@@ -111,6 +107,7 @@ class MyAppState with ChangeNotifier {
         housename: "Cottage with Private Terrace",
         category: 'Balcony'),
     HomeProduct(
+        id: '11',
         state: "Tamil Nadu",
         country: "India",
         locality: "Chennai",

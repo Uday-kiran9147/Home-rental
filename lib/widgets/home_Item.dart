@@ -8,6 +8,7 @@ import '../provider/appstate.dart';
 
 class HomeItem extends StatefulWidget {
   // const HomeItem({super.key});
+  String id;
   String state;
   String country;
   String locality;
@@ -15,6 +16,7 @@ class HomeItem extends StatefulWidget {
   String HouseTitle;
   HomeItem({
     Key? key,
+    required this.id,
     required this.state,
     required this.country,
     required this.locality,
@@ -30,6 +32,7 @@ class _HomeItemState extends State<HomeItem> {
   void selectedHome(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HouseDetailScreen(
+            id: widget.id,
             title: widget.HouseTitle,
             country: widget.country,
             state: widget.state,
@@ -40,7 +43,7 @@ class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    HomeProduct selectedHouse=appState.homeList.firstWhere((element) => element.housename== widget.HouseTitle,);
+    HomeProduct selectedHouse=appState.homeList.firstWhere((element) => element.id== widget.id,);
 
     return InkWell(
       onTap: () {
@@ -67,7 +70,7 @@ class _HomeItemState extends State<HomeItem> {
                             onPressed: () {
                               appState.toggleFavorite(selectedHouse);
                             },
-                            icon: appState.isFavourite(widget.HouseTitle)
+                            icon: appState.isFavourite(widget.id)
                                 ? Icon(Icons.favorite)
                                 : Icon(Icons.favorite_border))
                       ],
