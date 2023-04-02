@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:houserental/screens/filldetails.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 
@@ -90,6 +91,10 @@ class _ImagePickState extends State<ImagePick> {
             ElevatedButton(
               onPressed: _clearImages,
               child: Text('Clear Images'),
+            ),
+            ElevatedButton(
+              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => FillHouseDetails(),)),
+              child: Text('Fill Details'),
             ),
           ],
         ),

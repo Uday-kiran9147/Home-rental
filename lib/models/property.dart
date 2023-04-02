@@ -1,4 +1,4 @@
-class Property {
+class HouseProperty {
   String? propertyid;
   String? housetitle;
   List<String>? photos;
@@ -10,7 +10,7 @@ class Property {
   List<String>? category;
   List<String>? houserules;
 
-  Property(
+  HouseProperty(
       {this.propertyid,
       this.housetitle,
       this.photos,
@@ -22,7 +22,7 @@ class Property {
       this.category,
       this.houserules});
 
-  Property.fromJson(Map<String, dynamic> json) {
+  HouseProperty.fromJson(Map<String, dynamic> json) {
     propertyid = json['propertyid'];
     housetitle = json['housetitle'];
     photos = json['photos'].cast<String>();

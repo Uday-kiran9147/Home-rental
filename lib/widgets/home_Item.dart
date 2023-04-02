@@ -43,7 +43,9 @@ class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    HomeProduct selectedHouse=appState.homeList.firstWhere((element) => element.id== widget.id,);
+    HomeProduct selectedHouse = appState.homeList.firstWhere(
+      (element) => element.id == widget.id,
+    );
 
     return InkWell(
       onTap: () {
@@ -65,7 +67,13 @@ class _HomeItemState extends State<HomeItem> {
                     ),
                     child: Stack(
                       children: [
-                        Center(child: Text("Picture Here")),
+                        Center(
+                            child: Container(
+                          child: Image.network(
+                            'https://a0.muscache.com/im/pictures/miso/Hosting-605371928419351152/original/8711dc45-edaa-452e-8502-628f72784757.jpeg?im_w=960',
+                            fit: BoxFit.cover,
+                          ),
+                        )),
                         IconButton(
                             onPressed: () {
                               appState.toggleFavorite(selectedHouse);

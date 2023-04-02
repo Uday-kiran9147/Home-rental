@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 import '../models/dummy.dart';
+import '../models/property.dart';
 import '../widgets/home_Item.dart';
 
 class MyAppState with ChangeNotifier {
@@ -24,6 +25,39 @@ class MyAppState with ChangeNotifier {
     favoriteslist.remove(houseTitle);
     notifyListeners();
   }
+
+  var data = [
+    HouseProperty(
+      propertyid: "abc123",
+      housetitle: "Cozy Cottage",
+      photos: [
+        "https://example.com/photo1.jpg",
+        "https://example.com/photo2.jpg",
+        "https://example.com/photo3.jpg",
+      ],
+      address: Address(
+        street: "123 Main Street",
+        // city: "Anytown",
+        state: "CA",
+        country: "USA",
+        zipcode: "12345",
+      ),
+      checkintime: "3:00 PM",
+      checkouttime: "11:00 AM",
+      cleaningfee: 50,
+      bedcount: 2,
+      category: [
+        "Entire House",
+        "Family Friendly",
+        "Pet Friendly",
+      ],
+      houserules: [
+        "No smoking",
+        "No parties",
+        "Quiet hours after 10pm",
+      ],
+    )
+  ];
 
   List<HomeProduct> homeList = [
     HomeProduct(
