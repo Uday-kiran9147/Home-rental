@@ -1,29 +1,40 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:houserental/models/dummy.dart';
-import 'package:houserental/screens/house_detail_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'package:houserental/models/dummy.dart';
+import 'package:houserental/screens/house_detail_screen.dart';
+
+import '../models/property.dart';
 import '../provider/appstate.dart';
 
 class HomeItem extends StatefulWidget {
   // const HomeItem({super.key});
-  String id;
-  String state;
-  String country;
-  String locality;
-  int price;
-  String HouseTitle;
+  String? propertyid;
+  String? housetitle;
+  List<String>? photos;
+  double? price;
+  Address? address;
+  String? checkintime;
+  String? checkouttime;
+  int? cleaningfee;
+  int? bedcount;
+  List<String>? category;
+  List<String>? houserules;
   HomeItem({
     Key? key,
-    required this.id,
-    required this.state,
-    required this.country,
-    required this.locality,
+    required this.propertyid,
+    required this.housetitle,
+    required this.photos,
     required this.price,
-    required this.HouseTitle,
+    required this.address,
+    required this.checkintime,
+    required this.checkouttime,
+    required this.cleaningfee,
+    required this.bedcount,
+    required this.category,
+    required this.houserules,
   }) : super(key: key);
-
   @override
   State<HomeItem> createState() => _HomeItemState();
 }
@@ -32,19 +43,21 @@ class _HomeItemState extends State<HomeItem> {
   void selectedHome(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HouseDetailScreen(
-            id: widget.id,
-            title: widget.HouseTitle,
-            country: widget.country,
-            state: widget.state,
-            locality: widget.locality,
-            price: widget.price)));
+            id: widget.propertyid.toString(),
+            title: widget.housetitle.toString(),
+            address: Address(
+                country: widget.address!.country,
+                state: widget.address!.state,
+                zipcode: widget.address!.zipcode,
+                street: widget.address!.street),
+            price: widget.price as double)));
   }
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    HomeProduct selectedHouse = appState.homeList.firstWhere(
-      (element) => element.id == widget.id,
+    HouseProperty selectedHouse = appState.allhouseGetter.firstWhere(
+      (element) => element.propertyid == widget.propertyid,
     );
 
     return InkWell(
@@ -78,7 +91,8 @@ class _HomeItemState extends State<HomeItem> {
                             onPressed: () {
                               appState.toggleFavorite(selectedHouse);
                             },
-                            icon: appState.isFavourite(widget.id)
+                            icon: appState.isFavourite(
+                                    selectedHouse.propertyid.toString())
                                 ? Icon(Icons.favorite)
                                 : Icon(Icons.favorite_border))
                       ],
@@ -94,9 +108,10 @@ class _HomeItemState extends State<HomeItem> {
                 // height: MediaQuery.of(context).size.height * 0.2
               ),
             ),
-            Text(widget.HouseTitle),
+            Text(widget.housetitle.toString()),
             Text(widget.price.toString()),
-            Text("${widget.state}, ${widget.country}, ${widget.locality}"),
+            Text(
+                "${widget.address!.state}, ${widget.address!.country}, ${widget.address!.zipcode}"),
           ],
         ),
       ),

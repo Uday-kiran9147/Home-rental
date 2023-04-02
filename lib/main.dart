@@ -45,15 +45,19 @@ class HomeImplement extends StatelessWidget {
 
     return GridView(
         padding: EdgeInsets.all(15),
-        children: appState.homeList
+        children: appState.allhouseGetter
             .map((val) => HomeItem(
-                  id: val.id,
-                  state: val.state,
-                  country: val.country,
-                  locality: val.locality,
-                  price: val.price,
-                  HouseTitle: val.housename,
-                ))
+                propertyid: val.propertyid,
+                housetitle: val.housetitle,
+                photos: val.photos,
+                price: val.price,
+                address: val.address,
+                checkintime: val.checkintime,
+                checkouttime: val.checkouttime,
+                cleaningfee: val.cleaningfee,
+                bedcount: val.bedcount,
+                category: val.category,
+                houserules: val.houserules))
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             mainAxisSpacing: 4, crossAxisSpacing: 8, maxCrossAxisExtent: 400));

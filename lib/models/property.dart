@@ -1,7 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class HouseProperty {
   String? propertyid;
   String? housetitle;
   List<String>? photos;
+  double? price;
   Address? address;
   String? checkintime;
   String? checkouttime;
@@ -14,6 +18,7 @@ class HouseProperty {
       {this.propertyid,
       this.housetitle,
       this.photos,
+      this.price,
       this.address,
       this.checkintime,
       this.checkouttime,
@@ -55,12 +60,16 @@ class HouseProperty {
 }
 
 class Address {
-  String? country;
-  String? state;
-  String? zipcode;
-  String? street;
+   String? country;
+   String? state;
+   String? zipcode;
+   String? street;
 
-  Address({this.country, this.state, this.zipcode, this.street});
+  Address(
+      {required this.country,
+      required this.state,
+      required this.zipcode,
+      required this.street});
 
   Address.fromJson(Map<String, dynamic> json) {
     country = json['country'];

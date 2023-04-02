@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
+import 'package:houserental/screens/filldetails.dart';
+import 'package:houserental/screens/renthouse_screen.dart';
 
 import '../main.dart';
 import 'favourites_screen.dart';
@@ -33,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = AccountScreen();
         break;
         case 4:
-        page=ImagePick();
+        page=RentHouses();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

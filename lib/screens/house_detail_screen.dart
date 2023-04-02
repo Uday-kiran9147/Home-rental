@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:houserental/models/property.dart';
 
 class HouseDetailScreen extends StatelessWidget {
   String title;
   String id;
-  String country;
-  String state;
-  String locality;
-  int price;
+  Address address;
+  double price;
 
   HouseDetailScreen({
     Key? key,
     required this.id,
     required this.title,
-    required this.country,
-    required this.state,
-    required this.locality,
+    required this.address,
     required this.price,
   }) : super(key: key);
 
@@ -41,10 +37,9 @@ class HouseDetailScreen extends StatelessWidget {
               height: 150,
               width: 300,
             ),
-            Text('${country}, ${state}, ${locality}'),
+            Text('${address.country}, ${address.state}, ${address.zipcode}'),
             Text(price.toString()),
             Divider(),
-          
           ],
         ),
       ),

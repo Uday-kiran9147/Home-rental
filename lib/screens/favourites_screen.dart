@@ -15,7 +15,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
-    if (appState.favoriteslist.isEmpty) {
+    if (appState.favouritelistGetter.isEmpty) {
       return Center(
         child: Text('No favorites yet.'),
       );
@@ -27,23 +27,27 @@ class _FavoritesPageState extends State<FavoritesPage> {
         Padding(
           padding: const EdgeInsets.all(30),
           child: Text('You have '
-              '${appState.favoriteslist.length} favorites:'),
+              '${appState.favouritelistGetter.length} favorites:'),
         ),
         Expanded(
 
           //we can use GridView as map as used previously in homeScreen
           child: GridView.builder(
-            itemCount: appState.favoriteslist.length,
+            itemCount: appState.favouritelistGetter.length,
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 400),
             itemBuilder: (context, index) => HomeItem(
-              id: appState.favoriteslist[index].id,
-                state: appState.favoriteslist[index].state,
-                country: appState.favoriteslist[index].country,
-                locality: appState.favoriteslist[index].locality,
-                price: appState.favoriteslist[index].price,
-                HouseTitle: appState.favoriteslist[index].housename),
-          ),
+                propertyid: appState.favouritelistGetter[index].propertyid,
+                housetitle: appState.favouritelistGetter[index].housetitle,
+                photos: appState.favouritelistGetter[index].photos,
+                price: appState.favouritelistGetter[index].price,
+                address: appState.favouritelistGetter[index].address,
+                checkintime: appState.favouritelistGetter[index].checkintime,
+                checkouttime: appState.favouritelistGetter[index].checkouttime,
+                cleaningfee: appState.favouritelistGetter[index].cleaningfee,
+                bedcount: appState.favouritelistGetter[index].bedcount,
+                category: appState.favouritelistGetter[index].category,
+                houserules: appState.favouritelistGetter[index].houserules))
           // Make better use of wide windows with a grid.
           // child: GridView(
           //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -64,8 +68,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
           // ),
           //   ],
           // ),
-        ),
-      ],
+        ),]
     );
   }
 }
