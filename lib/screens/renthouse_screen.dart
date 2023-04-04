@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:houserental/screens/filldetails.dart';
+
+import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/appstate.dart';
@@ -17,25 +16,29 @@ class _RentHousesState extends State<RentHouses> {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<MyAppState>(context);
-
     return Scaffold(
       body: Column(children: [
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FillHouseDetails(),
-                  ));
-            },
-            child: Text('fill details')),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FillHouseDetails(),
+                    ));
+              },
+              child: Text('fill details')),
+        ),
         Expanded(
           child: ListView.builder(
-            shrinkWrap: true,
+              shrinkWrap: true,
               itemCount: appState.allhouseGetter.length,
-              itemBuilder: (context, index) => 
-             Card(child: Text(appState.allhouseGetter[index].propertyid.toString()),)
-              ),
+              itemBuilder: (context, index) => Card(
+                    child: Text(
+                        appState.allhouseGetter[index].propertyid.toString()),
+                  )
+                  ),
         )
       ]),
     );

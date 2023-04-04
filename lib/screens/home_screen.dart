@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
-import 'package:houserental/screens/filldetails.dart';
+import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
 
 import '../main.dart';

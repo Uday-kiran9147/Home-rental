@@ -1,45 +1,47 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 class HouseProperty {
-  String? propertyid;
-  String? housetitle;
-  List<String>? photos;
-  double? price;
-  Address? address;
-  String? checkintime;
-  String? checkouttime;
-  int? cleaningfee;
-  int? bedcount;
-  List<String>? category;
-  List<String>? houserules;
+  String propertyid;
+  String owner;
+  String housetitle;
+  List<dynamic> photos;
+  double price;
+  Address address;
+  String checkintime;
+  String checkouttime;
+  double cleaningfee;
+  int bedcount;
+  List<dynamic> category;
+  List<dynamic> houserules;
 
   HouseProperty(
-      {this.propertyid,
-      this.housetitle,
-      this.photos,
-      this.price,
-      this.address,
-      this.checkintime,
-      this.checkouttime,
-      this.cleaningfee,
-      this.bedcount,
-      this.category,
-      this.houserules});
+      {
+     required this.propertyid,
+     required this.owner,
+     required this.housetitle,
+     required this.photos,
+     required this.price,
+     required this.address,
+     required this.checkintime,
+     required this.checkouttime,
+     required this.cleaningfee,
+     required this.bedcount,
+     required this.category,
+     required this.houserules});
 
-  HouseProperty.fromJson(Map<String, dynamic> json) {
-    propertyid = json['propertyid'];
-    housetitle = json['housetitle'];
-    photos = json['photos'].cast<String>();
-    address =
-        json['address'] != null ? new Address.fromJson(json['address']) : null;
-    checkintime = json['checkintime'];
-    checkouttime = json['checkouttime'];
-    cleaningfee = json['cleaningfee'];
-    bedcount = json['bedcount'];
-    category = json['category'].cast<String>();
-    houserules = json['houserules'].cast<String>();
-  }
+  // HouseProperty.fromJson(Map<String, dynamic> json) {
+  //   propertyid = json['propertyid'];
+  //   housetitle = json['housetitle'];
+  //   photos = json['photos'].cast<String>();
+  //   address =
+  //       json['address'] = new Address.fromJson(json['address']);
+  //   checkintime = json['checkintime'];
+  //   checkouttime = json['checkouttime'];
+  //   cleaningfee = json['cleaningfee'];
+  //   bedcount = json['bedcount'];
+  //   category = json['category'].cast<String>();
+  //   houserules = json['houserules'].cast<String>();
+  // }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -47,7 +49,7 @@ class HouseProperty {
     data['housetitle'] = this.housetitle;
     data['photos'] = this.photos;
     if (this.address != null) {
-      data['address'] = this.address!.toJson();
+      data['address'] = this.address.toJson();
     }
     data['checkintime'] = this.checkintime;
     data['checkouttime'] = this.checkouttime;
@@ -60,10 +62,10 @@ class HouseProperty {
 }
 
 class Address {
-   String? country;
-   String? state;
-   String? zipcode;
-   String? street;
+  late String country;
+   late String state;
+   late String zipcode;
+   late String street;
 
   Address(
       {required this.country,
@@ -71,7 +73,7 @@ class Address {
       required this.zipcode,
       required this.street});
 
-  Address.fromJson(Map<String, dynamic> json) {
+   Address.fromJson(Map<String, dynamic> json) {
     country = json['country'];
     state = json['state'];
     zipcode = json['zipcode'];

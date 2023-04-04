@@ -38,6 +38,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 maxCrossAxisExtent: 400),
             itemBuilder: (context, index) => HomeItem(
                 propertyid: appState.favouritelistGetter[index].propertyid,
+                owner: appState.favouritelistGetter[index].owner,
                 housetitle: appState.favouritelistGetter[index].housetitle,
                 photos: appState.favouritelistGetter[index].photos,
                 price: appState.favouritelistGetter[index].price,

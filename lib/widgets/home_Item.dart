@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:houserental/models/dummy.dart';
 import 'package:houserental/screens/house_detail_screen.dart';
 
 import '../models/property.dart';
@@ -11,19 +10,21 @@ import '../provider/appstate.dart';
 class HomeItem extends StatefulWidget {
   // const HomeItem({super.key});
   String? propertyid;
+  String? owner;
   String? housetitle;
-  List<String>? photos;
+  List<dynamic>? photos;
   double? price;
   Address? address;
   String? checkintime;
   String? checkouttime;
-  int? cleaningfee;
+  double? cleaningfee;
   int? bedcount;
-  List<String>? category;
-  List<String>? houserules;
+  List<dynamic>? category;
+  List<dynamic>? houserules;
   HomeItem({
     Key? key,
     required this.propertyid,
+    required this.owner,
     required this.housetitle,
     required this.photos,
     required this.price,
@@ -40,29 +41,17 @@ class HomeItem extends StatefulWidget {
 }
 
 class _HomeItemState extends State<HomeItem> {
-  void selectedHome(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => HouseDetailScreen(
-            id: widget.propertyid.toString(),
-            title: widget.housetitle.toString(),
-            address: Address(
-                country: widget.address!.country,
-                state: widget.address!.state,
-                zipcode: widget.address!.zipcode,
-                street: widget.address!.street),
-            price: widget.price as double)));
-  }
-
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    final appState = Provider.of<MyAppState>(context);
     HouseProperty selectedHouse = appState.allhouseGetter.firstWhere(
       (element) => element.propertyid == widget.propertyid,
     );
 
     return InkWell(
       onTap: () {
-        selectedHome(context);
+        Navigator.of(context).pushNamed(HouseDetailScreen.routeName,
+            arguments: selectedHouse.propertyid);
       },
       child: Container(
         padding: EdgeInsets.all(8),
