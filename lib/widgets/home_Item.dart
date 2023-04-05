@@ -21,7 +21,7 @@ class HomeItem extends StatefulWidget {
   double? cleaningfee;
   int? bedcount;
   List<dynamic>? category;
-  List<dynamic>? houserules;
+  List<dynamic>? features;
   HomeItem({
     Key? key,
     required this.propertyid,
@@ -35,7 +35,7 @@ class HomeItem extends StatefulWidget {
     required this.cleaningfee,
     required this.bedcount,
     required this.category,
-    required this.houserules,
+    required this.features,
   }) : super(key: key);
   @override
   State<HomeItem> createState() => _HomeItemState();
@@ -83,8 +83,8 @@ class _HomeItemState extends State<HomeItem> {
                             },
                             icon: appState.isFavourite(
                                     selectedHouse.propertyid.toString())
-                                ? Icon(Icons.favorite)
-                                : Icon(Icons.favorite_border))
+                                ? Icon(Icons.favorite,color: Colors.red,)
+                                : Icon(Icons.favorite_border,color: Colors.red,))
                       ],
                     )
                     //  Image.network(

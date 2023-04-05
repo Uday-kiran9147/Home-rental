@@ -12,7 +12,7 @@ class HouseProperty {
   double cleaningfee;
   int bedcount;
   List<dynamic> category;
-  List<dynamic> houserules;
+  List<dynamic> features;
 
   HouseProperty(
       {
@@ -27,7 +27,7 @@ class HouseProperty {
      required this.cleaningfee,
      required this.bedcount,
      required this.category,
-     required this.houserules});
+     required this.features});
 
   // HouseProperty.fromJson(Map<String, dynamic> json) {
   //   propertyid = json['propertyid'];
@@ -56,7 +56,7 @@ class HouseProperty {
     data['cleaningfee'] = this.cleaningfee;
     data['bedcount'] = this.bedcount;
     data['category'] = this.category;
-    data['houserules'] = this.houserules;
+    data['houserules'] = this.features;
     return data;
   }
 }

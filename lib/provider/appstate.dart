@@ -3,7 +3,6 @@ import '../models/property.dart';
 
 class MyAppState with ChangeNotifier {
   List<HouseProperty> _favoriteslist = <HouseProperty>[];
- 
 
   void toggleFavorite(HouseProperty homeitem) {
     if (_favoriteslist.contains(homeitem)) {
@@ -56,14 +55,15 @@ class MyAppState with ChangeNotifier {
         cleaningfee: cleaningfee,
         bedcount: bedcount,
         category: category,
-        houserules: houserules);
+        features: houserules);
     print(newHouse.toJson());
     print(_allhouses.length);
     _allhouses.add(newHouse);
     notifyListeners();
     print(_allhouses.length);
   }
- List<HouseProperty> _allhouses = [
+
+  List<HouseProperty> _allhouses = [
     HouseProperty(
         owner: 'uday',
         address: Address(
@@ -76,11 +76,11 @@ class MyAppState with ChangeNotifier {
         checkintime: '11',
         checkouttime: '10',
         cleaningfee: 12000,
-        houserules: ['rule1', 'rule2', 'rule3'],
+        features: ['rule1', 'rule2', 'rule3'],
         housetitle: 'houseTITLE',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-          "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
               "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
               "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
@@ -98,7 +98,7 @@ class MyAppState with ChangeNotifier {
         checkintime: '11',
         checkouttime: '10',
         cleaningfee: 12000,
-        houserules: ['rule1', 'rule2'],
+        features: ['rule1', 'rule2'],
         housetitle: 'houseTITLE',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -121,7 +121,7 @@ class MyAppState with ChangeNotifier {
         checkintime: '3pm',
         checkouttime: '11am',
         cleaningfee: 15000,
-        houserules: ['No smoking', 'No parties'],
+        features: ['No smoking', 'No parties'],
         housetitle: 'Luxury Beverly Hills Mansion',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -143,7 +143,7 @@ class MyAppState with ChangeNotifier {
         checkintime: '4pm',
         checkouttime: '12pm',
         cleaningfee: 8000,
-        houserules: ['No pets allowed', 'Quiet after 10pm'],
+        features: ['No pets allowed', 'Quiet after 10pm'],
         housetitle: 'Stylish Downtown Toronto Condo',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -165,7 +165,7 @@ class MyAppState with ChangeNotifier {
         checkintime: '2pm',
         checkouttime: '10am',
         cleaningfee: 10000,
-        houserules: ['No smoking', 'No loud music'],
+        features: ['No smoking', 'No loud music'],
         housetitle: 'Secluded Villa in the Mountains',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -186,7 +186,7 @@ class MyAppState with ChangeNotifier {
         checkintime: '3pm',
         checkouttime: '11am',
         cleaningfee: 12000,
-        houserules: ['No parties', 'No smoking'],
+        features: ['No parties', 'No smoking'],
         housetitle: 'Luxury Sydney Harbor Mansion',
         photos: [
           "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
@@ -196,5 +196,4 @@ class MyAppState with ChangeNotifier {
         price: 2000000,
         propertyid: 'zxcvbnm09876poiuyt'),
   ];
-
 }

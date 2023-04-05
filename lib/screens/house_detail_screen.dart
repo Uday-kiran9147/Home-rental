@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/provider/appstate.dart';
+import 'package:houserental/screens/paymentScreen.dart';
+import 'package:houserental/screens/payment_detail_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/pricebeautify.dart';
 import '../widgets/home_Item.dart';
 
 class HouseDetailScreen extends StatelessWidget {
@@ -82,18 +85,7 @@ class HouseDetailScreen extends StatelessWidget {
                                       // decoration: TextDecoration.underline
                                     ),
                                   ),
-                                  Text(
-                                    "\$${selectedHouse.price}"
-                                        .toString()
-                                        .replaceAllMapped(
-                                            RegExp(
-                                                r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                                            (match) => '${match[1]},'),
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
+                                  priceBeautify(selectedHouse.price.toString())
                                 ],
                               ),
                               Text(
@@ -112,7 +104,93 @@ class HouseDetailScreen extends StatelessWidget {
                                   color: Colors.grey,
                                 ),
                               ),
+                              Divider(),
+
+                              Text(
+                                "What this place offer\'s",
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              buildContainer(
+                                  ListView.builder(
+                                    // shrinkWrap: true,
+                                    itemCount: selectedHouse.features.length,
+                                    itemBuilder: (context, index) => ListTile(
+                                      // color: Theme.of(context).primaryColor,
+                                      title:
+                                          Text(selectedHouse.features[index]),
+                                      leading: Text("${index + 1}"),
+                                    ),
+                                  ),
+                                  selectedHouse.features.length),
+
+                              Text(
+                                'Things to know',
+                                textAlign: TextAlign.start,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                               const SizedBox(height: 15),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 1,
+                                        color:
+                                            Color.fromARGB(255, 235, 181, 45))),
+                                child: DataTable(
+                                  columns: <DataColumn>[
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Text(
+                                          "Check-In",
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                    ),
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Text(
+                                          'Check-out',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                    ),
+                                    DataColumn(
+                                      label: Expanded(
+                                        child: Text(
+                                          'safety',
+                                          style: TextStyle(
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                  rows: <DataRow>[
+                                    DataRow(
+                                      cells: <DataCell>[
+                                        DataCell(Text(
+                                            '${selectedHouse.checkintime}')),
+                                        DataCell(Text(
+                                            '${selectedHouse.checkouttime}')),
+                                        DataCell(Text(
+                                          'Security camera & recording device',
+                                          overflow: TextOverflow.fade,
+                                        )),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+//---------------------------************************************-----------------------------
                               Text(
                                 'Similar This',
                                 style: GoogleFonts.poppins(
@@ -152,9 +230,9 @@ class HouseDetailScreen extends StatelessWidget {
                                               .allhouseGetter[index].bedcount,
                                           category: appstate
                                               .allhouseGetter[index].category,
-                                          houserules: appstate
+                                          features: appstate
                                               .allhouseGetter[index]
-                                              .houserules))),
+                                              .features))),
                               SizedBox(height: 20),
                             ],
                           ),
@@ -162,26 +240,6 @@ class HouseDetailScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Center(
-                      child: Text(
-                    "House Rules",
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).hintColor,
-                    ),
-                  )),
-                  buildContainer(
-                      ListView.builder(
-                        // shrinkWrap: true,
-                        itemCount: selectedHouse.houserules.length,
-                        itemBuilder: (context, index) => ListTile(
-                          // color: Theme.of(context).primaryColor,
-                          title: Text(selectedHouse.houserules[index]),
-                          leading: Text("${index + 1}"),
-                        ),
-                      ),
-                      selectedHouse.houserules.length),
                 ],
               ),
             ),
@@ -206,13 +264,20 @@ class HouseDetailScreen extends StatelessWidget {
                     },
                     icon: appstate
                             .isFavourite(selectedHouse.propertyid.toString())
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border))),
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          )
+                        : Icon(Icons.favorite_border, color: Colors.red))),
             SizedBox(width: 20),
             Expanded(
               child: InkWell(
                 onTap: () {
                   // productController.addToCart();
+                  // Navigator.push(context, MaterialPageRoute(builder: (context) => HousePaymentDetailsScreen(),));
+                  Navigator.pushNamed(
+                      context, HousePaymentDetailsScreen.routeName,
+                      arguments: selectedHouse.propertyid);
                 },
                 child: Container(
                   alignment: Alignment.center,

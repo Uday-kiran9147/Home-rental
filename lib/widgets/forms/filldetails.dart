@@ -12,7 +12,6 @@ import 'package:flutter/cupertino.dart';
 class FillHouseDetails extends StatefulWidget {
   @override
   State<FillHouseDetails> createState() => _FillHouseDetailsState();
-
 }
 
 class _FillHouseDetailsState extends State<FillHouseDetails> {
@@ -21,9 +20,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   TimeOfDay checkOutdateTime = TimeOfDay.now();
 
   final titleController = new TextEditingController();
-  // final priceController = new TextEditingController();
-  // final checkInController = new TextEditingController();
-  // final checkOutController = new TextEditingController();
   final countryController = new TextEditingController();
   final stateController = new TextEditingController();
   final streetController = new TextEditingController();
@@ -208,21 +204,39 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     }
   }
 
- Future  _buildTimePicker(BuildContext context, TimeOfDay time, String label) async {
-     TimeOfDay? newtime = await showTimePicker(
+  Future _buildCheckOutTimePicker(
+    BuildContext context,
+  ) async {
+    TimeOfDay? newtime = await showTimePicker(
       context: context,
-      initialTime: time,
+      initialTime: checkOutdateTime,
       initialEntryMode: TimePickerEntryMode.dial,
-      
     );
 
-    if (newtime != null && newtime != time) {
+    if (newtime != null && newtime != checkOutdateTime) {
       setState(() {
-        time = newtime;
+        checkOutdateTime = newtime;
       });
+    } else {
+      print(checkOutdateTime);
     }
-    else{
-      print(time);
+  }
+
+  Future _buildCheckInTimePicker(
+    BuildContext context,
+  ) async {
+    TimeOfDay? newtime = await showTimePicker(
+      context: context,
+      initialTime: checkIndateTime,
+      initialEntryMode: TimePickerEntryMode.dial,
+    );
+
+    if (newtime != null && newtime != checkIndateTime) {
+      setState(() {
+        checkIndateTime = newtime;
+      });
+    } else {
+      print(checkIndateTime);
     }
   }
 
@@ -273,7 +287,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               // controller: priceController,
               onChanged: (value) => priceController = double.parse(value),
               validator: (value) {
-                if (!(value is double)) {
+                if (!(double.tryParse(value!) is double)) {
                   return 'price must be in numbers';
                 }
                 return null;
@@ -323,50 +337,24 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 return null;
               },
             ),
-            // TextFormField(
-            //   // initialValue: ':',
-            //   keyboardType: TextInputType.datetime,
-            //   inputFormatters: [
-            //     FilteringTextInputFormatter.allow(RegExp(r'^\d{0,2}:\d{0,2}$'))
-            //   ],
-            //   decoration: InputDecoration(hintText: 'check-in time'),
-            //   controller: checkInController,
-            //   validator: (value) {
-            //     if (value!.isEmpty) {
-            //       return 'Time can\'t be empty';
-            //     }
-            //     return null;
-            //   },
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                    onPressed: () => _buildTimePicker(
-                        context, checkIndateTime, 'check-in time'),
+                    onPressed: () => _buildCheckInTimePicker(context),
                     child: Text('check-in')),
                 ElevatedButton(
-                    onPressed: () => _buildTimePicker(
-                        context, checkOutdateTime, 'check-out time'),
+                    onPressed: () => _buildCheckOutTimePicker(
+                          context,
+                        ),
                     child: Text('check-out')),
               ],
             ),
-            // TextFormField(
-            //   keyboardType: TextInputType.datetime,
-            //   decoration: InputDecoration(hintText: 'check-out time'),
-            //   controller: checkOutController,
-            //   validator: (value) {
-            //     if (value!.isEmpty) {
-            //       return 'cannot be empty';
-            //     }
-            //     // return null;
-            //   },
-            // ),
             TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(hintText: 'cleaning fee'),
                 validator: (value) {
-                  if (!(value is double)) {
+                  if (!(double.parse(value!) is double)) {
                     return 'Cleaning fee must be in numbers format';
                   }
                   return null;
@@ -378,7 +366,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               'Number of Bed-room\'s',
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 50, child: dropDownBedCount()),
+            SizedBox(height: 70, child: dropDownBedCount()),
             _addRuleTile(),
             _RulelistView(),
             Divider(),
@@ -394,10 +382,10 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 // for (var i in _controllers) {
                 //   print(i.text);
                 // }
-                // print('bedcount $bedcount');
-                // for (int i = 0; i < checkboxtitles.length; i++) {
-                //   print("${_categotyCheckBox[i]},--->${checkboxtitles[i]}");
-                // }
+                print('bedcount $bedcount');
+                for (int i = 0; i < checkboxtitles.length; i++) {
+                  print("${_categotyCheckBox[i]},--->${checkboxtitles[i]}");
+                }
               },
             ),
             ImagePick()

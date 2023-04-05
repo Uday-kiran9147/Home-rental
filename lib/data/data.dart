@@ -1,6 +1,16 @@
 // import 'package:houserental/models/property.dart';
 
+void main() {
+  double price = 100.0; // example price
+  double taxRate = 0.18; // example tax rate
 
+  double tax = price * taxRate;
+  double finalPrice = price + tax;
+
+  print('Price: ${price.toStringAsFixed(2)}');
+  print('Tax: ${tax.toStringAsFixed(2)}');
+  print('Final Price: ${finalPrice.toStringAsFixed(2)}');
+}
 
 // void main(){
 // Address address = Address(
