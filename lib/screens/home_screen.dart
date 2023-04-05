@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
-import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
 import '../provider/appstate.dart';
 import '../widgets/home_Item.dart';
 import 'favourites_screen.dart';

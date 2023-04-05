@@ -15,14 +15,14 @@ class HousePaymentDetailsScreen extends StatelessWidget {
     final selectedHouse = appstate.allhouseGetter.firstWhere(
       (element) => element.propertyid == houseid,
     );
-    double price = selectedHouse.price; // example price
-    double pricewithdays = price * 3; // example tax rate
+    double price = selectedHouse.price;
+    double pricewithdays = price * 3;
     double cleaning = selectedHouse.cleaningfee;
 
     double finalPrice = pricewithdays + cleaning;
 
     print('Price: ${price.toStringAsFixed(2)}');
-    print('Tax: ${pricewithdays.toStringAsFixed(2)}');
+    print('price with days: ${pricewithdays.toStringAsFixed(2)}');
     print('Final Price: ${finalPrice.toStringAsFixed(2)}');
 
     return Scaffold(

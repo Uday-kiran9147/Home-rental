@@ -78,7 +78,7 @@ class HouseDetailScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    selectedHouse.address!.country.toString(),
+                                    selectedHouse.address.country.toString(),
                                     style: GoogleFonts.poppins(
                                       fontSize: 15,
                                       color: Colors.grey,
@@ -98,7 +98,7 @@ class HouseDetailScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 15),
                               Text(
-                                '${selectedHouse.address!.country}, ${selectedHouse.address!.state},${selectedHouse.address!.street} ${selectedHouse.address!.zipcode}',
+                                '${selectedHouse.address.country}, ${selectedHouse.address.state},${selectedHouse.address.street} ${selectedHouse.address.zipcode}',
                                 style: GoogleFonts.poppins(
                                   fontSize: 15,
                                   color: Colors.grey,
@@ -273,8 +273,6 @@ class HouseDetailScreen extends StatelessWidget {
             Expanded(
               child: InkWell(
                 onTap: () {
-                  // productController.addToCart();
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => HousePaymentDetailsScreen(),));
                   Navigator.pushNamed(
                       context, HousePaymentDetailsScreen.routeName,
                       arguments: selectedHouse.propertyid);
@@ -304,11 +302,6 @@ class HouseDetailScreen extends StatelessWidget {
 
   Widget buildContainer(Widget child, int height) {
     return Container(
-      // decoration: BoxDecoration(
-      //   color: Colors.white,
-      //   border: Border.all(color: Colors.grey),
-      //   borderRadius: BorderRadius.circular(10),
-      // ),
       margin: EdgeInsets.only(top: 10),
       padding: EdgeInsets.all(10),
       height: height * 70.toDouble(),

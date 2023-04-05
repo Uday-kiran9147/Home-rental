@@ -12,7 +12,6 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     var appState = context.watch<MyAppState>();
 
     if (appState.favouritelistGetter.isEmpty) {
