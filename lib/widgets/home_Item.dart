@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:houserental/screens/house_detail_screen.dart';
@@ -97,10 +98,25 @@ class _HomeItemState extends State<HomeItem> {
                 // height: MediaQuery.of(context).size.height * 0.2
               ),
             ),
-            Text(widget.housetitle.toString()),
-            Text(widget.price.toString()),
+            Text(widget.housetitle.toString(),
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Color.fromARGB(255, 47, 42, 42),
+                )),
+            Text(widget.price.toString(),
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).hintColor,
+                )),
             Text(
-                "${widget.address!.state}, ${widget.address!.country}, ${widget.address!.zipcode}"),
+                "${widget.address!.state}, ${widget.address!.country}, ${widget.address!.zipcode}",
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).hintColor,
+                )),
           ],
         ),
       ),
