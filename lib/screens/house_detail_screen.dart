@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houserental/models/property.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/paymentScreen.dart';
 import 'package:houserental/screens/payment_detail_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/pricebeautify.dart';
+import '../widgets/data_table.dart';
 import '../widgets/home_Item.dart';
+import '../widgets/photo_list.dart';
+import '../widgets/reserve_button.dart';
+import '../widgets/suggession_builder.dart';
 
 class HouseDetailScreen extends StatelessWidget {
   static const routeName = 'house-detail';
@@ -34,29 +39,7 @@ class HouseDetailScreen extends StatelessWidget {
                       height: 370,
                       width: 600,
                       padding: EdgeInsets.all(10.0),
-                      child: GridView.builder(
-                        itemCount: selectedHouse.photos.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 1,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Stack(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(5.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        selectedHouse.photos[index]),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      )),
+                      child: photoList(selectedHouse: selectedHouse)),
                   Stack(
                     children: [
                       Container(
@@ -139,58 +122,14 @@ class HouseDetailScreen extends StatelessWidget {
                               const SizedBox(height: 15),
                               Container(
                                 decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 1,
-                                        color:
-                                            Color.fromARGB(255, 235, 181, 45))),
-                                child: DataTable(
-                                  columns: <DataColumn>[
-                                    DataColumn(
-                                      label: Expanded(
-                                        child: Text(
-                                          "Check-In",
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                      ),
-                                    ),
-                                    DataColumn(
-                                      label: Expanded(
-                                        child: Text(
-                                          'Check-out',
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                      ),
-                                    ),
-                                    DataColumn(
-                                      label: Expanded(
-                                        child: Text(
-                                          'safety',
-                                          style: TextStyle(
-                                              fontStyle: FontStyle.italic),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                  rows: <DataRow>[
-                                    DataRow(
-                                      cells: <DataCell>[
-                                        DataCell(Text(
-                                            '${selectedHouse.checkintime}')),
-                                        DataCell(Text(
-                                            '${selectedHouse.checkouttime}')),
-                                        DataCell(Text(
-                                          'Security camera & recording device',
-                                          overflow: TextOverflow.fade,
-                                        )),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                    border: Border.all(width: 1),
+                                    // color: Colors.black,
+                                    borderRadius: BorderRadius.circular(
+                                      15,
+                                    )),
+                                child: dataTable(selectedHouse: selectedHouse),
                               ),
-
-//---------------------------************************************-----------------------------
+                              const SizedBox(height: 15),
                               Text(
                                 'Similar This',
                                 style: GoogleFonts.poppins(
@@ -202,37 +141,7 @@ class HouseDetailScreen extends StatelessWidget {
                               SizedBox(
                                   height: 300,
                                   // width: 350,
-                                  child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: appstate.allhouseGetter.length,
-                                      itemBuilder: (context, index) => HomeItem(
-                                          propertyid: appstate
-                                              .allhouseGetter[index].propertyid,
-                                          owner: 'uday',
-                                          housetitle: appstate
-                                              .allhouseGetter[index].housetitle,
-                                          photos: appstate
-                                              .allhouseGetter[index].photos,
-                                          price: appstate
-                                              .allhouseGetter[index].price,
-                                          address: appstate
-                                              .allhouseGetter[index].address,
-                                          checkintime: appstate
-                                              .allhouseGetter[index]
-                                              .checkintime,
-                                          checkouttime: appstate
-                                              .allhouseGetter[index]
-                                              .checkouttime,
-                                          cleaningfee: appstate
-                                              .allhouseGetter[index]
-                                              .cleaningfee,
-                                          bedcount: appstate
-                                              .allhouseGetter[index].bedcount,
-                                          category: appstate
-                                              .allhouseGetter[index].category,
-                                          features: appstate
-                                              .allhouseGetter[index]
-                                              .features))),
+                                  child: sugessionBuilder(appstate: appstate)),
                               SizedBox(height: 20),
                             ],
                           ),
@@ -243,62 +152,10 @@ class HouseDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-      bottomNavigationBar: Container(
-        height: 70,
-        color: Colors.white,
-        padding: EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-                width: 50,
-                height: 50,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: IconButton(
-                    onPressed: () {
-                      // appState.toggleFavorite(selectedHouse);
-                      appstate.toggleFavorite(selectedHouse);
-                    },
-                    icon: appstate
-                            .isFavourite(selectedHouse.propertyid.toString())
-                        ? Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                          )
-                        : Icon(Icons.favorite_border, color: Colors.red))),
-            SizedBox(width: 20),
-            Expanded(
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                      context, HousePaymentDetailsScreen.routeName,
-                      arguments: selectedHouse.propertyid);
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Text(
-                    'Reserve',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: bottomNavigation(appstate, selectedHouse, context),
     );
   }
+
 
   Widget buildContainer(Widget child, int height) {
     return Container(

@@ -44,6 +44,7 @@ class MyAppState with ChangeNotifier {
     List<dynamic> houserules,
   ) {
     final newHouse = HouseProperty(
+        maxguests: 7,
         owner: 'uday',
         propertyid: propertyid,
         housetitle: housetitle,
@@ -65,6 +66,7 @@ class MyAppState with ChangeNotifier {
 
   List<HouseProperty> _allhouses = [
     HouseProperty(
+        maxguests: 7,
         owner: 'uday',
         address: Address(
             country: 'country',
@@ -87,6 +89,7 @@ class MyAppState with ChangeNotifier {
         price: 1033345,
         propertyid: 'qwertyui87654erty'),
     HouseProperty(
+        maxguests: 7,
         owner: 'uday',
         address: Address(
             country: 'country',
@@ -110,6 +113,7 @@ class MyAppState with ChangeNotifier {
         price: 1033345,
         propertyid: 'qfgfd345egfsfs'),
     HouseProperty(
+        maxguests: 2,
         owner: 'uday',
         address: Address(
             country: 'United States',
@@ -132,6 +136,7 @@ class MyAppState with ChangeNotifier {
         price: 1000000,
         propertyid: 'abcdefg12345hijkl'),
     HouseProperty(
+        maxguests: 4,
         owner: 'uday',
         address: Address(
             country: 'Canada',
@@ -154,6 +159,7 @@ class MyAppState with ChangeNotifier {
         price: 500000,
         propertyid: 'poiuytrewq09876lkjh'),
     HouseProperty(
+        maxguests: 5,
         owner: 'uday',
         address: Address(
             country: 'Spain',
@@ -175,6 +181,7 @@ class MyAppState with ChangeNotifier {
         price: 750000,
         propertyid: 'asdfghjkl12345qwerty'),
     HouseProperty(
+        maxguests: 15,
         owner: 'uday',
         address: Address(
             country: 'Australia',
@@ -193,7 +200,7 @@ class MyAppState with ChangeNotifier {
               "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
               "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
-        price: 2000000,
+        price: 203400,
         propertyid: 'zxcvbnm09876poiuyt'),
   ];
 }

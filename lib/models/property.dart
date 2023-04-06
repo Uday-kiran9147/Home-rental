@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class HouseProperty {
+  int maxguests;
   String propertyid;
   String owner;
   String housetitle;
@@ -15,19 +16,19 @@ class HouseProperty {
   List<dynamic> features;
 
   HouseProperty(
-      {
-     required this.propertyid,
-     required this.owner,
-     required this.housetitle,
-     required this.photos,
-     required this.price,
-     required this.address,
-     required this.checkintime,
-     required this.checkouttime,
-     required this.cleaningfee,
-     required this.bedcount,
-     required this.category,
-     required this.features});
+      {required this.maxguests,
+      required this.propertyid,
+      required this.owner,
+      required this.housetitle,
+      required this.photos,
+      required this.price,
+      required this.address,
+      required this.checkintime,
+      required this.checkouttime,
+      required this.cleaningfee,
+      required this.bedcount,
+      required this.category,
+      required this.features});
 
   // HouseProperty.fromJson(Map<String, dynamic> json) {
   //   propertyid = json['propertyid'];
@@ -63,9 +64,9 @@ class HouseProperty {
 
 class Address {
   late String country;
-   late String state;
-   late String zipcode;
-   late String street;
+  late String state;
+  late String zipcode;
+  late String street;
 
   Address(
       {required this.country,
@@ -73,7 +74,7 @@ class Address {
       required this.zipcode,
       required this.street});
 
-   Address.fromJson(Map<String, dynamic> json) {
+  Address.fromJson(Map<String, dynamic> json) {
     country = json['country'];
     state = json['state'];
     zipcode = json['zipcode'];

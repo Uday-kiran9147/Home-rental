@@ -26,6 +26,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   final zipcodeController = new TextEditingController();
   double priceController = 1000;
   int bedcount = 0;
+  int maxguests = 2;
   double cleaningFee = 500;
   List<TextEditingController> _rulecontroller = [];
   List<TextField> _rulefields = [];
@@ -298,7 +299,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               controller: countryController,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'countrycannot  be empty';
+                  return 'country cannot  be empty';
                 }
                 return null;
               },
@@ -337,6 +338,31 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 return null;
               },
             ),
+            TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(hintText: 'max no.of guests'),
+                validator: (value) {
+                  if (!((value!) is int)) {
+                    return 'cannot be empty';
+                  }
+                  return null;
+                },
+                // controller:
+                onChanged: (value) => maxguests = int.parse(value)),
+            TextFormField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(hintText: 'cleaning fee'),
+                validator: (value) {
+                  if (!((value!) is double)) {
+                    return 'Cleaning fee must be in decimal';
+                  }
+                  return null;
+                },
+                // controller:
+                onChanged: (value) => cleaningFee = double.parse(value)),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -350,17 +376,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                     child: Text('check-out')),
               ],
             ),
-            TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(hintText: 'cleaning fee'),
-                validator: (value) {
-                  if (!(double.parse(value!) is double)) {
-                    return 'Cleaning fee must be in numbers format';
-                  }
-                  return null;
-                },
-                // controller:
-                onChanged: (value) => cleaningFee = double.parse(value)),
             _checkBox(),
             Text(
               'Number of Bed-room\'s',
