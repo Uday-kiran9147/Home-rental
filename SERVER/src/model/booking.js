@@ -1,10 +1,12 @@
-const User = mongoose.model('rental-user', {
+
+const mongoose = require('mongoose')
+const Booking = mongoose.model('booking', {
     bookingdate: {
         type: String,
         trim: true,
     },
     bookingid: {
-        type: Buffer,
+        type: String,
         required: true,
     },
     check_in: {
@@ -18,28 +20,12 @@ const User = mongoose.model('rental-user', {
 
     },
     bookingprice: {
-        type: String,
-    },
-    numberofguests: {
-        type: String,
-    },
-    email: {
-        type: String,
-        required: true,
-        lowercase: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('Invalid email')
-            }
-        }
-    },
-    userid: {
         type: Number,
     },
-    paymentid: {
-        type: String,
+    numberofdays: {
+        type: Number,
     },
-    paymentdate: {
+    userid: {
         type: String,
     },
     houseid: {
@@ -47,18 +33,17 @@ const User = mongoose.model('rental-user', {
     },
 })
 
-const me = new User(
-    {
-        name: 'nagam chandu',
-        profile: "",
-        address: {
-            country: 'Finland',
-            state: "curchil",
-        },
-        gender: 'Male',
-        phonenumber: '9876543212',
-        password: 'nagam password',
-        email: 'nagam@GMAIL.COM',
-        age: 45
-    }
-)
+// const booking = new Booking(
+//     {
+//         bookingdate: '12-mar',
+//         bookingid: 'kdnsjpkjvnj34234',
+//         check_in: '31-mar',
+//         check_out: '2-april',
+//         bookingprice: 103000,
+//         numberofdays: 3,
+//         userid: 'uday9999',
+//         houseid: '893748392834234'
+//     }
+// )
+
+module.exports =Booking;

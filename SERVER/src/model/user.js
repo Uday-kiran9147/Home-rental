@@ -1,16 +1,6 @@
-
-// const connectionUrl = 'mongodb://127.0.0.1:27017'
 const validator = require('validator')
-const database = "taskmanager";
-const local = 'mongodb://localhost:27017/'
 const mongoose = require('mongoose')
-const uri = "mongodb+srv://uday:TestDataBase@testingcluster.hmcvuvv.mongodb.net/?retryWrites=true&w=majority";
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    // useFindAndModify: false,
-    useUnifiedTopology: true
-},).then(() => console.log('Connected to database')).catch((error) => console.log(error))
 
 const User = mongoose.model('rental-user', {
     name: {
@@ -59,7 +49,7 @@ const User = mongoose.model('rental-user', {
     }
 })
 
-const me = new User(
+const user = new User(
     {
         name: 'nagam chandu',
         profile: "",
@@ -75,7 +65,7 @@ const me = new User(
     }
 )
 
-me.save().then((me) => {
+user.save().then((me) => {
     console.log(me)
 }).catch((error) => {
     console.log('Error ' + error)
