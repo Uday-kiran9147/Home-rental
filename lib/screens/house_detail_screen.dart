@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houserental/models/property.dart';
 import 'package:houserental/provider/appstate.dart';
-import 'package:houserental/screens/paymentScreen.dart';
-import 'package:houserental/screens/payment_detail_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../utils/pricebeautify.dart';
 import '../widgets/data_table.dart';
-import '../widgets/home_Item.dart';
 import '../widgets/photo_list.dart';
 import '../widgets/reserve_button.dart';
 import '../widgets/suggession_builder.dart';
-
 class HouseDetailScreen extends StatelessWidget {
   static const routeName = 'house-detail';
   @override
