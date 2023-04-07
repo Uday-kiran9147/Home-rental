@@ -9,25 +9,25 @@ const Booking = mongoose.model('booking', {
         type: String,
         required: true,
     },
-    check_in: {
-        type: String,
+    checkin: {
+        type:String,
         required: true,
 
     },
-    check_out: {
+    checkout: {
         type: String,
         required: true,
 
     },
     bookingprice: {
-        type: Number,
+        type: String,
     },
     guests: {
-        type: Number,
+        type: String,
         required: true,
     },
     numberofdays: {
-        type: Number,
+        type: String,
     },
     userid: {
         type: String,

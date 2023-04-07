@@ -1,17 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:houserental/models/booking.dart';
+import 'package:houserental/provider/booking.dart';
 import 'package:provider/provider.dart';
 
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
 
-class BookingDetailScreen extends StatelessWidget {
+class BookingDetailScreen extends StatefulWidget {
   // DateTime bookingdate;
   // String bookingid;
-  DateTime checkIn;
-  DateTime checkOut;
+  DateTime? checkIn;
+  DateTime? checkOut;
   double bookingprice;
   int guests;
   int numberofdays;
@@ -29,7 +31,14 @@ class BookingDetailScreen extends StatelessWidget {
     required this.userid,
     required this.houseid,
   }) : super(key: key);
+
+  @override
+  State<BookingDetailScreen> createState() => _BookingDetailScreenState();
+}
+
+class _BookingDetailScreenState extends State<BookingDetailScreen> {
   // static const routeName = 'house-payment-details';
+  void newbooking() {}
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +46,9 @@ class BookingDetailScreen extends StatelessWidget {
 
     final appstate = Provider.of<MyAppState>(context);
     final selectedHouse = appstate.allhouseGetter.firstWhere(
-      (element) => element.propertyid == houseid,
+      (element) => element.propertyid == widget.houseid,
     );
-    double? localprice = bookingprice;
+    double? localprice = widget.bookingprice;
     double? pricewithdays = localprice * 3;
     double? cleaning = selectedHouse.cleaningfee;
 
@@ -87,14 +96,14 @@ class BookingDetailScreen extends StatelessWidget {
               SizedBox(width: 10.0),
               SizedBox(height: 20.0),
               Text(
-                'No.of.guests ${guests}',
+                'No.of.guests ${widget.guests}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     color: Colors.green),
               ),
               Text(
-                '${numberofdays} day\'s of vacation.......',
+                '${widget.numberofdays} day\'s of vacation.......',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
@@ -109,7 +118,7 @@ class BookingDetailScreen extends StatelessWidget {
                 rows: [
                   DataRow(cells: [
                     DataCell(Text(
-                      "\$${localprice} x${numberofdays}"
+                      "\$${localprice} x${widget.numberofdays}"
                           .toString()
                           .replaceAllMapped(
                               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -145,6 +154,21 @@ class BookingDetailScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
+                  // newbooking();
+                  Booking newbooking = Booking(
+                      bookingdate: DateTime.now().toString(),
+                      bookingid:
+                          DateTime.now().millisecondsSinceEpoch.toString(),
+                      checkin: widget.checkIn.toString(),
+                      checkout: widget.checkOut.toString(),
+                      bookingprice: finalPrice.toString(),
+                      guests: widget.guests.toString(),
+                      numberofdays: widget.numberofdays.toString(),
+                      userid: widget.userid.toString(),
+                      houseid: widget.houseid.toString());
+                  final bookingstate =
+                      Provider.of<BookingProvider>(context, listen: false);
+                  bookingstate.bookhouse(newbooking);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },

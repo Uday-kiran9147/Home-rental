@@ -11,13 +11,12 @@ void main() {
     "private_home": false,
     "National_Park": false,
     "Trending": false,
-    "Island": false,
+    "Island": true,
     "Camping": false,
   };
   final res=getKeysWithTrueValues(category);
   belongs=res;
-  print(belongs);
-  print(category.keys);
+  print(belongs.toList());
 
 }
 

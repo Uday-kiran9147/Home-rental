@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/services/apiservice.dart';
+import 'package:houserental/utils/snackbar.dart';
 import '../models/property.dart';
 
 class MyAppState with ChangeNotifier {
@@ -43,7 +44,7 @@ class MyAppState with ChangeNotifier {
     double cleaningfee,
     int bedcount,
     List<dynamic> category,
-    List<dynamic> houserules,
+    List<dynamic> housefeatures,
   ) {
     final newHouse = HouseProperty(
         maxguests: maxguests,
@@ -58,12 +59,13 @@ class MyAppState with ChangeNotifier {
         cleaningfee: cleaningfee,
         bedcount: bedcount,
         category: category,
-        features: houserules);
+        features: housefeatures);
     // print(newHouse.toJson());
     print(_allhouses.length);
     _allhouses.add(newHouse);
     notifyListeners();
     ApiService.addHouse(newHouse);
+    print('house added successfully');
     print(_allhouses.length);
   }
 

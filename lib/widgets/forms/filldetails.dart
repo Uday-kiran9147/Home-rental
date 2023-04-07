@@ -4,9 +4,7 @@ import 'package:houserental/models/property.dart';
 import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
 
 class FillHouseDetails extends StatefulWidget {
   @override
@@ -17,7 +15,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   final HOUSE_ID = new DateTime.now().millisecondsSinceEpoch;
   TimeOfDay checkIndateTime = TimeOfDay.now();
   TimeOfDay checkOutdateTime = TimeOfDay.now();
-
   final titleController = new TextEditingController();
   final countryController = new TextEditingController();
   final stateController = new TextEditingController();
@@ -96,7 +93,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(label: Text('price per day')),
               // initialValue: '0',
-
               controller: priceController,
               onChanged: (value) {
                 price = double.parse(priceController.text);
@@ -221,20 +217,10 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               child: Text('Next'),
               onPressed: () {
                 trySubmit(product);
-                // print(dateTime.day);
-                // print('${houseTitle.text}, ${price.text}, ${state.text}');
-                // print();
-                // for (var i in _controllers) {
-                //   print(i.text);
-                // }
-                // print('bedcount $bedcount');
-                // for (int i = 0; i < checkboxtitles.length; i++) {
-                //   print("${_categotyCheckBox[i]},--->${checkboxtitles[i]}");
-                // }
                 print(category);
               },
             ),
-            ImagePick()
+            // ImagePick()
           ],
         ),
       ),
@@ -245,7 +231,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     List<String> result = [];
     for (var entry in myMap.entries) {
       if (entry.value == true) {
-        result.add(entry.key!);
+        result.join(entry.key!);
       }
     }
     return result;
@@ -396,11 +382,10 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         checkOutdateTime.toString(),
         cleaningFee,
         bedcount,
-        category!,
+        category!.toList(),
         _rulecontroller.map((e) => e.text).toList(),
       );
       print(titleController.text);
-
       Navigator.of(context).pop();
       showSnackbarCustom(
           context, 'Congratulations!, House added Successfully', Colors.green);
@@ -436,7 +421,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
       initialTime: checkIndateTime,
       initialEntryMode: TimePickerEntryMode.dial,
     );
-
     if (newtime != null && newtime != checkIndateTime) {
       setState(() {
         checkIndateTime = newtime;
