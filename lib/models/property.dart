@@ -30,19 +30,19 @@ class HouseProperty {
       required this.category,
       required this.features});
 
-  // HouseProperty.fromJson(Map<String, dynamic> json) {
-  //   propertyid = json['propertyid'];
-  //   housetitle = json['housetitle'];
-  //   photos = json['photos'].cast<String>();
-  //   address =
-  //       json['address'] = new Address.fromJson(json['address']);
-  //   checkintime = json['checkintime'];
-  //   checkouttime = json['checkouttime'];
-  //   cleaningfee = json['cleaningfee'];
-  //   bedcount = json['bedcount'];
-  //   category = json['category'].cast<String>();
-  //   houserules = json['houserules'].cast<String>();
-  // }
+//   HouseProperty.fromJson(Map<String, dynamic> json) {
+//     propertyid = json['propertyid'];
+//     housetitle = json['housetitle'];
+//     photos = json['photos'].cast<String>();
+//     address =
+//         json['address'] = new Address.fromJson(json['address']);
+//     checkintime = json['checkintime'];
+//     checkouttime = json['checkouttime'];
+//     cleaningfee = json['cleaningfee'];
+//     bedcount = json['bedcount'];
+//     category = json['category'].cast<String>();
+//     houserules = json['houserules'].cast<String>();
+//   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

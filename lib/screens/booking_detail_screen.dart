@@ -1,27 +1,51 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
-import 'package:provider/provider.dart';
 
-class HousePaymentDetailsScreen extends StatelessWidget {
-  static const routeName = 'house-payment-details';
+class BookingDetailScreen extends StatelessWidget {
+  // DateTime bookingdate;
+  // String bookingid;
+  DateTime checkIn;
+  DateTime checkOut;
+  double bookingprice;
+  int guests;
+  int numberofdays;
+  String userid;
+  String houseid;
+  BookingDetailScreen({
+    Key? key,
+    //  required this.bookingdate,
+    //  required this.bookingid,
+    required this.checkIn,
+    required this.checkOut,
+    required this.bookingprice,
+    required this.guests,
+    required this.numberofdays,
+    required this.userid,
+    required this.houseid,
+  }) : super(key: key);
+  // static const routeName = 'house-payment-details';
+
   @override
   Widget build(BuildContext context) {
-    final houseid = ModalRoute.of(context)!.settings.arguments;
+    // final houseid = ModalRoute.of(context)!.settings.arguments;
 
     final appstate = Provider.of<MyAppState>(context);
     final selectedHouse = appstate.allhouseGetter.firstWhere(
       (element) => element.propertyid == houseid,
     );
-    double price = selectedHouse.price;
-    double pricewithdays = price * 3;
-    double cleaning = selectedHouse.cleaningfee;
+    double? localprice = bookingprice;
+    double? pricewithdays = localprice * 3;
+    double? cleaning = selectedHouse.cleaningfee;
 
     double finalPrice = pricewithdays + cleaning;
 
-    print('Price: ${price.toStringAsFixed(2)}');
+    print('Price: ${localprice.toStringAsFixed(2)}');
     print('price with days: ${pricewithdays.toStringAsFixed(2)}');
     print('Final Price: ${finalPrice.toStringAsFixed(2)}');
 
@@ -37,9 +61,10 @@ class HousePaymentDetailsScreen extends StatelessWidget {
             children: [
               Text(
                 "Property Address",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
+                style: GoogleFonts.poppins(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
               SizedBox(height: 10.0),
@@ -51,63 +76,44 @@ class HousePaymentDetailsScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               Text(
-                'Mortgage Payment',
+                '1-day price',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  // fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
               SizedBox(height: 10.0),
-              Row(
-                children: [
-                  priceBeautify(selectedHouse.price.toString()),
-                  SizedBox(width: 10.0),
-                ],
-              ),
+              priceBeautify(selectedHouse.price.toString()),
+              SizedBox(width: 10.0),
               SizedBox(height: 20.0),
               Text(
-                'Property Tax',
+                'No.of.guests ${guests}',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0,
-                ),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.green),
+              ),
+              Text(
+                '${numberofdays} day\'s of vacation.......',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.green),
               ),
               SizedBox(height: 10.0),
-              Row(
-                children: [
-                  Text(
-                    '\$500',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Text(
-                    'due on',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Text(
-                    'April 15, 2023',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ],
-              ),
               DataTable(
                 columns: [
-                  DataColumn(label: Text('source')),
-                  DataColumn(label: Text('price')),
+                  DataColumn(label: Text('Source')),
+                  DataColumn(label: Text('Price')),
                 ],
                 rows: [
                   DataRow(cells: [
                     DataCell(Text(
-                      "\$${price} x3".toString().replaceAllMapped(
-                          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                          (match) => '${match[1]},'),
+                      "\$${localprice} x${numberofdays}"
+                          .toString()
+                          .replaceAllMapped(
+                              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                              (match) => '${match[1]},'),
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -119,7 +125,7 @@ class HousePaymentDetailsScreen extends StatelessWidget {
                   DataRow(cells: [
                     DataCell(Text(
                       'cleaning fee',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                      style: TextStyle(fontWeight: FontWeight.w500),
                     )),
                     DataCell(dataTablepriceBeautify(cleaning.toString())),
                   ]),

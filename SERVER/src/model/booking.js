@@ -22,6 +22,10 @@ const Booking = mongoose.model('booking', {
     bookingprice: {
         type: Number,
     },
+    guests: {
+        type: Number,
+        required: true,
+    },
     numberofdays: {
         type: Number,
     },
@@ -33,17 +37,6 @@ const Booking = mongoose.model('booking', {
     },
 })
 
-// const booking = new Booking(
-//     {
-//         bookingdate: '12-mar',
-//         bookingid: 'kdnsjpkjvnj34234',
-//         check_in: '31-mar',
-//         check_out: '2-april',
-//         bookingprice: 103000,
-//         numberofdays: 3,
-//         userid: 'uday9999',
-//         houseid: '893748392834234'
-//     }
-// )
 
-module.exports =Booking;
+
+module.exports = Booking;

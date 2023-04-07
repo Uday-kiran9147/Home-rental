@@ -18,7 +18,7 @@ Text dataTablepriceBeautify(String price) {
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) => '${match[1]},'),
     style: GoogleFonts.poppins(
       fontSize: 19,
-      fontWeight: FontWeight.w600,
+      // fontWeight: FontWeight.w600,
     ),
   );
 }

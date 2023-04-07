@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/house_detail_screen.dart';
-import 'package:houserental/screens/payment_detail_screen.dart';
+import 'package:houserental/screens/booking_detail_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           // '/':(context) => HomeImplement(),
           HouseDetailScreen.routeName: (context) => HouseDetailScreen(),
           // PaymentScreen.routeName: (context) => PaymentScreen(),
-          HousePaymentDetailsScreen.routeName:(context) => HousePaymentDetailsScreen()
+          // HousePaymentDetailsScreen.routeName:(context) => HousePaymentDetailsScreen()
         },
       ),
     );
