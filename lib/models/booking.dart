@@ -26,11 +26,13 @@ class Booking {
     bookingid = json['bookingid'];
     checkin = json['checkin'];
     checkout = json['checkout'];
-    bookingprice = json['bookingprice']as double;
+    bookingprice=json['bookingprice'];
     guests = json['guests'];
     numberofdays = json['numberofdays'];
     userid = json['userid'];
     houseid = json['houseid'];
+    print(guests);
+    print(bookingid);
   }
 
   Map<String, dynamic> toJson() {

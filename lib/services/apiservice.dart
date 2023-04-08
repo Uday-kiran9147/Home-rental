@@ -7,6 +7,18 @@ import 'package:http/http.dart' as http;
 class ApiService {
   static String _baseURL = 'http://localhost:5000';
 
+  static var data = [];
+
+  static Future<void> fetchbookings() async {
+    final url = "http://localhost:5000/allbookings";
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      data = jsonDecode(response.body.toString());
+    } else {
+      print('error: ' + response.statusCode.toString());
+    }
+  }
+
   static Future<void> addHouse(HouseProperty property) async {
     print(property.toJson());
     var jsonHouseProperty = jsonEncode(property);
@@ -28,7 +40,7 @@ class ApiService {
         body: jsonBooking, headers: {'Content-Type': 'application/json'});
     print(response.body);
   }
-
+}
 // static Future<List<Note>> fetchNote(String userid) async {
 //     Uri requestURI = Uri.parse(_baseURL + '/list');
 //     var response = await http.post(requestURI, body: {'userid': userid});
@@ -41,22 +53,22 @@ class ApiService {
 //     }
 //     return noteList;
 //   }
-  static Future<List<Booking>> fetchbookings() async {
-    List<Booking> bookings = [];
-    Uri requestURI = Uri.parse(_baseURL + '/allbookings');
-    var response = await http.get(requestURI);
-    var data = jsonDecode(response.body);
-    print(jsonEncode(data));
-    if (response.statusCode == 200) {
-      for (var i in data) {
-        bookings.add(Booking.fromJson(i));
+  // static Future<List<Booking>> fetchbookings() async {
+  //   List<Booking> bookings = [];
+  //   Uri requestURI = Uri.parse(_baseURL + '/allbookings');
+  //   var response = await http.get(requestURI);
+  //   var data = jsonDecode(response.body);
+  //   print(jsonEncode(data));
+  //   if (response.statusCode == 200) {
+  //     for (var i in data) {
+        // bookings.add(Booking.fromJson(i));
         // print(i);
-      }
-      return bookings;
-    }
-    return bookings;
-  }
-}
+//       }
+//       return bookings;
+//     }
+//     return bookings;
+//   }
+// }
 
 
 
