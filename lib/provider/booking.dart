@@ -3,11 +3,20 @@ import 'package:houserental/services/apiservice.dart';
 import '../models/booking.dart';
 
 class BookingProvider with ChangeNotifier {
+  BookingProvider(
+
+      // fetchbookings()
+      );
   List<Booking> _bookingslist = [];
 
   void bookhouse(Booking booking) {
     _bookingslist.add(booking);
     ApiService.bookhouse(booking);
+    notifyListeners();
+  }
+
+  void fetchbookings() async {
+    _bookingslist = await ApiService.fetchbookings();
     notifyListeners();
   }
 

@@ -61,12 +61,12 @@ class MyAppState with ChangeNotifier {
         category: category,
         features: housefeatures);
     // print(newHouse.toJson());
-    print(_allhouses.length);
+    // print(_allhouses.length);
     _allhouses.add(newHouse);
     notifyListeners();
     ApiService.addHouse(newHouse);
     print('house added successfully');
-    print(_allhouses.length);
+    // print(_allhouses.length);
   }
 
   List<HouseProperty> _allhouses = [

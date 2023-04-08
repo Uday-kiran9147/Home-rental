@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/models/booking.dart';
 import 'package:houserental/provider/booking.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:houserental/provider/appstate.dart';
@@ -159,13 +160,14 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                       bookingdate: DateTime.now().toString(),
                       bookingid:
                           DateTime.now().millisecondsSinceEpoch.toString(),
-                      checkin: widget.checkIn.toString(),
-                      checkout: widget.checkOut.toString(),
-                      bookingprice: finalPrice.toString(),
-                      guests: widget.guests.toString(),
-                      numberofdays: widget.numberofdays.toString(),
+                      checkin: DateFormat.yMEd().format(widget.checkIn!).toString(),
+                      checkout: DateFormat.yMEd().format(widget.checkOut!).toString(),
+                      bookingprice: finalPrice.toDouble(),
+                      guests: widget.guests,
+                      numberofdays: widget.numberofdays,
                       userid: widget.userid.toString(),
                       houseid: widget.houseid.toString());
+                      print(DateFormat.yMEd().format(widget.checkIn!).toString() + DateFormat.yMEd().format(widget.checkOut!).toString(),);
                   final bookingstate =
                       Provider.of<BookingProvider>(context, listen: false);
                   bookingstate.bookhouse(newbooking);
