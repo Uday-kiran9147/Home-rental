@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/services/apiservice.dart';
-import 'package:houserental/utils/snackbar.dart';
 import '../models/property.dart';
 
 class MyAppState with ChangeNotifier {
@@ -84,13 +83,13 @@ class MyAppState with ChangeNotifier {
         checkouttime: '10',
         cleaningfee: 12000,
         features: ['rule1', 'rule2', 'rule3'],
-        housetitle: 'houseTITLE',
+        housetitle: 'Pool-House',
         photos: [
-          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-          // "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-          //     "https://images.unsplash.com/photo-1598228723793-52759bba239c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-          //     "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-          //     "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
+              'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
+          // 'https://a0.muscache.com/im/pictures/miso/Hosting-35538426/original/3c861fe4-88f8-428e-910c-9141c10e7971.jpeg?im_w=960'
         ],
         price: 1033345,
         propertyid: 'qwertyui87654erty'),
@@ -108,14 +107,13 @@ class MyAppState with ChangeNotifier {
         checkouttime: '10',
         cleaningfee: 12000,
         features: ['rule1', 'rule2'],
-        housetitle: 'houseTITLE',
+        housetitle: 'Switzerland-kingdom',
         photos: [
           'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
-          "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
+          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
+          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
+          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
         ],
         price: 1033345,
         propertyid: 'qfgfd345egfsfs'),
@@ -136,10 +134,6 @@ class MyAppState with ChangeNotifier {
         housetitle: 'Luxury Beverly Hills Mansion',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU'
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
         price: 1900000,
         propertyid: 'abcdefg12345hijkl'),
@@ -160,10 +154,6 @@ class MyAppState with ChangeNotifier {
         housetitle: 'Stylish Downtown Toronto Condo',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
         price: 500000,
         propertyid: 'poiuytrewq09876lkjh'),
@@ -184,9 +174,6 @@ class MyAppState with ChangeNotifier {
         housetitle: 'Secluded Villa in the Mountains',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU'
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
         price: 750000,
         propertyid: 'asdfghjkl12345qwerty'),
@@ -207,9 +194,6 @@ class MyAppState with ChangeNotifier {
         housetitle: 'Luxury Sydney Harbor Mansion',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3WGYM7W4je7mKmpTIL2eNHxZw0885DjEwQ&usqp=CAU'
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
-              "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
         ],
         price: 203400,
         propertyid: 'zxcvbnm09876poiuyt'),
@@ -220,7 +204,8 @@ class MyAppState with ChangeNotifier {
         propertyid: '1681180640031',
         housetitle: 'Uday appartment',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU'
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU"
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU'
         ],
         address: Address(
             country: 'india',

@@ -64,8 +64,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                             scrollDirection: Axis.horizontal,
                             itemCount: selectedHouse.photos.length,
                             itemBuilder: (context, index) => Container(
-                                  child: Image.network(appstate
-                                      .allhouseGetter[index].photos
+                                  child: Image.network(
+                                      selectedHouse.photos[index]
                                       .toString()),
                                 ))),
                     Stack(
