@@ -49,6 +49,7 @@ dependencies:
   checkout_screen_ui: ^0.1.3
   syncfusion_flutter_datepicker: ^21.1.38
   http: ^0.13.5
+  animated_text_kit:
 
 dev_dependencies:
   flutter_test:

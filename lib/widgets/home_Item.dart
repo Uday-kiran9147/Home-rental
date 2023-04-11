@@ -73,7 +73,7 @@ class _HomeItemState extends State<HomeItem> {
                         Center(
                             child: Container(
                           child: Image.network(
-                            'https://a0.muscache.com/im/pictures/miso/Hosting-605371928419351152/original/8711dc45-edaa-452e-8502-628f72784757.jpeg?im_w=960',
+                            '${widget.photos![0]}',
                             fit: BoxFit.cover,
                           ),
                         )),
@@ -83,8 +83,14 @@ class _HomeItemState extends State<HomeItem> {
                             },
                             icon: appState.isFavourite(
                                     selectedHouse.propertyid.toString())
-                                ? Icon(Icons.favorite,color: Colors.red,)
-                                : Icon(Icons.favorite_border,color: Colors.red,))
+                                ? Icon(
+                                    Icons.favorite,
+                                    color: Colors.red,
+                                  )
+                                : Icon(
+                                    Icons.favorite_border,
+                                    color: Colors.red,
+                                  ))
                       ],
                     )
                     //  Image.network(

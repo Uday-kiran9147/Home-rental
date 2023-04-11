@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../utils/pricebeautify.dart';
 import '../widgets/data_table.dart';
+import '../widgets/home_Item.dart';
 import '../widgets/photo_list.dart';
 import '../widgets/suggession_builder.dart';
 // import 'package:syncfusion_flutter_datepicker/datepicker.dart';
@@ -59,7 +60,14 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                         height: 370,
                         width: 600,
                         padding: EdgeInsets.all(10.0),
-                        child: photoList(selectedHouse: selectedHouse)),
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: selectedHouse.photos.length,
+                            itemBuilder: (context, index) => Container(
+                                  child: Image.network(appstate
+                                      .allhouseGetter[index].photos
+                                      .toString()),
+                                ))),
                     Stack(
                       children: [
                         Container(
@@ -347,7 +355,10 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                         }
                       });
                       if (_guests == selectedHouse.maxguests) {
-                        showSnackbarCustom(context, 'maximun no.of guests Reached', Colors.red.shade900);
+                        showSnackbarCustom(
+                            context,
+                            'maximun no.of guests Reached',
+                            Colors.red.shade900);
                       }
                     },
                   ),

@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:houserental/provider/appstate.dart';
-import 'package:houserental/screens/paymentScreen.dart';
+import 'package:houserental/screens/payments/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
 
 class BookingDetailScreen extends StatefulWidget {

@@ -21,7 +21,7 @@ class ApiService {
 
   static Future<void> addHouse(HouseProperty property) async {
     print(property.toJson());
-    var jsonHouseProperty = jsonEncode(property);
+    // var jsonHouseProperty = jsonEncode(property);
 
     Uri requestURI = Uri.parse(_baseURL + '/addhouse');
     var response = await http.post(requestURI,
@@ -33,7 +33,6 @@ class ApiService {
 
   static Future<void> bookhouse(Booking booking) async {
     Uri requestURI = Uri.parse(_baseURL + '/addbooking');
-
     var jsonBooking = jsonEncode(booking);
     print(jsonBooking);
     var response = await http.post(requestURI,

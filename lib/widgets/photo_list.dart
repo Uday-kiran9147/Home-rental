@@ -1,40 +1,47 @@
+// import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
+// import '../models/property.dart';
 
-import '../models/property.dart';
+// class photoList extends StatelessWidget {
+//   const photoList({
+//     super.key,
+//     required this.selectedHouse,
+//   });
 
-class photoList extends StatelessWidget {
-  const photoList({
-    super.key,
-    required this.selectedHouse,
-  });
+//   final HouseProperty selectedHouse;
 
-  final HouseProperty selectedHouse;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: selectedHouse.photos.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        return Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                  image: NetworkImage(
-                      selectedHouse.photos[index]),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView.builder(
+//         scrollDirection: Axis.horizontal,
+//         itemCount: appstate.allhouseGetter.length,
+//         itemBuilder: (context, index) => HomeItem(
+//             propertyid: appstate
+//                 .allhouseGetter[index].propertyid,
+//             owner: 'uday',
+//             housetitle: appstate
+//                 .allhouseGetter[index].housetitle,
+//             photos: appstate
+//                 .allhouseGetter[index].photos,
+//             price: appstate
+//                 .allhouseGetter[index].price,
+//             address: appstate
+//                 .allhouseGetter[index].address,
+//             checkintime: appstate
+//                 .allhouseGetter[index]
+//                 .checkintime,
+//             checkouttime: appstate
+//                 .allhouseGetter[index]
+//                 .checkouttime,
+//             cleaningfee: appstate
+//                 .allhouseGetter[index]
+//                 .cleaningfee,
+//             bedcount: appstate
+//                 .allhouseGetter[index].bedcount,
+//             category: appstate
+//                 .allhouseGetter[index].category,
+//             features: appstate
+//                 .allhouseGetter[index]
+//                 .features));
+//   }
+// }
