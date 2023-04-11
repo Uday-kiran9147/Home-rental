@@ -89,7 +89,6 @@ class MyAppState with ChangeNotifier {
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
               'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'
-          // 'https://a0.muscache.com/im/pictures/miso/Hosting-35538426/original/3c861fe4-88f8-428e-910c-9141c10e7971.jpeg?im_w=960'
         ],
         price: 1033345,
         propertyid: 'qwertyui87654erty'),

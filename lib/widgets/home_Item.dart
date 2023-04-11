@@ -55,28 +55,22 @@ class _HomeItemState extends State<HomeItem> {
             arguments: selectedHouse.propertyid);
       },
       child: Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        // decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
         child: Flex(
           crossAxisAlignment: CrossAxisAlignment.start,
           direction: Axis.vertical,
           children: [
             Expanded(
               child: Card(
-                child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
+                child: Center(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
                     child: Stack(
                       children: [
-                        Center(
-                            child: Container(
-                          child: Image.network(
-                            '${widget.photos![0]}',
-                            fit: BoxFit.cover,
-                          ),
-                        )),
+                        Image.network(
+                          '${widget.photos![0]}',
+                          fit: BoxFit.fill,
+                        ),
                         IconButton(
                             onPressed: () {
                               appState.toggleFavorite(selectedHouse);
@@ -92,14 +86,9 @@ class _HomeItemState extends State<HomeItem> {
                                     color: Colors.red,
                                   ))
                       ],
-                    )
-                    //  Image.network(
-                    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaeuzwxd3_92sIUBtn-XwY3IW54qYJ5rh5Wg&usqp=CAU',
-                    //   height: 250,
-                    //   width: double.infinity,
-                    //   fit: BoxFit.cover,
-                    // ),
                     ),
+                  ),
+                ),
                 color: Colors.transparent,
                 // height: MediaQuery.of(context).size.height * 0.2
               ),

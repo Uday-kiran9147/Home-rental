@@ -57,17 +57,21 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                        height: 370,
-                        width: 600,
-                        padding: EdgeInsets.all(10.0),
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: selectedHouse.photos.length,
-                            itemBuilder: (context, index) => Container(
+                      // margin: ,
+                      height: 250,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: selectedHouse.photos.length,
+                          itemBuilder: (context, index) => Card(
+                                child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
                                   child: Image.network(
-                                      selectedHouse.photos[index]
-                                      .toString()),
-                                ))),
+                                      fit: BoxFit.fill,
+                                      selectedHouse.photos[index].toString()),
+                                ),
+                              )),
+                    ),
                     Stack(
                       children: [
                         Container(
