@@ -213,5 +213,25 @@ class MyAppState with ChangeNotifier {
         ],
         price: 203400,
         propertyid: 'zxcvbnm09876poiuyt'),
+    HouseProperty(
+        maxguests: 7,
+        owner: 'uday',
+        price: 139877,
+        propertyid: '1681180640031',
+        housetitle: 'Uday appartment',
+        photos: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU'
+        ],
+        address: Address(
+            country: 'india',
+            state: 'gujarat',
+            zipcode: '382421',
+            street: 'koba'),
+        checkintime: '(22:25)',
+        checkouttime: '(04:07)',
+        cleaningfee: 1200.0,
+        bedcount: 4,
+        category: [],
+        features: ['TV', 'Garden', 'Ocean fishes', 'Stadium nearby'])
   ];
 }

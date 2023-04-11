@@ -27,8 +27,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   int bedcount = 0;
   int maxguests = 2;
   double cleaningFee = 500;
-  List<TextEditingController> _rulecontroller = [];
-  List<TextField> _rulefields = [];
+  List<TextEditingController> _featurescontroller = [];
+  List<TextField> _feature_fields = [];
   final _formKey = GlobalKey<FormState>();
 
   List<TextEditingController> _photocontroller = [];
@@ -270,7 +270,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   void dispose() {
     titleController.dispose();
 
-    for (final controller in _rulecontroller) {
+    for (final controller in _featurescontroller) {
       controller.dispose();
     }
     super.dispose();
@@ -291,13 +291,13 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
             controller: controller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: "feature-${_rulecontroller.length + 1}",
+              labelText: "feature-${_featurescontroller.length + 1}",
             ),
           );
 
           setState(() {
-            _rulecontroller.add(controller);
-            _rulefields.add(field);
+            _featurescontroller.add(controller);
+            _feature_fields.add(field);
           });
         },
       ),
@@ -308,11 +308,11 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: _rulefields.length,
+      itemCount: _feature_fields.length,
       itemBuilder: (context, index) {
         return Container(
           margin: EdgeInsets.all(5),
-          child: _rulefields[index],
+          child: _feature_fields[index],
         );
       },
     );
@@ -383,7 +383,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         cleaningFee,
         bedcount,
         category!.toList(),
-        _rulecontroller.map((e) => e.text).toList(),
+        _featurescontroller.map((e) => e.text).toList(),
       );
       print(titleController.text);
       Navigator.of(context).pop();

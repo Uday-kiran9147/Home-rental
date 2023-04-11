@@ -28,7 +28,7 @@ class HouseProperty {
       required this.cleaningfee,
       required this.bedcount,
       required this.category,
-      required this.features});
+      required this.features,});
 
 //   HouseProperty.fromJson(Map<String, dynamic> json) {
 //     propertyid = json['propertyid'];
