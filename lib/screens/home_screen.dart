@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:provider/provider.dart';
-
+import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
 import '../widgets/home_Item.dart';
 import 'favourites_screen.dart';
@@ -18,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appstate = Provider.of<MyAppState>(context);
     var colorScheme = Theme.of(context).colorScheme;
 
     Widget page;
@@ -116,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         label: Text('Categories '),
                       ),
                       NavigationRailDestination(
-                          icon: Icon(Icons.favorite), label: Text('Favorites')),
+                          icon: BadgeCustom(appstate: appstate),
+                          label: Text('Favorites')),
                       NavigationRailDestination(
                           icon: Icon(Icons.account_circle_rounded),
                           label: Text('Account')),
@@ -139,6 +142,30 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
     );
+  }
+}
+
+class BadgeCustom extends StatelessWidget {
+  const BadgeCustom({
+    super.key,
+    required this.appstate,
+  });
+
+  final MyAppState appstate;
+
+  @override
+  Widget build(BuildContext context) {
+    return badges.Badge(
+        badgeStyle: badges.BadgeStyle(
+          shape: badges.BadgeShape.circle,
+          elevation: 0,
+        ),
+        position: badges.BadgePosition.topEnd(),
+        showBadge: true,
+        badgeAnimation: badges.BadgeAnimation.scale(),
+        badgeContent: Text(
+            '${appstate.favouritelistGetter.length}'),
+        child: Icon(Icons.favorite));
   }
 }
 

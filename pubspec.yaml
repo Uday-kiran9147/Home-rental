@@ -50,6 +50,8 @@ dependencies:
   syncfusion_flutter_datepicker: ^21.1.38
   http: ^0.13.5
   animated_text_kit:
+  carousel_slider: ^4.2.1
+  badges: ^3.1.0
 
 dev_dependencies:
   flutter_test:

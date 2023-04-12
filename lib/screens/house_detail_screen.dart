@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/provider/appstate.dart';
@@ -51,21 +52,22 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      // margin: ,
-                      height: 250,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: selectedHouse.photos.length,
-                          itemBuilder: (context, index) => Card(
-                                child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
-                                  child: Image.network(
-                                      fit: BoxFit.fill,
-                                      selectedHouse.photos[index].toString()),
+                        height: 250,
+                        child: CarouselSlider(
+                          options: CarouselOptions(),
+                          items: selectedHouse.photos.map(
+                            (index) {
+                              return Builder(
+                                builder: (BuildContext context) =>
+                                    Image.network(
+                                  index,
+                                  fit: BoxFit.cover,
+                                  height: 200,
                                 ),
-                              )),
-                    ),
+                              );
+                            },
+                          ).toList(),
+                        )),
                     Stack(
                       children: [
                         Container(
