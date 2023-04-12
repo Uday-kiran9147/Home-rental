@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/models/booking.dart';
@@ -40,8 +39,6 @@ class BookingDetailScreen extends StatefulWidget {
 
 class _BookingDetailScreenState extends State<BookingDetailScreen> {
   // static const routeName = 'house-payment-details';
-  void newbooking() {}
-
   @override
   Widget build(BuildContext context) {
     // final houseid = ModalRoute.of(context)!.settings.arguments;

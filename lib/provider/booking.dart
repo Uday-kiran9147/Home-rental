@@ -6,7 +6,7 @@ class BookingProvider with ChangeNotifier {
   List<Booking> _bookingslist = [];
 
   void bookhouse(Booking booking) {
-    _bookingslist.insert(0,booking);
+    _bookingslist.add(booking);
     ApiService.bookhouse(booking);
     notifyListeners();
   }
