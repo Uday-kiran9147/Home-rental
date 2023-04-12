@@ -85,7 +85,7 @@ class MyAppState with ChangeNotifier {
         features: ['rule1', 'rule2', 'rule3'],
         housetitle: 'Pool-House',
         photos: [
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
               'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D5BcCrGwK6ro&psig=AOvVaw26_k-FxQHDzeDBW57_L-kG&ust=1681314513900000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMCsl-SWov4CFQAAAAAdAAAAABAE'
         ],
         price: 1033345,
@@ -106,7 +106,7 @@ class MyAppState with ChangeNotifier {
         features: ['rule1', 'rule2'],
         housetitle: 'Switzerland-kingdom',
         photos: [
-          "https://i.ytimg.com/vi/5BcCrGwK6ro/maxresdefault.jpg"
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU'
         ],
         price: 1033345,
         propertyid: 'qfgfd345egfsfs'),
@@ -199,7 +199,7 @@ class MyAppState with ChangeNotifier {
         photos: [
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU"
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU'
-          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
+              'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
         ],
         address: Address(
             country: 'india',

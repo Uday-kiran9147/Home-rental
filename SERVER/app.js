@@ -12,7 +12,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use(bodyparser.json())
 app.get("/", (req, res) => {
-    res.send("HOME page");
+    res.send("");
 });
 
 app.use(express.json())

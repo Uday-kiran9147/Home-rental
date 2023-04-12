@@ -21,11 +21,11 @@ class ApiService {
 
   static Future<void> addHouse(HouseProperty property) async {
     print(property.toJson());
-    // var jsonHouseProperty = jsonEncode(property);
+    var jsonHouseProperty = jsonEncode(property);
 
     Uri requestURI = Uri.parse(_baseURL + '/addhouse');
     var response = await http.post(requestURI,
-        body: json.encode(property),
+        body: jsonHouseProperty,
         headers: {'Content-Type': 'application/json'});
     var decoded = jsonEncode(response.body);
     print(decoded);
