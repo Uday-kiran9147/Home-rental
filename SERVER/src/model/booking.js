@@ -10,12 +10,12 @@ const Booking = mongoose.model('booking', {
         required: true,
     },
     checkin: {
-        type:Date,
+        type:String,
         required: true,
 
     },
     checkout: {
-        type: Date,
+        type: String,
         required: true,
 
     },

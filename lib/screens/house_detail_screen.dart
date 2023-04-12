@@ -7,10 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../utils/pricebeautify.dart';
 import '../widgets/data_table.dart';
-import '../widgets/home_Item.dart';
-import '../widgets/photo_list.dart';
 import '../widgets/suggession_builder.dart';
-// import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class HouseDetailScreen extends StatefulWidget {
   static const routeName = 'house-detail';
@@ -31,9 +28,6 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     super.initState();
     _guests = initialQuantity;
   }
-  // void _decrementQuantity() {
-
-  // }
 
   @override
   Widget build(BuildContext context) {

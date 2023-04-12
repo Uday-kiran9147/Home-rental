@@ -371,7 +371,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         maxguests,
         HOUSE_ID.toString(),
         titleController.text,
-        _photocontroller.map((e) => e.text).toList(),
+        _photocontroller.map((e) => e.text.toString()).toList(),
         price,
         Address(
             country: countryController.text,
@@ -382,7 +382,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         checkOutdateTime.toString(),
         cleaningFee,
         bedcount,
-        category!.toList(),
+        category!.map((e) => e.toString()).toList(),
         _featurescontroller.map((e) => e.text).toList(),
       );
       print(titleController.text);

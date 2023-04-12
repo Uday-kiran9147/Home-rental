@@ -45,6 +45,7 @@ void main() {
 
   print(map[2]["userid"]);
   var uu = jsonEncode(
-      "{propertyid: 1681180640031, housetitle: Uday appartment, photos: [https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU], address: {country: india, state: gujarat, zipcode: 382421, street: koba}, checkintime: TimeOfDay(22:25), checkouttime: TimeOfDay(04:07), cleaningfee: 1200.0, bedcount: 4, category: [], houserules: [TV, Garden, Ocean fishes, Stadium nearby]}");
+      "{propertyid: 1681233652538, housetitle: ewqrty, photos: [hkkjkjjkj], address: {country: tyfhgcfm, state: trhg, zipcode: 45674, street: trtsd}, checkintime: TimeOfDay(22:50), checkouttime: TimeOfDay(10:50), cleaningfee: 34.0, bedcount: 3, category: [], houserules: [poiuytrew, jhvjhvhvhjgv]}");
+
   print(uu);
 }

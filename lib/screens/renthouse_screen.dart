@@ -18,7 +18,8 @@ class _RentHousesState extends State<RentHouses> {
     final appState = Provider.of<MyAppState>(context);
     return Scaffold(
       body: Column(children: [
-        Padding(
+        Container(
+          height: 80,
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
               onPressed: () {
@@ -28,7 +29,7 @@ class _RentHousesState extends State<RentHouses> {
                       builder: (context) => FillHouseDetails(),
                     ));
               },
-              child: Text('fill details')),
+              child: Text('Fill details')),
         ),
         Expanded(
           child: ListView.builder(

@@ -55,39 +55,25 @@ class _HomeItemState extends State<HomeItem> {
             arguments: selectedHouse.propertyid);
       },
       child: Container(
-        // decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(15),
+        //   border: Border.all(
+        //     color: Color.fromARGB(255, 132, 101, 27),
+        //     width: 1.0, // sets the width of the border to 1 pixel
+        //   ),
+        // ),
         child: Flex(
           crossAxisAlignment: CrossAxisAlignment.start,
           direction: Axis.vertical,
           children: [
             Expanded(
               child: Card(
-                child: Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    child: Stack(
-                      children: [
-                        Image.network(
-                          '${widget.photos![0]}',
-                          fit: BoxFit.fill,
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              appState.toggleFavorite(selectedHouse);
-                            },
-                            icon: appState.isFavourite(
-                                    selectedHouse.propertyid.toString())
-                                ? Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  )
-                                : Icon(
-                                    Icons.favorite_border,
-                                    color: Colors.red,
-                                  ))
-                      ],
-                    ),
+                child: ClipRRect(
+                  child: Image.network(
+                    '${widget.photos![0]}',
+                    fit: BoxFit.fill,
                   ),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                 ),
                 color: Colors.transparent,
                 // height: MediaQuery.of(context).size.height * 0.2
@@ -99,12 +85,31 @@ class _HomeItemState extends State<HomeItem> {
                   fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 47, 42, 42),
                 )),
-            Text(widget.price.toString(),
-                style: GoogleFonts.poppins(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: Theme.of(context).hintColor,
-                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(widget.price.toString(),
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).hintColor,
+                    )),
+                IconButton(
+                    onPressed: () {
+                      appState.toggleFavorite(selectedHouse);
+                    },
+                    icon: appState
+                            .isFavourite(selectedHouse.propertyid.toString())
+                        ? Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          )
+                        : Icon(
+                            Icons.favorite_border,
+                            color: Colors.red,
+                          ))
+              ],
+            ),
             Text(
                 "${widget.address!.state}, ${widget.address!.country}, ${widget.address!.zipcode}",
                 style: GoogleFonts.poppins(

@@ -14,6 +14,18 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   ApiService apiService = new ApiService();
+
+  final colorizeColors = [
+    Colors.purple,
+    Colors.blue,
+    Colors.yellow,
+    Colors.red,
+  ];
+
+  final colorizeTextStyle = TextStyle(
+    fontSize: 50.0,
+    fontFamily: 'Horizon',
+  );
   @override
   Widget build(BuildContext context) {
     final bookingprovider = Provider.of<BookingProvider>(context);
@@ -22,20 +34,20 @@ class _AccountScreenState extends State<AccountScreen> {
         children: [
           // Text("Current Bookings"),
           SizedBox(
-            height: 150,
+            height: 170,
             child: AnimatedTextKit(
               animatedTexts: [
-                WavyAnimatedText("Current Bookings......",
-                    textStyle: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 30,
-                        color: Colors.pinkAccent)),
-                WavyAnimatedText("HAVE A NICE DAY",
-                    textStyle: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 30,
-                        color: Colors.blue)),
+                ColorizeAnimatedText(
+                  'Current booking\'s',
+                  textStyle: colorizeTextStyle,
+                  colors: colorizeColors,
+                  
+                ),
               ],
+              isRepeatingAnimation: true,
+              onTap: () {
+                print("Tap Event");
+              },
             ),
           ),
           FutureBuilder(
