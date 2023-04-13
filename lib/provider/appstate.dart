@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/services/apiservice.dart';
+import '../models/address.dart';
 import '../models/property.dart';
 
 class MyAppState with ChangeNotifier {

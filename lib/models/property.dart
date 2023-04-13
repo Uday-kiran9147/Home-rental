@@ -1,5 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'address.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+part 'property.g.dart';
+/* 
+1-add @JsonSerializable() to the class
+2- part 'property.g.dart'; 
+3- fromjson-----i) factory HouseProperty.fromJson(Map<String, dynamic> json) =>_$HousePropertyFromJson(json);
+      tojson--------ii) Map<String, dynamic> toJson() => _$HousePropertyToJson(this);
+4- flutter pub run build_runner build --delete-conflicting-outputs 
+5- flutter pub run build_runner watch --delete-conflicting-outputs
+*/
+@JsonSerializable()
 class HouseProperty {
   int maxguests;
   String propertyid;
@@ -15,78 +26,22 @@ class HouseProperty {
   List<dynamic> category;
   List<dynamic> features;
 
-  HouseProperty(
-      {required this.maxguests,
-      required this.propertyid,
-      required this.owner,
-      required this.housetitle,
-      required this.photos,
-      required this.price,
-      required this.address,
-      required this.checkintime,
-      required this.checkouttime,
-      required this.cleaningfee,
-      required this.bedcount,
-      required this.category,
-      required this.features,});
-
-//   HouseProperty.fromJson(Map<String, dynamic> json) {
-//     propertyid = json['propertyid'];
-//     housetitle = json['housetitle'];
-//     photos = json['photos'].cast<String>();
-//     address =
-//         json['address'] = new Address.fromJson(json['address']);
-//     checkintime = json['checkintime'];
-//     checkouttime = json['checkouttime'];
-//     cleaningfee = json['cleaningfee'];
-//     bedcount = json['bedcount'];
-//     category = json['category'].cast<String>();
-//     houserules = json['houserules'].cast<String>();
-//   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['propertyid'] = this.propertyid;
-    data['housetitle'] = this.housetitle;
-    data['photos'] = this.photos;
-    if (this.address != null) {
-      data['address'] = this.address.toJson();
-    }
-    data['checkintime'] = this.checkintime;
-    data['checkouttime'] = this.checkouttime;
-    data['cleaningfee'] = this.cleaningfee;
-    data['bedcount'] = this.bedcount;
-    data['category'] = this.category;
-    data['houserules'] = this.features;
-    return data;
-  }
-}
-
-class Address {
-  late String country;
-  late String state;
-  late String zipcode;
-  late String street;
-
-  Address(
-      {required this.country,
-      required this.state,
-      required this.zipcode,
-      required this.street});
-
-  Address.fromJson(Map<String, dynamic> json) {
-    country = json['country'];
-    state = json['state'];
-    zipcode = json['zipcode'];
-    street = json['street'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['country'] = this.country;
-    data['state'] = this.state;
-    data['zipcode'] = this.zipcode;
-    data['street'] = this.street;
-    return data;
-  }
+  HouseProperty({
+    required this.maxguests,
+    required this.propertyid,
+    required this.owner,
+    required this.housetitle,
+    required this.photos,
+    required this.price,
+    required this.address,
+    required this.checkintime,
+    required this.checkouttime,
+    required this.cleaningfee,
+    required this.bedcount,
+    required this.category,
+    required this.features,
+  });
+  factory HouseProperty.fromJson(Map<String, dynamic> json) =>
+      _$HousePropertyFromJson(json);
+  Map<String, dynamic> toJson() => _$HousePropertyToJson(this);
 }

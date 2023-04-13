@@ -6,6 +6,8 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/address.dart';
+
 class FillHouseDetails extends StatefulWidget {
   @override
   State<FillHouseDetails> createState() => _FillHouseDetailsState();

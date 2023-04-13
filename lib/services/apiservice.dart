@@ -9,8 +9,17 @@ class ApiService {
   static String _baseURLandroid='http://10.0.2.2:5000';
   static var data = [];
 
-  static Future<void> fetchbookings() async {
+  static Future<void> androidfetchbookings() async {
     final url = _baseURLandroid+"/allbookings";
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      data = jsonDecode(response.body.toString());
+    } else {
+      print('error: ' + response.statusCode.toString());
+    }
+  }
+  static Future<void> windowsfetchbookings() async {
+    final url = _baseURL+"/allbookings";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       data = jsonDecode(response.body.toString());
