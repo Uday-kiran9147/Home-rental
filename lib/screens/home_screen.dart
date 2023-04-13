@@ -163,8 +163,7 @@ class BadgeCustom extends StatelessWidget {
         position: badges.BadgePosition.topEnd(),
         showBadge: true,
         badgeAnimation: badges.BadgeAnimation.scale(),
-        badgeContent: Text(
-            '${appstate.favouritelistGetter.length}'),
+        badgeContent: Text('${appstate.favouritelistGetter.length}'),
         child: Icon(Icons.favorite));
   }
 }
@@ -173,12 +172,6 @@ class HomeImplement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    // IconData icon;
-    // if (appState.favorites.contains(pair)) {
-    //   icon = Icons.favorite;
-    // } else {
-    //   icon = Icons.favorite_border;
-    // }
 
     return GridView(
         padding: EdgeInsets.all(15),

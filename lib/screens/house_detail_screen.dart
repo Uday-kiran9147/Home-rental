@@ -30,6 +30,15 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     _guests = initialQuantity;
   }
 
+  List urls = [
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+  ];
+
   @override
   Widget build(BuildContext context) {
     final houseid = ModalRoute.of(context)!.settings.arguments;
@@ -38,6 +47,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     final selectedHouse = appstate.allhouseGetter.firstWhere(
       (element) => element.propertyid == houseid,
     );
+    print(selectedHouse.photos);
 
     return Scaffold(
         appBar: AppBar(
@@ -52,22 +62,57 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                        height: 250,
-                        child: CarouselSlider(
-                          options: CarouselOptions(),
-                          items: selectedHouse.photos.map(
-                            (index) {
-                              return Builder(
-                                builder: (BuildContext context) =>
-                                    Image.network(
-                                  index,
-                                  fit: BoxFit.cover,
-                                  height: 200,
-                                ),
-                              );
-                            },
-                          ).toList(),
-                        )),
+                      height: 250,
+                      child: buildContainer(
+                          ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            // shrinkWrap: true,
+                            itemCount: selectedHouse.photos.length,
+                            itemBuilder: (context, index) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.network(
+                                    fit: BoxFit.cover,
+                                    "${selectedHouse.photos[index]}"),
+                              ),
+                            ),
+                          ),
+                          selectedHouse.photos.length),
+                      // ListView.builder(
+                      //   scrollDirection: Axis.horizontal,
+                      //   itemBuilder: (context, index) =>
+                      //       Image.network("${selectedHouse.photos[index]} \n"),
+                      //   itemCount: urls.length,
+                      // ),
+                      /* PageView.builder(
+                        itemCount: selectedHouse.photos.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Image.network(
+                            selectedHouse.photos[index],
+                            fit: BoxFit.cover,
+                          );
+                        },
+                      ), */
+                      /* CarouselSlider(
+                        options: CarouselOptions(),
+                        items */
+
+                      // selectedHouse.photos.map(
+                      //   (index) {
+                      //     return Builder(
+                      //       builder: (BuildContext context) =>
+                      //           Image.network(
+                      //         index.toString(),
+                      //         fit: BoxFit.cover,
+                      //         height: 200,
+                      //       ),
+                      //     );
+                      //   },
+                      // ).toList(),
+                      // )
+                    ),
+                    Text(selectedHouse.photos.length.toString()),
                     Stack(
                       children: [
                         Container(

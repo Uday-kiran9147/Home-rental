@@ -7,6 +7,7 @@ import '../provider/appstate.dart';
 
 class RentHouses extends StatefulWidget {
   const RentHouses({super.key});
+  static const routeName='rent-house';
 
   @override
   State<RentHouses> createState() => _RentHousesState();
@@ -22,15 +23,10 @@ class _RentHousesState extends State<RentHouses> {
           height: 80,
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FillHouseDetails(),
-                    ));
-              },
-              child: Text('Fill details')),
-        ),
+          onPressed: () => Navigator.pushNamed(context, RentHouses.routeName),
+                      
+              child: Text('Fill house details'),)),
+      
         Expanded(
           child: ListView.builder(
               shrinkWrap: true,
@@ -38,13 +34,10 @@ class _RentHousesState extends State<RentHouses> {
               itemBuilder: (context, index) => Card(
                     child: Text(
                         appState.allhouseGetter[index].propertyid.toString()),
-                  )
-                  ),
-        )
-      ]),
-    );
+                  )),
+        
+      )
+      ]
+    ));
   }
 }
-
-
-

@@ -79,13 +79,13 @@ class MyAppState with ChangeNotifier {
             street: 'street'),
         bedcount: 4,
         category: ['pool', 'beach'],
-        checkintime: '11',
-        checkouttime: '10',
+        checkintime: '11 am',
+        checkouttime: '10 am',
         cleaningfee: 12000,
-        features: ['rule1', 'rule2', 'rule3'],
+        features: ['Tv', 'stadium near by', 'peaceful villa'],
         housetitle: 'Pool-House',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU'
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
               'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
         ],
         price: 1033345,
@@ -106,7 +106,7 @@ class MyAppState with ChangeNotifier {
         features: ['rule1', 'rule2'],
         housetitle: 'Switzerland-kingdom',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
         ],
         price: 1033345,
         propertyid: 'qfgfd345egfsfs'),
@@ -126,7 +126,9 @@ class MyAppState with ChangeNotifier {
         features: ['No sAmoking', 'No parties'],
         housetitle: 'Luxury Beverly Hills Mansion',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
         ],
         price: 1900000,
         propertyid: 'abcdefg12345hijkl'),
@@ -146,7 +148,7 @@ class MyAppState with ChangeNotifier {
         features: ['No pets allowed', 'Quiet after 10pm'],
         housetitle: 'Stylish Downtown Toronto Condo',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU',
         ],
         price: 500000,
         propertyid: 'poiuytrewq09876lkjh'),
@@ -166,7 +168,7 @@ class MyAppState with ChangeNotifier {
         features: ['No smoking', 'No loud music'],
         housetitle: 'Secluded Villa in the Mountains',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
         ],
         price: 750000,
         propertyid: 'asdfghjkl12345qwerty'),
@@ -186,7 +188,7 @@ class MyAppState with ChangeNotifier {
         features: ['No parties', 'No smoking'],
         housetitle: 'Luxury Sydney Harbor Mansion',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3WGYM7W4je7mKmpTIL2eNHxZw0885DjEwQ&usqp=CAU'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3WGYM7W4je7mKmpTIL2eNHxZw0885DjEwQ&usqp=CAU',
         ],
         price: 203400,
         propertyid: 'zxcvbnm09876poiuyt'),
@@ -197,8 +199,8 @@ class MyAppState with ChangeNotifier {
         propertyid: '1681180640031',
         housetitle: 'Uday appartment',
         photos: [
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU"
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU'
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU",
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU',
               'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
         ],
         address: Address(
