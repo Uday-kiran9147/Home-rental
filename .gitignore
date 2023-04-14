@@ -1,6 +1,6 @@
 SERVER/node_modules
 SERVER/package-lock.json
-
+.vscode/
 # Miscellaneous
 *.class
 *.log

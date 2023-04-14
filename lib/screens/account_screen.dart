@@ -50,7 +50,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ),
           FutureBuilder(
-            future:     ApiService.windowsfetchbookings(),
+            future: ApiService.androidfetchbookings(),
             builder: (context, snapshot) => Expanded(
               child: ListView.builder(
                 itemCount: ApiService.data.length,
@@ -65,8 +65,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           "BookingDate: ${ApiService.data[index]["bookingdate"]}"),
                       Text(
                           "Check-in: ${ApiService.data[index]["checkin"].toString().trim()}"),
-                      Text(
-                          "Check-out: ${ApiService.data[index]["checkout"]}"),
+                      Text("Check-out: ${ApiService.data[index]["checkout"]}"),
                       Text("Guest\'s: ${ApiService.data[index]["guests"]}"),
                       Text("days: ${ApiService.data[index]["numberofdays"]}"),
                     ],
