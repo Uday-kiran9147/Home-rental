@@ -5,6 +5,7 @@ import 'package:houserental/screens/house_detail_screen.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:provider/provider.dart';
+import 'auth/login.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -29,13 +30,13 @@ class MyApp extends StatelessWidget {
           colorScheme:
               ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 207, 184, 9)),
         ),
-        home: SafeArea(child: MyHomePage()),
+        home: SafeArea(child: Login()),
         routes: {
           // '/':(context) => HomeImplement(),
           HouseDetailScreen.routeName: (context) => HouseDetailScreen(),
           // PaymentScreen.routeName: (context) => PaymentScreen(),
           // HousePaymentDetailsScreen.routeName:(context) => HousePaymentDetailsScreen()
-          // RentHouses.routeName:(context) => FillHouseDetails()
+          RentHouses.routeName:(context) => FillHouseDetails()
         },
       ),
     );
