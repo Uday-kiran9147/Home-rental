@@ -40,9 +40,11 @@ const HouseProperty = mongoose.model('HouseProperty', {
         type: String,
         require
     },
-    propertyphotos: [{
-        type: String,
-    }],
+    propertyphotos: [
+        {
+            type: String,
+        }
+    ],
     price: {
         type: Number,
         required: true,

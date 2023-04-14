@@ -1,4 +1,3 @@
-import 'address.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 part 'property.g.dart';
@@ -10,7 +9,7 @@ part 'property.g.dart';
 4- flutter pub run build_runner build --delete-conflicting-outputs 
 5- flutter pub run build_runner watch --delete-conflicting-outputs
 */
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true/* important to have nested classes here it is address */)
 class HouseProperty {
   int maxguests;
   String propertyid;
@@ -23,7 +22,7 @@ class HouseProperty {
   String checkouttime;
   double cleaningfee;
   int bedcount;
-  List<dynamic> category;
+  List<String> category;
   List<dynamic> features;
 
   HouseProperty({
@@ -44,4 +43,21 @@ class HouseProperty {
   factory HouseProperty.fromJson(Map<String, dynamic> json) =>
       _$HousePropertyFromJson(json);
   Map<String, dynamic> toJson() => _$HousePropertyToJson(this);
+}
+@JsonSerializable()
+class Address {
+  late String country;
+  late String state;
+  late String zipcode;
+  late String street;
+
+  Address(
+      {required this.country,
+      required this.state,
+      required this.zipcode,
+      required this.street});
+
+  factory Address.fromJson(Map<String, dynamic> json) =>
+      _$AddressFromJson(json);
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
 }

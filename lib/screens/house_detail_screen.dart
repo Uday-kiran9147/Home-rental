@@ -30,14 +30,6 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     _guests = initialQuantity;
   }
 
-  List urls = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +53,12 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
             : SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      height: 250,
-                      child: buildContainer(
-                          ListView.builder(
+                    Center(
+                      child: Container(
+                          height: 250,
+                          child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            // shrinkWrap: true,
+                            shrinkWrap: true,
                             itemCount: selectedHouse.photos.length,
                             itemBuilder: (context, index) => Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -77,40 +69,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     "${selectedHouse.photos[index]}"),
                               ),
                             ),
-                          ),
-                          selectedHouse.photos.length),
-                      // ListView.builder(
-                      //   scrollDirection: Axis.horizontal,
-                      //   itemBuilder: (context, index) =>
-                      //       Image.network("${selectedHouse.photos[index]} \n"),
-                      //   itemCount: urls.length,
-                      // ),
-                      /* PageView.builder(
-                        itemCount: selectedHouse.photos.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Image.network(
-                            selectedHouse.photos[index],
-                            fit: BoxFit.cover,
-                          );
-                        },
-                      ), */
-                      /* CarouselSlider(
-                        options: CarouselOptions(),
-                        items */
-
-                      // selectedHouse.photos.map(
-                      //   (index) {
-                      //     return Builder(
-                      //       builder: (BuildContext context) =>
-                      //           Image.network(
-                      //         index.toString(),
-                      //         fit: BoxFit.cover,
-                      //         height: 200,
-                      //       ),
-                      //     );
-                      //   },
-                      // ).toList(),
-                      // )
+                          )),
                     ),
                     Text(selectedHouse.photos.length.toString()),
                     Stack(

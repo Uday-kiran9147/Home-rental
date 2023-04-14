@@ -6,11 +6,11 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   static String _baseURL = 'http://localhost:5000';
-  static String _baseURLandroid='http://10.0.2.2:5000';
+  static String _baseURLandroid = 'http://10.0.2.2:5000';
   static var data = [];
 
   static Future<void> androidfetchbookings() async {
-    final url = _baseURLandroid+"/allbookings";
+    final url = _baseURLandroid + "/allbookings";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       data = jsonDecode(response.body.toString());
@@ -18,8 +18,9 @@ class ApiService {
       print('error: ' + response.statusCode.toString());
     }
   }
+
   static Future<void> windowsfetchbookings() async {
-    final url = _baseURL+"/allbookings";
+    final url = _baseURL + "/allbookings";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       data = jsonDecode(response.body.toString());
@@ -29,15 +30,12 @@ class ApiService {
   }
 
   static Future<void> addHouse(HouseProperty property) async {
-    print(property.toJson());
-    var jsonHouseProperty = jsonEncode(property);
-
     Uri requestURI = Uri.parse(_baseURL + '/addhouse');
+    var jsonHouseProperty = jsonEncode(property);
+    print(jsonHouseProperty);
     var response = await http.post(requestURI,
-        body: jsonHouseProperty,
-        headers: {'Content-Type': 'application/json'});
-    var decoded = jsonEncode(response.body);
-    print(decoded);
+        body: jsonHouseProperty, headers: {'Content-Type': 'application/json'});
+        print(response.body);
   }
 
   static Future<void> bookhouse(Booking booking) async {

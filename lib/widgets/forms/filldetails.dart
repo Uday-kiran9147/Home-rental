@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:houserental/models/property.dart';
-import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/address.dart';
+import '../../models/property.dart';
+
 
 class FillHouseDetails extends StatefulWidget {
   @override
@@ -33,7 +32,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   List<TextField> _feature_fields = [];
   final _formKey = GlobalKey<FormState>();
 
-  List<TextEditingController> _photocontroller = [];
+  List<TextEditingController> photocontrollerList = [];
   List<TextField> _photofield = [];
   Map<String, bool?> _categotyCheckBox = {
     'pool': false,
@@ -47,7 +46,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     "Island": false,
     "Camping": false,
   };
-  List<String>? category = []; // initial values for checkboxes
+  List<String> categoryList = []; // initial values for checkboxes
 
   @override
   Widget build(BuildContext context) {
@@ -196,10 +195,10 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 return CheckboxListTile(
                   title: Text(key),
                   value: _categotyCheckBox[key],
-                  onChanged: (bool? value) {
+                  onChanged: (value) {
                     setState(() {
-                      _categotyCheckBox[key] = value!;
-                      category = getKeysWithTrueValues(_categotyCheckBox);
+                      _categotyCheckBox[key] = value;
+                      categoryList = getKeysWithTrueValues(_categotyCheckBox);
                     });
                   },
                 );
@@ -210,8 +209,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 70, child: dropDownBedCount()),
-            _addRuleTile(),
-            _RulelistView(),
+            _addFeatureTile(),
+            _featurelistView(),
             Divider(),
             _addPhotoTile(),
             _photoView(),
@@ -219,7 +218,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               child: Text('Next'),
               onPressed: () {
                 trySubmit(product);
-                print(category);
+                // print(categoryList);
               },
             ),
             // ImagePick()
@@ -229,11 +228,11 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
-  List<String>? getKeysWithTrueValues(Map<String?, bool?> myMap) {
+  List<String> getKeysWithTrueValues(Map<String, bool?> myMap) {
     List<String> result = [];
     for (var entry in myMap.entries) {
       if (entry.value == true) {
-        result.join(entry.key!);
+        result.add(entry.key);
       }
     }
     return result;
@@ -278,7 +277,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     super.dispose();
   }
 
-  Widget _addRuleTile() {
+  Widget _addFeatureTile() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
@@ -306,7 +305,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
-  Widget _RulelistView() {
+  Widget _featurelistView() {
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -335,12 +334,12 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
             controller: photocontroller,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
-              labelText: "photo ${_photocontroller.length + 1}",
+              labelText: "photo ${photocontrollerList.length + 1}",
             ),
           );
 
           setState(() {
-            _photocontroller.add(photocontroller);
+            photocontrollerList.add(photocontroller);
             _photofield.add(photofield);
           });
         },
@@ -365,7 +364,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   void trySubmit(MyAppState product) {
     final isvalid = _formKey.currentState!.validate();
     if (isvalid) {
-      print(HOUSE_ID);
+      // print(HOUSE_ID);
       // Text in each of textfields it is necessary else the information in textfields will not be saved and stored..
       _formKey.currentState!
           .save(); //if not saved showSubmit() (function) will not print.
@@ -373,7 +372,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         maxguests,
         HOUSE_ID.toString(),
         titleController.text,
-        _photocontroller.map((e) => e.text.toString()).toList(),
+        photocontrollerList.map((e) => e.text).toList(),
         price,
         Address(
             country: countryController.text,
@@ -384,15 +383,15 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         checkOutdateTime.toString(),
         cleaningFee,
         bedcount,
-        category!.map((e) => e.toString()).toList(),
+        categoryList.map((e) => e.toString()).toList(),
         _featurescontroller.map((e) => e.text).toList(),
       );
-      print(titleController.text);
+      // print(titleController.text);
       Navigator.of(context).pop();
       showSnackbarCustom(
           context, 'Congratulations!, House added Successfully', Colors.green);
     } else {
-      print("Error");
+      // print("Error");
       showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);
     }
   }

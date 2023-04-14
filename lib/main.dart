@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           HouseDetailScreen.routeName: (context) => HouseDetailScreen(),
           // PaymentScreen.routeName: (context) => PaymentScreen(),
           // HousePaymentDetailsScreen.routeName:(context) => HousePaymentDetailsScreen()
-          RentHouses.routeName:(context) => FillHouseDetails()
+          // RentHouses.routeName:(context) => FillHouseDetails()
         },
       ),
     );

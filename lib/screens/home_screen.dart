@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = AccountScreen();
         break;
       case 4:
-        page = RentHouses();
+        page =RentHouses ();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
