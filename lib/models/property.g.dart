@@ -19,7 +19,8 @@ HouseProperty _$HousePropertyFromJson(Map<String, dynamic> json) =>
       checkouttime: json['checkouttime'] as String,
       cleaningfee: (json['cleaningfee'] as num).toDouble(),
       bedcount: json['bedcount'] as int,
-      category: json['category'] as List<String>,
+      category:
+          (json['category'] as List<dynamic>).map((e) => e as String).toList(),
       features: json['features'] as List<dynamic>,
     );
 

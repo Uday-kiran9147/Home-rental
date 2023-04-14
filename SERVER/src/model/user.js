@@ -49,24 +49,24 @@ const User = mongoose.model('rental-user', {
     }
 })
 
-// const user = new User(
-//     {
-//         name: 'nagam chandu',
-//         profile: "",
-//         address: {
-//             country: 'Finland',
-//             state: "curchil",
-//         },
-//         gender: 'Male',
-//         phonenumber: '9876543212',
-//         password: 'nagam password',
-//         email: 'nagam@GMAIL.COM',
-//         age: 45
-//     }
-// )
+const user = new User(
+    {
+        name: 'nagam chandu',
+        profile: "",
+        address: {
+            country: 'Finland',
+            state: "curchil",
+        },
+        gender: 'Male',
+        phonenumber: '9876543212',
+        password: 'nagam password',
+        email: 'nagam@GMAIL.COM',
+        age: 45
+    }
+)
 
-user.save().then((me) => {
-    console.log(me)
-}).catch((error) => {
-    console.log('Error ' + error)
-})
+// user.save().then((me) => {
+//     console.log(me)
+// }).catch((error) => {
+//     console.log('Error ' + error)
+// })

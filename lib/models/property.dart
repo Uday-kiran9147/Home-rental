@@ -9,7 +9,7 @@ part 'property.g.dart';
 4- flutter pub run build_runner build --delete-conflicting-outputs 
 5- flutter pub run build_runner watch --delete-conflicting-outputs
 */
-@JsonSerializable(explicitToJson: true/* important to have nested classes here it is address */)
+@JsonSerializable(explicitToJson: true/*this is  important to have if we need  nested classes, ( here it is address) */)
 class HouseProperty {
   int maxguests;
   String propertyid;
