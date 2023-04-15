@@ -90,14 +90,14 @@ class _LoginState extends State<Login> {
                         TextStyle(color: Colors.redAccent, fontSize: 15),
                   ),
                   controller: emailController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please Enter Email';
-                    } else if (!value.contains('@')) {
-                      return 'Please Enter Valid Email';
-                    }
-                    return null;
-                  },
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Please Enter Email';
+                  //   } else if (!value.contains('@')) {
+                  //     return 'Please Enter Valid Email';
+                  //   }
+                  //   return null;
+                  // },
                 ),
               ),
               Container(
@@ -113,12 +113,12 @@ class _LoginState extends State<Login> {
                         TextStyle(color: Colors.redAccent, fontSize: 15),
                   ),
                   controller: passwordController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please Enter Password';
-                    }
-                    return null;
-                  },
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Please Enter Password';
+                  //   }
+                  //   return null;
+                  // },
                 ),
               ),
               Container(
