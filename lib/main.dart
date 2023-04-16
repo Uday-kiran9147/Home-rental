@@ -6,7 +6,6 @@ import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:provider/provider.dart';
 import 'auth/login.dart';
-import 'screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
