@@ -8,7 +8,7 @@ Text priceBeautify(String price) {
     style: GoogleFonts.poppins(
       fontSize: 22,
       fontWeight: FontWeight.w600,
-    ),
+    ), overflow: TextOverflow.fade
   );
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:houserental/pickimage/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:provider/provider.dart';
@@ -221,7 +222,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 // print(categoryList);
               },
             ),
-            // ImagePick()
+            ImagePick()//
           ],
         ),
       ),

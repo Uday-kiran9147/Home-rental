@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
@@ -37,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = AccountScreen();
         break;
       case 4:
-        page =RentHouses ();
+        page = RentHouses();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -168,29 +167,56 @@ class BadgeCustom extends StatelessWidget {
   }
 }
 
-class HomeImplement extends StatelessWidget {
+class HomeImplement extends StatefulWidget {
+  @override
+  State<HomeImplement> createState() => _HomeImplementState();
+}
+
+class _HomeImplementState extends State<HomeImplement> {
+  String search = '';
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    return GridView(
-        padding: EdgeInsets.all(15),
-        children: appState.allhouseGetter
-            .map((val) => HomeItem(
-                propertyid: val.propertyid,
-                owner: 'uday',
-                housetitle: val.housetitle,
-                photos: val.photos,
-                price: val.price,
-                address: val.address,
-                checkintime: val.checkintime,
-                checkouttime: val.checkouttime,
-                cleaningfee: val.cleaningfee,
-                bedcount: val.bedcount,
-                category: val.category,
-                features: val.features))
-            .toList(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            mainAxisSpacing: 4, crossAxisSpacing: 8, maxCrossAxisExtent: 400));
+    return Column(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: TextField(
+            onChanged: (value) {
+              setState(() {
+                search = value;
+              });
+            },
+            decoration: InputDecoration(label: Text('search')),
+          ),
+        ),
+        (appState.search_Houes(search).length>0)?
+        Expanded(
+          child: GridView(
+              padding: EdgeInsets.all(15),
+              children: appState.search_Houes(search)
+                  .map((val) => HomeItem(
+                      propertyid: val.propertyid,
+                      owner: 'uday',
+                      housetitle: val.housetitle,
+                      photos: val.photos,
+                      price: val.price,
+                      address: val.address,
+                      checkintime: val.checkintime,
+                      checkouttime: val.checkouttime,
+                      cleaningfee: val.cleaningfee,
+                      bedcount: val.bedcount,
+                      category: val.category,
+                      features: val.features))
+                  .toList(),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  mainAxisSpacing: 4,
+                  crossAxisSpacing: 8,
+                  maxCrossAxisExtent: 400)),
+        ):Text("No houses Found")
+      ],
+    );
   }
 }

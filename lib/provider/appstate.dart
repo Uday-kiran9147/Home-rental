@@ -5,8 +5,6 @@ import '../models/property.dart';
 class MyAppState with ChangeNotifier {
   List<HouseProperty> _favoriteslist = <HouseProperty>[];
 
-
-
   void toggleFavorite(HouseProperty homeitem) {
     if (_favoriteslist.contains(homeitem)) {
       _favoriteslist.remove(homeitem);
@@ -14,6 +12,18 @@ class MyAppState with ChangeNotifier {
       _favoriteslist.add(homeitem);
     }
     notifyListeners();
+  }
+
+  List<HouseProperty> search_Houes(String searchQuery) {
+    return _allhouses
+        .where((element) =>
+            element.housetitle
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase()) ||
+            element.address.country
+                .toLowerCase()
+                .contains(searchQuery.toLowerCase()))
+        .toList();
   }
 
   List<HouseProperty> get allhouseGetter {
@@ -72,7 +82,6 @@ class MyAppState with ChangeNotifier {
     _allhouses.add(newHouse);
     notifyListeners();
     ApiService.addHouse(newHouse);
-
   }
 
   List<HouseProperty> _allhouses = [
@@ -85,16 +94,16 @@ class MyAppState with ChangeNotifier {
             zipcode: 'zipcode',
             street: 'street'),
         bedcount: 4,
-        category: ['pool', 'beach','home'],
+        category: ['pool', 'beach', 'home'],
         checkintime: '11 am',
         checkouttime: '10 am',
         cleaningfee: 12000,
         features: ['Tv', 'stadium near by', 'peaceful villa'],
         housetitle: 'Pool-House',
         photos: [
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
-              'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
-              'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
+          'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
+          'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
         ],
         price: 1033345,
         propertyid: 'qwertyui87654erty'),
@@ -222,8 +231,8 @@ class MyAppState with ChangeNotifier {
         housetitle: 'Uday appartment',
         photos: [
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU",
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU',
-              'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU',
+          'https://www.buildofy.com/blog/content/images/2022/06/_DSC9610-Edited_-min.jpg',
         ],
         address: Address(
             country: 'india',
@@ -234,7 +243,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '(04:07)',
         cleaningfee: 1200.0,
         bedcount: 4,
-        category: ['Island','Camping','private_home','National_Park'],
+        category: ['Island', 'Camping', 'private_home', 'National_Park'],
         features: ['TV', 'Garden', 'Ocean fishes', 'Stadium nearby'])
   ];
 }

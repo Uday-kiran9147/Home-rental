@@ -48,7 +48,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
         ),
         body: appstate.allhouseGetter.isEmpty
             ? Center(
-                child: Text('No images found.'),
+                child: Text('No houses found!'),
               )
             : SingleChildScrollView(
                 child: Column(
@@ -88,21 +88,23 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      selectedHouse.address.country.toString(),
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 15,
-                                        color: Colors.grey,
-                                        // decoration: TextDecoration.underline
+                                SingleChildScrollView(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        selectedHouse.address.country.toString(),
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                          // decoration: TextDecoration.underline
+                                        ),
                                       ),
-                                    ),
-                                    priceBeautify(
-                                        selectedHouse.price.toString())
-                                  ],
+                                      priceBeautify(
+                                          selectedHouse.price.toString())
+                                    ],
+                                  ),
                                 ),
                                 Text(
                                   selectedHouse.housetitle.toString(),
