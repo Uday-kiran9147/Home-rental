@@ -50,7 +50,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
           ),
           FutureBuilder(
-            future: ApiService.androidfetchbookings(),
+            future: ApiService.fetchbookings(),
             builder: (context, snapshot) => Expanded(
               child: ListView.builder(
                 itemCount: ApiService.data.length,

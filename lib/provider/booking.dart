@@ -12,8 +12,7 @@ class BookingProvider with ChangeNotifier {
   }
 
   Future<void> fetchbookings() async {
-    ApiService.windowsfetchbookings();
-    ApiService.androidfetchbookings();
+    ApiService.fetchbookings();
     notifyListeners();
   }
 

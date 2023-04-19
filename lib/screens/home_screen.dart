@@ -215,7 +215,7 @@ class _HomeImplementState extends State<HomeImplement> {
                   mainAxisSpacing: 4,
                   crossAxisSpacing: 8,
                   maxCrossAxisExtent: 400)),
-        ):Text("No houses Found")
+        ):Center(child: Text("No houses Found"))
       ],
     );
   }

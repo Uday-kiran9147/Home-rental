@@ -5,21 +5,21 @@ import 'package:houserental/models/property.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static String _baseURL = 'http://localhost:5000';
-  static String _baseURLandroid = 'http://10.0.2.2:5000';
+  static String _baseURL = 'https://houserental.onrender.com';
+  // static String _baseURLandroid = 'http://10.0.2.2:5000';
   static var data = [];
 
-  static Future<void> androidfetchbookings() async {
-    final url = _baseURLandroid + "/allbookings";
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      data = jsonDecode(response.body.toString());
-    } else {
-      print('error: ' + response.statusCode.toString());
-    }
-  }
+  // static Future<void> androidfetchbookings() async {
+  //   final url = _baseURLandroid + "/allbookings";
+  //   final response = await http.get(Uri.parse(url));
+  //   if (response.statusCode == 200) {
+  //     data = jsonDecode(response.body.toString());
+  //   } else {
+  //     print('error: ' + response.statusCode.toString());
+  //   }
+  // }
 
-  static Future<void> windowsfetchbookings() async {
+  static Future<void> fetchbookings() async {
     final url = _baseURL + "/allbookings";
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
