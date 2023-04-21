@@ -1,6 +1,7 @@
 SERVER/node_modules
 SERVER/package-lock.json
-
+profilebadg.html
+.vscode/
 # Miscellaneous
 *.class
 *.log
