@@ -373,7 +373,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         maxguests,
         HOUSE_ID.toString(),
         titleController.text,
-        photocontrollerList.map((e) => e.text).toList(),
+        photocontrollerList.map((e) => e.text.toString()).toList(),
         price,
         Address(
             country: countryController.text,
@@ -388,7 +388,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         _featurescontroller.map((e) => e.text).toList(),
       );
       // print(titleController.text);
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
       showSnackbarCustom(
           context, 'Congratulations!, House added Successfully', Colors.green);
     } else {

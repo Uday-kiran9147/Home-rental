@@ -34,7 +34,7 @@ class ApiService {
     var jsonHouseProperty = jsonEncode(property);
     print(jsonHouseProperty);
     var response = await http.post(requestURI,
-        body: jsonHouseProperty, headers: {'Content-Type': 'application/json'});
+        body: jsonHouseProperty, headers: {'Content-Type': 'application/x-www-form-urlencoded'});
         print(response.body);
   }
 

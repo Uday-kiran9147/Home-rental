@@ -30,7 +30,6 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
     _guests = initialQuantity;
   }
 
-
   @override
   Widget build(BuildContext context) {
     final houseid = ModalRoute.of(context)!.settings.arguments;
@@ -94,7 +93,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        selectedHouse.address.country.toString(),
+                                        selectedHouse.address.country
+                                            .toString(),
                                         style: GoogleFonts.poppins(
                                           fontSize: 15,
                                           color: Colors.grey,
@@ -158,6 +158,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
+                                      
                                           child: Center(
                                             child: Column(
                                               mainAxisAlignment:
@@ -174,7 +175,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                           width: 110,
                                           height: 110,
                                           decoration: BoxDecoration(
-                                            color: Colors.grey.shade200,
+                                            color: Theme.of(context)
+                                                  .highlightColor,
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                           ),

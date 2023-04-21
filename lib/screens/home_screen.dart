@@ -62,80 +62,101 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(child: mainArea),
                 SafeArea(
-                  child: BottomNavigationBar(
-                    unselectedItemColor: Colors.black38,
-                    selectedItemColor: Theme.of(context).primaryColor,
-                    items: <BottomNavigationBarItem>[
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: 'Home',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(Icons.category_rounded),
-                        label: 'Categories',
-                      ),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.favorite,
-                          ),
-                          label: ' Favorites'),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.account_circle_sharp,
-                          ),
-                          label: ' Account'),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.cloud_upload_outlined,
-                          ),
-                          label: 'Rent a House')
-                    ],
-                    currentIndex: selectedIndex,
-                    onTap: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                    },
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                      // sets the background color of the `BottomNavigationBar`
+                      canvasColor: Colors.white,
+                      // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+                      // primaryColor: Colors.red,
+                      // textTheme: Theme.of(context).textTheme.copyWith(
+                      // caption: new TextStyle(color: Colors.yellow))
+                    ),
+                    child: BottomNavigationBar(
+                      backgroundColor: Colors.amberAccent,
+                      unselectedItemColor: Colors.grey,
+                      selectedItemColor: Theme.of(context).primaryColor,
+                      items: <BottomNavigationBarItem>[
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.home),
+                          label: 'Home',
+                        ),
+                        BottomNavigationBarItem(
+                          icon: Icon(Icons.category_rounded),
+                          label: 'Categories',
+                        ),
+                        BottomNavigationBarItem(
+                            icon: Icon(
+                              Icons.favorite,
+                            ),
+                            label: ' Favorites'),
+                        BottomNavigationBarItem(
+                            icon: Icon(
+                              Icons.account_circle_sharp,
+                            ),
+                            label: ' Account'),
+                        BottomNavigationBarItem(
+                            icon: Icon(
+                              Icons.cloud_upload_outlined,
+                            ),
+                            label: 'Rent a House')
+                      ],
+                      currentIndex: selectedIndex,
+                      onTap: (value) {
+                        setState(() {
+                          selectedIndex = value;
+                        });
+                      },
+                    ),
                   ),
                 )
               ],
             );
           } else {
-            return Row(
-              children: [
-                SafeArea(
-                  child: NavigationRail(
-                    backgroundColor: Colors.white70,
-                    extended: constraints.maxWidth >= 600,
-                    destinations: [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.home),
-                        label: Text('Home'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.category_rounded),
-                        label: Text('Categories '),
-                      ),
-                      NavigationRailDestination(
-                          icon: BadgeCustom(appstate: appstate),
-                          label: Text('Favorites')),
-                      NavigationRailDestination(
-                          icon: Icon(Icons.account_circle_rounded),
-                          label: Text('Account')),
-                      NavigationRailDestination(
-                          icon: Icon(Icons.cloud_upload_outlined),
-                          label: Text('Rent a House'))
-                    ],
-                    selectedIndex: selectedIndex,
-                    onDestinationSelected: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                    },
-                  ),
+            return Container(
+              // height: 60,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
                 ),
-                Expanded(child: mainArea),
-              ],
+              ),
+              child: Row(
+                children: [
+                  SafeArea(
+                    child: NavigationRail(
+                      backgroundColor: Colors.white70,
+                      extended: constraints.maxWidth >= 600,
+                      destinations: [
+                        NavigationRailDestination(
+                          icon: Icon(Icons.home),
+                          label: Text('Home'),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(Icons.category_rounded),
+                          label: Text('Categories '),
+                        ),
+                        NavigationRailDestination(
+                            icon: BadgeCustom(appstate: appstate),
+                            label: Text('Favorites')),
+                        NavigationRailDestination(
+                            icon: Icon(Icons.account_circle_rounded),
+                            label: Text('Account')),
+                        NavigationRailDestination(
+                            icon: Icon(Icons.cloud_upload_outlined),
+                            label: Text('Rent a House'))
+                      ],
+                      selectedIndex: selectedIndex,
+                      onDestinationSelected: (value) {
+                        setState(() {
+                          selectedIndex = value;
+                        });
+                      },
+                    ),
+                  ),
+                  Expanded(child: mainArea),
+                ],
+              ),
             );
           }
         },
@@ -192,30 +213,32 @@ class _HomeImplementState extends State<HomeImplement> {
             decoration: InputDecoration(label: Text('search')),
           ),
         ),
-        (appState.search_Houes(search).length>0)?
-        Expanded(
-          child: GridView(
-              padding: EdgeInsets.all(15),
-              children: appState.search_Houes(search)
-                  .map((val) => HomeItem(
-                      propertyid: val.propertyid,
-                      owner: 'uday',
-                      housetitle: val.housetitle,
-                      photos: val.photos,
-                      price: val.price,
-                      address: val.address,
-                      checkintime: val.checkintime,
-                      checkouttime: val.checkouttime,
-                      cleaningfee: val.cleaningfee,
-                      bedcount: val.bedcount,
-                      category: val.category,
-                      features: val.features))
-                  .toList(),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  mainAxisSpacing: 4,
-                  crossAxisSpacing: 8,
-                  maxCrossAxisExtent: 400)),
-        ):Center(child: Text("No houses Found"))
+        (appState.search_Houes(search).length > 0)
+            ? Expanded(
+                child: GridView(
+                    padding: EdgeInsets.all(15),
+                    children: appState
+                        .search_Houes(search)
+                        .map((val) => HomeItem(
+                            propertyid: val.propertyid,
+                            owner: 'uday',
+                            housetitle: val.housetitle,
+                            photos: val.photos,
+                            price: val.price,
+                            address: val.address,
+                            checkintime: val.checkintime,
+                            checkouttime: val.checkouttime,
+                            cleaningfee: val.cleaningfee,
+                            bedcount: val.bedcount,
+                            category: val.category,
+                            features: val.features))
+                        .toList(),
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 8,
+                        maxCrossAxisExtent: 400)),
+              )
+            : Center(child: Text("No houses Found"))
       ],
     );
   }

@@ -6,6 +6,7 @@ import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:provider/provider.dart';
 import 'auth/login.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme:
               ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 207, 184, 9)),
         ),
-        home: SafeArea(child: Login()),
+        home: SafeArea(child: MyHomePage()),
         routes: {
           // '/':(context) => HomeImplement(),
           HouseDetailScreen.routeName: (context) => HouseDetailScreen(),

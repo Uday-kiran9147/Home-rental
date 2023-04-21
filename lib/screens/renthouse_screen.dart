@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:houserental/widgets/forms/filldetails.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/appstate.dart';

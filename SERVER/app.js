@@ -30,6 +30,7 @@ app.get('/allbookings', (req, res) => {
 
     Booking.find({}).then((allbookings) => {
         res.send(allbookings)
+        console.log(allbookings.length)
     }).catch(err => {
         res.status(500).send(err)
     })
@@ -46,8 +47,12 @@ app.get('/allhouse', (req, res) => {
 
 app.post('/addhouse', (req, res) => {
     const houseproperty = new HouseProperty(req.body)
+    console.log(houseproperty)
+    console.log('///////////////////////////////////////////////////////////////////////////')
+    console.log(req.body)
+
     houseproperty.save().then((house) => {
-        res.send("houses added successfully")
+        res.send(house)
     }).catch((error) => {
         res.status(500).send(error)
     })
