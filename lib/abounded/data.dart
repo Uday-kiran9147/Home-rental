@@ -1,114 +1,114 @@
 class AboundandData{
   
-  List<HomeProduct> homeList = [
-    HomeProduct(
+  List<Pet> homeList = [
+    Pet(
         id: '01',
         state: "Hyderabad",
         country: "India",
-        locality: "Mgbs",
+        city: "Mgbs",
         price: 22000,
-        housename: "Villa with master Bus station",
+        petname: "Villa with master Bus station",
         category: 'Pool'),
-    HomeProduct(
+    Pet(
         id: '02',
         state: "Maharashtra",
         country: "India",
-        locality: "Pune",
+        city: "Pune",
         price: 15000,
-        housename: "Apartment with Balcony",
+        petname: "Apartment with Balcony",
         category: 'Garden'),
-    HomeProduct(
+    Pet(
         id: '03',
         state: "Karnataka",
         country: "India",
-        locality: "Bangalore",
+        city: "Bangalore",
         price: 24000,
-        housename: "Villa with Private Pool",
+        petname: "Villa with Private Pool",
         category: 'Balcony'),
-    HomeProduct(
+    Pet(
         id: '04',
         state: "Goa",
         country: "India",
-        locality: "Baga",
+        city: "Baga",
         price: 20000,
-        housename: "Bungalow with Modern Interiors",
+        petname: "Bungalow with Modern Interiors",
         category: 'Garden'),
-    HomeProduct(
+    Pet(
         id: '05',
         state: "West Bengal",
         country: "India",
-        locality: "Kolkata",
+        city: "Kolkata",
         price: 18000,
-        housename: "Cottage with Private Garden",
+        petname: "Cottage with Private Garden",
         category: 'Terrace'),
-    HomeProduct(
+    Pet(
         id: '06',
         state: "Uttar Pradesh",
         country: "India",
-        locality: "Lucknow",
+        city: "Lucknow",
         price: 20000,
-        housename: "Villa with Private Gym",
+        petname: "Villa with Private Gym",
         category: 'Balcony'),
-    HomeProduct(
+    Pet(
         id: '07',
         state: "Delhi",
         country: "India",
-        locality: "Rohini",
+        city: "Rohini",
         price: 21000,
-        housename: "Apartment with Balcony delhi",
+        petname: "Apartment with Balcony delhi",
         category: 'Terrace'),
-    HomeProduct(
+    Pet(
         id: '08',
         state: "Haryana",
         country: "India",
-        locality: "Gurgaon",
+        city: "Gurgaon",
         price: 25000,
-        housename: "Gurgaon Villa with Private Garden",
+        petname: "Gurgaon Villa with Private Garden",
         category: 'Garden'),
-    HomeProduct(
+    Pet(
         id: '09',
         state: "Rajasthan",
         country: "India",
-        locality: "Jaipur",
+        city: "Jaipur",
         price: 22000,
-        housename: "Bungalow with Modern Interiors",
+        petname: "Bungalow with Modern Interiors",
         category: 'Pool'),
-    HomeProduct(
+    Pet(
         id: '10',
         state: "Gujarat",
         country: "India",
-        locality: "Ahmedabad",
+        city: "Ahmedabad",
         price: 19000,
-        housename: "Cottage with Private Terrace",
+        petname: "Cottage with Private Terrace",
         category: 'Balcony'),
-    HomeProduct(
+    Pet(
         id: '11',
         state: "Tamil Nadu",
         country: "India",
-        locality: "Chennai",
+        city: "Chennai",
         price: 23000,
-        housename: "Villa with Master Bedroom",
+        petname: "Villa with Master Bedroom",
         category: 'Terrace')
   ];
 }
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-class HomeProduct {
+class Pet {
   String id;
   String state;
   String country;
-  String locality;
-  int price;
-  String housename;
+  String city;
+double price;
+  String petname;
   String category;
-   HomeProduct({
+   Pet({
     required this.id,
     required this.state,
     required this.country,
-    required this.locality,
+    required this.city,
     required this.price,
-    required this.housename,
+    required this.petname,
     required this.category,
   });
 

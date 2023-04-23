@@ -389,8 +389,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
       );
       // print(titleController.text);
       // Navigator.of(context).pop();
-      showSnackbarCustom(
-          context, 'Congratulations!, House added Successfully', Colors.green);
+      
     } else {
       // print("Error");
       showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);

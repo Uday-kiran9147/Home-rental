@@ -62,6 +62,7 @@ class _HomeItemState extends State<HomeItem> {
         //     width: 1.0, // sets the width of the border to 1 pixel
         //   ),
         // ),
+        margin: EdgeInsets.all(8),
         child: Flex(
           crossAxisAlignment: CrossAxisAlignment.start,
           direction: Axis.vertical,

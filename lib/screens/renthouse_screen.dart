@@ -27,69 +27,44 @@ class _RentHousesState extends State<RentHouses> {
           )),
       Expanded(
         child: ListView.builder(
-            shrinkWrap: true,
+            // shrinkWrap: true,
             itemCount: appState.allhouseGetter.length,
             itemBuilder: (context, index) => Card(
-                  child: Text(
-                      appState.allhouseGetter[index].propertyid.toString()),
+                  shadowColor: Colors.red,
+                  color: Colors.grey.shade200,
+                  elevation: 15,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: CircleAvatar(
+                            radius: 65,
+                            backgroundImage: NetworkImage(
+                                appState.allhouseGetter[index].photos[0]),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              "${appState.allhouseGetter[index].housetitle} -\$${appState.allhouseGetter[index].price}",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8.0),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 )),
       )
     ]));
   }
 }
-
-// class House {
-//   final String name;
-//   final List<String> categories;
-
-//   House({required this.name, required this.categories});
-// }
-
-// List<House> houses = [
-//   House(name: 'House A', categories: ['Category 1', 'Category 2']),
-//   House(name: 'House B', categories: ['Category 2', 'Category 3']),
-//   House(name: 'House C', categories: ['Category 1']),
-//   House(name: 'House D', categories: ['Category 3']),
-// ];
-
-// class MHomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     List<String> categories = getCategories();
-
-//     return DefaultTabController(
-//       length: categories.length,
-//       child: Scaffold(
-//         appBar: AppBar(
-//           title: Text('Houses by Category'),
-//           bottom: TabBar(
-//             tabs: categories.map((category) => Tab(text: category)).toList(),
-//           ),
-//         ),
-//         body: TabBarView(
-//           children: categories.map((category) => buildListView(category)).toList(),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget buildListView(String category) {
-//     return ListView.builder(
-//       itemCount: houses.where((house) => house.categories.contains(category)).length,
-//       itemBuilder: (context, index) {
-//         final house = houses.where((house) => house.categories.contains(category)).toList()[index];
-//         return ListTile(
-//           title: Text(house.name),
-//         );
-//       },
-//     );
-//   }
-
-//   List<String> getCategories() {
-//     Set<String> categories = {};
-//     for (var house in houses) {
-//       categories.addAll(house.categories);
-//     }
-//     return categories.toList();
-//   }
-// }

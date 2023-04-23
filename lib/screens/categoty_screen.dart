@@ -44,8 +44,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
               maxCrossAxisExtent: 400));
     }
 
-    return DefaultTabController(
-        animationDuration: Duration(seconds: 1),
+    return DefaultTabController(initialIndex: 2,
+        // animationDuration: Duration(),
         length: appstate.getCategories().length,
         child: Scaffold(
           appBar: AppBar(
