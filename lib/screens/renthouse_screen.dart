@@ -31,7 +31,6 @@ class _RentHousesState extends State<RentHouses> {
             itemCount: appState.allhouseGetter.length,
             itemBuilder: (context, index) => Card(
                   shadowColor: Colors.red,
-                  color: Colors.grey.shade200,
                   elevation: 15,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,26 +38,18 @@ class _RentHousesState extends State<RentHouses> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child: CircleAvatar(
-                            radius: 65,
-                            backgroundImage: NetworkImage(
-                                appState.allhouseGetter[index].photos[0]),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    appState.allhouseGetter[index].photos[0])),
+                            title: Text(
                               "${appState.allhouseGetter[index].housetitle} -\$${appState.allhouseGetter[index].price}",
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: 8.0),
-                          ],
+                          ),
                         ),
                       ),
                     ],
