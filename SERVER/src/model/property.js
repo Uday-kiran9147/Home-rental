@@ -22,61 +22,56 @@ const addressschema = mongoose.Schema(
     },
 )
 
-const HouseProperty = mongoose.model('HouseProperty', {
-
-    maxguests: {
-        type: Number,
-        required: true,
-    },
-    propertyid: {
-        type: String,
-        require
-    },
-    owner: {
-        type: String,
-        require
-    },
-    housetitle: {
-        type: String,
-        require
-    },
-    propertyphotos: [
-        {
+const HouseProperty = mongoose.model('HouseProperty',
+    {
+        maxguests: {
+            type: Number,
+            required: true
+        },
+        propertyid: {
             type: String,
-        }
-    ],
-    price: {
-        type: Number,
-        required: true,
-    },
-    address: [addressschema],
-    checkintime: {
-        type: String,
-        required: true,
-    },
-    checkouttime: {
-        type: String,
-        required: true,
-    },
-    cleaningfee: {
-        type: String,
-        // required: true,
-    },
-    bedcount: {
-        type: Number,
-        required: true,
-    },
-    category: [
-        {
+            required: true
+        },
+        owner: {
             type: String,
-        }
-    ],
-    features: [
-        {
+            required: true
+        },
+        housetitle: {
             type: String,
-        }
-    ]
-})
+            required: true
+        },
+        photos: [{
+            type: String
+        }],
+        price: {
+            type: Number,
+            required: true
+        },
+        address: addressschema,
+        checkintime: {
+            type: String,
+            required: true
+        },
+        checkouttime: {
+            type: String,
+            required: true
+        },
+        cleaningfee: {
+            type: Number,
+            required: false
+        },
+        bedcount: {
+            type: Number,
+            required: true
+        },
+        category: [{
+            type: String
+        }],
+        features: [{
+            type: String
+        }]
+    }
+)
 
 const houseproperty = new HouseProperty({
     maxguests: 4,
