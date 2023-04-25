@@ -398,8 +398,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         categoryList.map((e) => e.toString()).toList(),
         _featurescontroller.map((e) => e.text).toList(),
       );
-      // print(titleController.text);
-      // Navigator.of(context).pop();
+      showSnackbarCustom(context, "House added Successfully", Colors.green);
+      Navigator.of(context).pop();
     } else {
       // print("Error");
       showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);

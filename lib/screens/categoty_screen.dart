@@ -17,35 +17,34 @@ class _CategoryScreenState extends State<CategoryScreen> {
     List<String> categories = appstate.getCategories();
 
     Widget buildListView(String category) {
-      //  final length=appstate.allhouseGetter.where((house) => house.category.contains(category)).length;
-      final house = appstate.allhouseGetter
-          .where((house) => house.category.contains(category))
-          .toList();
-      return GridView(
-          padding: EdgeInsets.all(15),
-          children: house
-              .map((val) => HomeItem(
-                  propertyid: val.propertyid,
-                  owner: 'uday',
-                  housetitle: val.housetitle,
-                  photos: val.photos,
-                  price: val.price,
-                  address: val.address,
-                  checkintime: val.checkintime,
-                  checkouttime: val.checkouttime,
-                  cleaningfee: val.cleaningfee,
-                  bedcount: val.bedcount,
-                  category: val.category,
-                  features: val.features))
-              .toList(),
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              mainAxisSpacing: 4,
-              crossAxisSpacing: 8,
-              maxCrossAxisExtent: 400));
+      return GridView.builder(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 400, mainAxisSpacing: 4, crossAxisSpacing: 8),
+        itemCount: appstate.allhouseGetter
+            .where((house) => house.category.contains(category))
+            .length,
+        itemBuilder: (context, index) {
+          final house = appstate.allhouseGetter
+              .where((house) => house.category.contains(category))
+              .toList();
+          return HomeItem(
+              propertyid: house[index].propertyid,
+              owner: house[index].owner,
+              housetitle: house[index].housetitle,
+              photos: house[index].photos,
+              price: house[index].price,
+              address: house[index].address,
+              checkintime: house[index].checkintime,
+              checkouttime: house[index].checkouttime,
+              cleaningfee: house[index].cleaningfee,
+              bedcount: house[index].bedcount,
+              category: house[index].category,
+              features: house[index].features);
+        },
+      );
     }
 
     return DefaultTabController(
-        // animationDuration: Duration(),
         length: appstate.getCategories().length,
         child: Scaffold(
           appBar: AppBar(
@@ -53,7 +52,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   isScrollable: true,
                   dividerColor: Colors.amber,
                   labelColor: Colors.grey,
-                  tabs: categories.map((e) => Tab(text: e)).toList())),
+                  tabs: categories
+                      .map((e) => Tab(
+                            text: e.toString(),
+                          ))
+                      .toList())),
           body: TabBarView(
               children: categories.map((e) => buildListView(e)).toList()),
         ));

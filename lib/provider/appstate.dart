@@ -85,81 +85,83 @@ class MyAppState with ChangeNotifier {
   }
 
   Future<void> fetechHouses() async {
-    _allhouses.addAll(await ApiService.fetchhouse());
+    // _allhouses.addAll(await ApiService.fetchhouse());
+    for (var house in await ApiService.fetchhouse()) {
+      _allhouses.add(house);
+    }
     notifyListeners();
   }
 
   List<HouseProperty> _allhouses = [
-    // HouseProperty(
-    //     maxguests: 7,
-    //     owner: 'uday',
-    //     address: Address(
-    //         city: 'city',
-    //         country: 'country',
-    //         state: 'state',
-    //         zipcode: 'zipcode',
-    //         street: 'street'),
-    //     bedcount: 4,
-    //     category: ['pool', 'beach', 'home'],
-    //     checkintime: '11 am',
-    //     checkouttime: '10 am',
-    //     cleaningfee: 12000,
-    //     features: ['Tv', 'stadium near by', 'peaceful villa'],
-    //     housetitle: 'Switzerland-kingdom',
-    //     photos: [
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
-    //       'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
-    //       'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
-    //     ],
-    //     price: 1033345,
-    //     propertyid: 'qwertyui87654erty'),
-    // HouseProperty(
-    //     maxguests: 7,
-    //     owner: 'uday',
-    //     address: Address(
-    //         city: 'city',
-    //         country: 'country',
-    //         state: 'state',
-    //         zipcode: 'zipcode',
-    //         street: 'street'),
-    //     bedcount: 4,
-    //     category: ['pool', 'beach'],
-    //     checkintime: '11',
-    //     checkouttime: '10',
-    //     cleaningfee: 12000,
-    //     features: ['rule1', 'rule2'],
-    //     housetitle: 'Switzerland-kingdom',
-    //     photos: [
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //     ],
-    //     price: 1033345,
-    //     propertyid: 'qfgfd345egfsfs'),
-    // HouseProperty(
-    //     maxguests: 2,
-    //     owner: 'uday',
-    //     address: Address(
-    //         city: 'city',
-    //         country: 'United States',
-    //         state: 'California',
-    //         zipcode: '90210',
-    //         street: 'Beverly Hills Drive'),
-    //     bedcount: 5,
-    //     category: ['pool', 'farm', 'Lakefront'],
-    //     checkintime: '3pm',
-    //     checkouttime: '11am',
-    //     cleaningfee: 15000,
-    //     features: ['No sAmoking', 'No parties'],
-    //     housetitle: 'Luxury Beverly Hills Mansion',
-    //     photos: [
-    //       'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
-    //     ],
-    //     price: 1900000,
-    //     propertyid: 'abcdefg12345hijkl'),
+    HouseProperty(
+        maxguests: 7,
+        owner: 'uday',
+        address: Address(
+            city: 'city',
+            country: 'country',
+            state: 'state',
+            zipcode: 'zipcode',
+            street: 'street'),
+        bedcount: 4,
+        category: ['pool','historical_home','private_home','National_Park','Trending','Island', 'Camping','beach', 'Lakefront','windmill'],
+        checkintime: '11 am',
+        checkouttime: '10 am',
+        cleaningfee: 12000,
+        features: ['Tv', 'stadium near by', 'peaceful villa'],
+        housetitle: 'Switzerland-kingdom',
+        photos: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
+          'https://docs.flutter.dev/assets/images/dash/dash-fainting.gif',
+          'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
+        ],
+        price: 1033345,
+        propertyid: 'qwertyui87654erty'),
+    HouseProperty(
+        maxguests: 7,
+        owner: 'uday',
+        address: Address(
+            city: 'city',
+            country: 'country',
+            state: 'state',
+            zipcode: 'zipcode',
+            street: 'street'),
+        bedcount: 4,
+        category: ['pool', 'beach'],
+        checkintime: '11',
+        checkouttime: '10',
+        cleaningfee: 12000,
+        features: ['rule1', 'rule2'],
+        housetitle: 'Switzerland-kingdom',
+        photos: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+        ],
+        price: 1033345,
+        propertyid: 'qfgfd345egfsfs'),
+    HouseProperty(
+        maxguests: 2,
+        owner: 'uday',
+        address: Address(
+            city: 'city',
+            country: 'United States',
+            state: 'California',
+            zipcode: '90210',
+            street: 'Beverly Hills Drive'),
+        bedcount: 5,
+        category: ['pool', 'farm', 'Lakefront'],
+        checkintime: '3pm',
+        checkouttime: '11am',
+        cleaningfee: 15000,
+        features: ['No sAmoking', 'No parties'],
+        housetitle: 'Luxury Beverly Hills Mansion',
+        photos: [
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
+        ],
+        price: 1900000,
+        propertyid: 'abcdefg12345hijkl'),
     // HouseProperty(
     //     maxguests: 4,
     //     owner: 'uday',

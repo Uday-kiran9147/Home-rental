@@ -199,26 +199,25 @@ class _HomeImplementState extends State<HomeImplement> {
   bool isloading = false;
   bool isinit = true;
 
-  @override
-  void didChangeDependencies() {
-    if (isinit) {
-      setState(() {
-        isloading = true;
-      });
-      Provider.of<MyAppState>(context).fetechHouses().then((_) {
-        setState(() {
-          isloading = false;
-        });
-      });
-    }
-    isinit = false;
-    super.didChangeDependencies();
-  }
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   Provider.of<MyAppState>(context, listen: false).fetechHouses();
+  // @override
+  // void didChangeDependencies() {
+  //   if (isinit) {
+  //     setState(() {
+  //       isloading = true;
+  //     });
+  //     Provider.of<MyAppState>(context).fetechHouses().then((_) {
+  //       setState(() {
+  //         isloading = false;
+  //       });
+  //     });
+  //   }
+  //   isinit = false;
+  //   super.didChangeDependencies();
   // }
+  void initState() {
+    super.initState();
+    Provider.of<MyAppState>(context, listen: false).fetechHouses();
+  }
 
   @override
   Widget build(BuildContext context) {
