@@ -1,12 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
-import 'package:houserental/services/apiservice.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
 import '../widgets/home_Item.dart';
+import '../widgets/styles.dart';
 import 'favourites_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -225,16 +226,54 @@ class _HomeImplementState extends State<HomeImplement> {
     return Column(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.4,
-          child: TextField(
-            onChanged: (value) {
-              setState(() {
-                search = value;
-              });
-            },
-            decoration: InputDecoration(label: Text('search')),
-          ),
-        ),
+            padding: EdgeInsets.only(top: 10),
+            width: MediaQuery.of(context).size.width * 0.6,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: Styles.searchBackground,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 4,
+                  vertical: 8,
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      CupertinoIcons.search,
+                      color: Styles.searchIconColor,
+                    ),
+                    Expanded(
+                      child: CupertinoTextField(
+                        // controller: controller,
+                        onChanged: (value) {
+                          setState(() {
+                            search = value;
+                          });
+                        },
+                        // focusNode: widget.focusNode,
+                        style: Styles.searchText,
+                        cursorColor: CupertinoColors.systemYellow,
+                        decoration: null,
+                      ),
+                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     setState(() {
+                    //       search = "";
+                    //     });
+                    //   },
+                    //   child: const Icon(
+                    //     CupertinoIcons.clear_thick_circled,
+                    //     color: Styles.searchIconColor,
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
+            )),
+        // SearchBar(controller: search ),
         (appState.search_Houes(search).length > 0)
             ? Expanded(
                 child: GridView(
