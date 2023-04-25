@@ -46,10 +46,12 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       state: json['state'] as String,
       zipcode: json['zipcode'] as String,
       street: json['street'] as String,
+      city: json['city'],
     );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'country': instance.country,
+      'city': instance.city,
       'state': instance.state,
       'zipcode': instance.zipcode,
       'street': instance.street,

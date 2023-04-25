@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 
 import '../../models/property.dart';
 
-
 class FillHouseDetails extends StatefulWidget {
   @override
   State<FillHouseDetails> createState() => _FillHouseDetailsState();
@@ -23,6 +22,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   final streetController = new TextEditingController();
   final zipcodeController = new TextEditingController();
   final priceController = TextEditingController();
+  final cityController = TextEditingController();
   final cleaningfeeController = TextEditingController();
   final maxguestController = TextEditingController();
   double price = 0;
@@ -112,6 +112,16 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'country cannot  be empty';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(label: Text('city')),
+              controller: cityController,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'city cannot  be empty';
                 }
                 return null;
               },
@@ -222,7 +232,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 // print(categoryList);
               },
             ),
-            ImagePick()//
+            ImagePick() //
           ],
         ),
       ),
@@ -376,6 +386,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         photocontrollerList.map((e) => e.text.toString()).toList(),
         price,
         Address(
+            city: cityController.text,
             country: countryController.text,
             state: stateController.text,
             zipcode: zipcodeController.text,
@@ -389,7 +400,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
       );
       // print(titleController.text);
       // Navigator.of(context).pop();
-      
     } else {
       // print("Error");
       showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);

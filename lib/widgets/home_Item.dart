@@ -112,7 +112,7 @@ class _HomeItemState extends State<HomeItem> {
               ],
             ),
             Text(
-                "${widget.address!.state}, ${widget.address!.country}, ${widget.address!.zipcode}",
+                "${widget.address!.country}, ${widget.address!.state}, ${widget.address!.city}, ${widget.address!.zipcode}",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,

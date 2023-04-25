@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:houserental/models/booking.dart';
 import 'package:houserental/models/property.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 class ApiService {
   static String _baseURL = 'https://houserental.onrender.com';
   // static String _baseURLandroid = 'http://10.0.2.2:5000';
+  static String firebaseURL =
+      "https://flutternotes-97058-default-rtdb.firebaseio.com/housrproperty.json";
   static var data = [];
 
   // static Future<void> androidfetchbookings() async {
@@ -29,13 +32,52 @@ class ApiService {
     }
   }
 
+  static Future<List<HouseProperty>> fetchhouse() async {
+    final url = firebaseURL;
+    final response = await http.get(Uri.parse(url));
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    final List<HouseProperty> loadedHouses = [];
+    extractedData.forEach((key, value) {
+      loadedHouses.add(HouseProperty(
+          maxguests: value['maxguests'],
+          propertyid: value['propertyid'],
+          owner: value['owner'],
+          housetitle: value['housetitle'],
+          photos: value['photos'],
+          price: value['price'],
+          address: Address.fromJson(value['address']),
+          checkintime: value['checkintime'],
+          checkouttime: value['checkouttime'],
+          cleaningfee: value['cleaningfee'],
+          bedcount: value['bedcount'],
+          category: ['category'],
+          features: ['features']));
+    });
+    return loadedHouses;
+  }
+
   static Future<void> addHouse(HouseProperty property) async {
-    Uri requestURI = Uri.parse(_baseURL + '/addhouse');
-    var jsonHouseProperty = jsonEncode(property);
-    print(jsonHouseProperty);
+    Uri requestURI = Uri.parse(firebaseURL);
+    // var jsonHouseProperty = jsonEncode(property);
+    // print(jsonHouseProperty);
     var response = await http.post(requestURI,
-        body: jsonHouseProperty, headers: {'Content-Type': 'application/x-www-form-urlencoded'});
-        print(response.body);
+        body: json.encode({
+          'maxguests': property.maxguests,
+          'propertyid': property.propertyid,
+          'owner': property.owner,
+          'housetitle': property.housetitle,
+          'photos': property.photos,
+          'price': property.price,
+          'address': property.address.toJson(),
+          'checkintime': property.checkintime,
+          'checkouttime': property.checkouttime,
+          'cleaningfee': property.cleaningfee,
+          'bedcount': property.bedcount,
+          'category': property.category,
+          'features': property.features,
+        }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'});
+    print(response.body);
   }
 
   static Future<void> bookhouse(Booking booking) async {

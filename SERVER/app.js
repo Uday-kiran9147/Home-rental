@@ -47,12 +47,9 @@ app.get('/allhouse', (req, res) => {
 
 app.post('/addhouse', (req, res) => {
     const houseproperty = new HouseProperty(req.body)
-    console.log(houseproperty)
-    console.log('///////////////////////////////////////////////////////////////////////////')
-    console.log(req.body)
-
     houseproperty.save().then((house) => {
         res.send(house)
+        // console.log(house)
     }).catch((error) => {
         res.status(500).send(error)
     })

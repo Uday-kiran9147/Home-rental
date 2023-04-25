@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
+import 'package:houserental/services/apiservice.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
@@ -195,11 +196,33 @@ class HomeImplement extends StatefulWidget {
 
 class _HomeImplementState extends State<HomeImplement> {
   String search = '';
+  bool isloading = false;
+  bool isinit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isinit) {
+      setState(() {
+        isloading = true;
+      });
+      Provider.of<MyAppState>(context).fetechHouses().then((_) {
+        setState(() {
+          isloading = false;
+        });
+      });
+    }
+    isinit = false;
+    super.didChangeDependencies();
+  }
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   Provider.of<MyAppState>(context, listen: false).fetechHouses();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-
+    var appState = Provider.of<MyAppState>(context);
     return Column(
       children: [
         Container(
