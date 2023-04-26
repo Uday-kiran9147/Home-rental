@@ -17,6 +17,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
+  bool isloading = false;
+  bool isinit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (isinit) {
+      setState(() {
+        isloading = true;
+      });
+      Provider.of<MyAppState>(context).fetechHouses().then((_) {
+        setState(() {
+          isloading = false;
+        });
+      });
+    }
+    isinit = false;
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,28 +215,6 @@ class HomeImplement extends StatefulWidget {
 
 class _HomeImplementState extends State<HomeImplement> {
   String search = '';
-  bool isloading = false;
-  bool isinit = true;
-
-  // @override
-  // void didChangeDependencies() {
-  //   if (isinit) {
-  //     setState(() {
-  //       isloading = true;
-  //     });
-  //     Provider.of<MyAppState>(context).fetechHouses().then((_) {
-  //       setState(() {
-  //         isloading = false;
-  //       });
-  //     });
-  //   }
-  //   isinit = false;
-  //   super.didChangeDependencies();
-  // }
-  void initState() {
-    super.initState();
-    Provider.of<MyAppState>(context, listen: false).fetechHouses();
-  }
 
   @override
   Widget build(BuildContext context) {
