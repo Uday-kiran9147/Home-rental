@@ -13,7 +13,7 @@ part 'user.g.dart';
 class User {
   String? name;
   String? profile;
-  Address? address;
+  UserAddress? address;
   String? gender;
   String? phonenumber;
   String? password;
@@ -34,15 +34,15 @@ class User {
 }
 
 @JsonSerializable()
-class Address {
+class UserAddress {
   String? country;
   String? state;
-  Address({
+  UserAddress({
     this.country,
     this.state,
   });
 
-  factory Address.fromJson(Map<String, dynamic> json) =>
+  factory UserAddress.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 }

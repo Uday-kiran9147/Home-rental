@@ -5,11 +5,13 @@ import 'package:houserental/models/booking.dart';
 import 'package:houserental/models/property.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/user.dart';
+
 class ApiService {
   static String _baseURL = 'https://houserental.onrender.com';
   // static String _baseURLandroid = 'http://10.0.2.2:5000';
   static String firebaseURL =
-      "https://flutternotes-97058-default-rtdb.firebaseio.com/housrproperty.json";
+      "https://flutternotes-97058-default-rtdb.firebaseio.com";
   static var data = [];
 
   // static Future<void> androidfetchbookings() async {
@@ -33,7 +35,7 @@ class ApiService {
   }
 
   static Future<List<HouseProperty>> fetchhouse() async {
-    final url = firebaseURL;
+    final url = firebaseURL + "/housrproperty.json";
     final response = await http.get(Uri.parse(url));
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     final List<HouseProperty> loadedHouses = [];
@@ -56,8 +58,21 @@ class ApiService {
     return loadedHouses;
   }
 
+  static Future<void> adduser(User user) async {
+    Uri requestURI = Uri.parse(firebaseURL + "/User.json");
+    var response = await http.post(requestURI,
+        body: json.encode({
+          'name': user.name,
+          'profile': user.profile,
+          'phonenumber':user.phonenumber,
+          'email':user.email,
+        }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'});
+    print(response.body);
+  }
+
   static Future<void> addHouse(HouseProperty property) async {
-    Uri requestURI = Uri.parse(firebaseURL);
+    Uri requestURI = Uri.parse(firebaseURL + "/housrproperty.json");
     // var jsonHouseProperty = jsonEncode(property);
     // print(jsonHouseProperty);
     var response = await http.post(requestURI,

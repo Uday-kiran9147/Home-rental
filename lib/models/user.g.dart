@@ -11,7 +11,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       profile: json['profile'] as String?,
       address: json['address'] == null
           ? null
-          : Address.fromJson(json['address'] as Map<String, dynamic>),
+          : UserAddress.fromJson(json['address'] as Map<String, dynamic>),
       gender: json['gender'] as String?,
       phonenumber: json['phonenumber'] as String?,
       password: json['password'] as String?,
@@ -30,12 +30,12 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'age': instance.age,
     };
 
-Address _$AddressFromJson(Map<String, dynamic> json) => Address(
+UserAddress _$AddressFromJson(Map<String, dynamic> json) => UserAddress(
       country: json['country'] as String?,
       state: json['state'] as String?,
     );
 
-Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
+Map<String, dynamic> _$AddressToJson(UserAddress instance) => <String, dynamic>{
       'country': instance.country,
       'state': instance.state,
     };
