@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:houserental/models/property.dart';
 
 import '../provider/appstate.dart';
 import 'home_Item.dart';
@@ -17,7 +18,7 @@ class sugessionBuilder extends StatelessWidget {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: appstate.allhouseGetter.length,
-        itemBuilder: (context, index) => HomeItem(
+        itemBuilder: (context, index) => HomeItem(property:  HouseProperty( maxguests: appstate.allhouseGetter[index].maxguests,
             propertyid: appstate
                 .allhouseGetter[index].propertyid,
             owner: 'uday',
@@ -44,6 +45,6 @@ class sugessionBuilder extends StatelessWidget {
                 .allhouseGetter[index].category,
             features: appstate
                 .allhouseGetter[index]
-                .features));
+                .features)));
   }
 }

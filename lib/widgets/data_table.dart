@@ -14,7 +14,7 @@ class dataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataTable(
-      columns: <DataColumn>[
+      columns: const <DataColumn>[
         DataColumn(
           label: Expanded(
             child: Text(
@@ -47,10 +47,10 @@ class dataTable extends StatelessWidget {
         DataRow(
           cells: <DataCell>[
             DataCell(Text(
-                '${selectedHouse.checkintime}')),
+                selectedHouse.checkintime)),
             DataCell(Text(
-                '${selectedHouse.checkouttime}')),
-            DataCell(Text(
+                selectedHouse.checkouttime)),
+            const DataCell(Text(
               'Security camera & recording device',
               overflow: TextOverflow.fade,
             )),

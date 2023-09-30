@@ -59,7 +59,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('House Payment Details'),
+        title: const Text('House Payment Details'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -75,49 +75,49 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Text(
                 '${selectedHouse.address.country}-  ${selectedHouse.address.state}- ${selectedHouse.address.street}- ${selectedHouse.address.zipcode}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16.0,
                 ),
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 '1-day price',
                 style: TextStyle(
                   // fontWeight: FontWeight.bold,
                   fontSize: 20.0,
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               priceBeautify(selectedHouse.price.toString()),
-              SizedBox(width: 10.0),
-              SizedBox(height: 20.0),
+              const SizedBox(width: 10.0),
+              const SizedBox(height: 20.0),
               Text(
                 'No.of.guests ${widget.guests}',
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     color: Colors.green),
               ),
               Text(
                 '${widget.numberofdays} day\'s of vacation.......',
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
                     color: Colors.green),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               DataTable(
-                columns: [
+                columns: const [
                   DataColumn(label: Text('Source')),
                   DataColumn(label: Text('Price')),
                 ],
                 rows: [
                   DataRow(cells: [
                     DataCell(Text(
-                      "\$${localprice} x${widget.numberofdays}"
+                      "\$$localprice x${widget.numberofdays}"
                           .toString()
                           .replaceAllMapped(
                               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -131,7 +131,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                         dataTablepriceBeautify((pricewithdays).toString())),
                   ]),
                   DataRow(cells: [
-                    DataCell(Text(
+                    const DataCell(Text(
                       'cleaning fee',
                       style: TextStyle(fontWeight: FontWeight.w500),
                     )),
@@ -173,18 +173,18 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   );
                   final bookingstate = Provider.of<BookingProvider>(context,listen: false);
                   showSnackbarCustom(context, "Booking confirmed successful",
-                      Colors.greenAccent);
+                      Colors.green);
                   bookingstate.bookhouse(newbooking);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },
                 child: Container(
                   height: 50,
-                  child: Text('Pay'),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors.green,
                       borderRadius: BorderRadius.circular(15)),
+                  child: const Text('Pay'),
                 ),
               )
             ],

@@ -1,4 +1,5 @@
 SERVER/node_modules
+*lib/android/app/google-services.json
 SERVER/package-lock.json
 profilebadg.html
 *.vscode/

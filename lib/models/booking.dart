@@ -36,16 +36,16 @@ class Booking {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['bookingdate'] = this.bookingdate;
-    data['bookingid'] = this.bookingid;
-    data['checkin'] = this.checkin;
-    data['checkout'] = this.checkout;
-    data['bookingprice'] = this.bookingprice;
-    data['guests'] = this.guests;
-    data['numberofdays'] = this.numberofdays;
-    data['userid'] = this.userid;
-    data['houseid'] = this.houseid;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['bookingdate'] = bookingdate;
+    data['bookingid'] = bookingid;
+    data['checkin'] = checkin;
+    data['checkout'] = checkout;
+    data['bookingprice'] = bookingprice;
+    data['guests'] = guests;
+    data['numberofdays'] = numberofdays;
+    data['userid'] = userid;
+    data['houseid'] = houseid;
     return data;
   }
 }

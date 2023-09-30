@@ -4,7 +4,9 @@ import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({super.key});
+  const CategoryScreen({
+    super.key,
+  });
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
@@ -18,8 +20,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
     Widget buildListView(String category) {
       return GridView.builder(
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 400, mainAxisSpacing: 4, crossAxisSpacing: 8),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 400,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
         itemCount: appstate.allhouseGetter
             .where((house) => house.category.contains(category))
             .length,
@@ -28,37 +33,38 @@ class _CategoryScreenState extends State<CategoryScreen> {
               .where((house) => house.category.contains(category))
               .toList();
           return HomeItem(
-              propertyid: house[index].propertyid,
-              owner: house[index].owner,
-              housetitle: house[index].housetitle,
-              photos: house[index].photos,
-              price: house[index].price,
-              address: house[index].address,
-              checkintime: house[index].checkintime,
-              checkouttime: house[index].checkouttime,
-              cleaningfee: house[index].cleaningfee,
-              bedcount: house[index].bedcount,
-              category: house[index].category,
-              features: house[index].features);
+            property: house[index],
+          );
         },
       );
     }
 
     return DefaultTabController(
-        length: appstate.getCategories().length,
-        child: Scaffold(
-          appBar: AppBar(
-              bottom: TabBar(
-                  isScrollable: true,
-                  dividerColor: Colors.amber,
-                  labelColor: Colors.grey,
-                  tabs: categories
-                      .map((e) => Tab(
-                            text: e.toString(),
-                          ))
-                      .toList())),
-          body: TabBarView(
-              children: categories.map((e) => buildListView(e)).toList()),
-        ));
+      length: categories.length,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor:
+              Colors.blue, // Set your desired app bar background color
+          bottom: TabBar(
+            isScrollable: true,
+            indicatorColor: Colors.yellow, // Set tab indicator color
+            labelColor: Colors.white, // Set selected tab label color
+            unselectedLabelColor:
+                Colors.black54, // Set unselected tab label color
+            tabs: categories.map((e) => Tab(text: e.toString())).toList(),
+          ),
+          title: const Text(
+            'Categories',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        body: TabBarView(
+          children: categories.map((e) => buildListView(e)).toList(),
+        ),
+      ),
+    );
   }
 }

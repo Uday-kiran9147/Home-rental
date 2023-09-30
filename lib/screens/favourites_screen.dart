@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:houserental/models/property.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/appstate.dart';
 
 class FavoritesPage extends StatefulWidget {
+  const FavoritesPage({super.key});
+
   @override
   State<FavoritesPage> createState() => _FavoritesPageState();
 }
@@ -15,38 +18,47 @@ class _FavoritesPageState extends State<FavoritesPage> {
     var appState = context.watch<MyAppState>();
 
     if (appState.favouritelistGetter.isEmpty) {
-      return Center(
+      return const Center(
         child: Text('No favorites yet.'),
       );
     }
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Padding(
         padding: const EdgeInsets.all(30),
         child: Text('You have '
-            '${appState.favouritelistGetter.length} favorites:'),
+            '${appState.favouritelistGetter.length} favorites'),
       ),
       Expanded(
-
           //we can use GridView as map as used previously in homeScreen
           child: GridView.builder(
               itemCount: appState.favouritelistGetter.length,
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 400),
-              itemBuilder: (context, index) => HomeItem(
-                  propertyid: appState.favouritelistGetter[index].propertyid,
-                  owner: appState.favouritelistGetter[index].owner,
-                  housetitle: appState.favouritelistGetter[index].housetitle,
-                  photos: appState.favouritelistGetter[index].photos,
-                  price: appState.favouritelistGetter[index].price,
-                  address: appState.favouritelistGetter[index].address,
-                  checkintime: appState.favouritelistGetter[index].checkintime,
-                  checkouttime:
-                      appState.favouritelistGetter[index].checkouttime,
-                  cleaningfee: appState.favouritelistGetter[index].cleaningfee,
-                  bedcount: appState.favouritelistGetter[index].bedcount,
-                  category: appState.favouritelistGetter[index].category,
-                  features: appState.favouritelistGetter[index].features))
+              itemBuilder: (context, index) {
+                return HomeItem(
+                    property: HouseProperty(
+                        propertyid:
+                            appState.favouritelistGetter[index].propertyid,
+                        maxguests:
+                            appState.favouritelistGetter[index].maxguests,
+                        owner: appState.favouritelistGetter[index].owner,
+                        housetitle:
+                            appState.favouritelistGetter[index].housetitle,
+                        photos: appState.favouritelistGetter[index].photos,
+                        price: appState.favouritelistGetter[index].price,
+                        address: appState.favouritelistGetter[index].address,
+                        checkintime:
+                            appState.favouritelistGetter[index].checkintime,
+                        checkouttime:
+                            appState.favouritelistGetter[index].checkouttime,
+                        cleaningfee:
+                            appState.favouritelistGetter[index].cleaningfee,
+                        bedcount: appState.favouritelistGetter[index].bedcount,
+                        category: appState.favouritelistGetter[index].category,
+                        features:
+                            appState.favouritelistGetter[index].features));
+              })
           // Make better use of wide windows with a grid.
           // child: GridView(
           //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

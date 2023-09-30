@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/provider/appstate.dart';
@@ -13,6 +12,8 @@ import '../widgets/suggession_builder.dart';
 class HouseDetailScreen extends StatefulWidget {
   static const routeName = 'house-detail';
 
+  const HouseDetailScreen({super.key});
+
   @override
   State<HouseDetailScreen> createState() => _HouseDetailScreenState();
 }
@@ -25,35 +26,27 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
   int _guests = 1;
 
   @override
-  void initState() {
-    super.initState();
-    _guests = initialQuantity;
-  }
-
-  @override
   Widget build(BuildContext context) {
     final houseid = ModalRoute.of(context)!.settings.arguments;
-    print(houseid);
+    // print(houseid);
     final appstate = Provider.of<MyAppState>(context);
     final selectedHouse = appstate.allhouseGetter.firstWhere(
       (element) => element.propertyid == houseid,
     );
-    print(selectedHouse.photos);
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: Text("At ${selectedHouse.address.country}"),
         ),
         body: appstate.allhouseGetter.isEmpty
-            ? Center(
+            ? const Center(
                 child: Text('No houses found!'),
               )
             : SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
                     Center(
-                      child: Container(
+                      child: SizedBox(
                           height: 250,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
@@ -122,9 +115,9 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     color: Colors.grey,
                                   ),
                                 ),
-                                Divider(),
+                                const Divider(),
                                 Text(
-                                  "What this place offer\'s",
+                                  "What this place offer's",
                                   textAlign: TextAlign.start,
                                   style: GoogleFonts.poppins(
                                     fontSize: 18,
@@ -134,7 +127,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                 ),
                                 buildContainer(
                                     ListView.builder(
-                                      // shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
                                       itemCount: selectedHouse.features.length,
                                       itemBuilder: (context, index) => ListTile(
                                         // color: Theme.of(context).primaryColor,
@@ -158,27 +151,26 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                      
-                                          child: Center(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text('max Guest\'s'),
-                                                Text(selectedHouse.maxguests
-                                                    .toString())
-                                              ],
-                                            ),
-                                          ),
                                           margin:
                                               const EdgeInsets.only(right: 6),
                                           width: 110,
                                           height: 110,
                                           decoration: BoxDecoration(
                                             color: Theme.of(context)
-                                                  .highlightColor,
+                                                .highlightColor,
                                             borderRadius:
                                                 BorderRadius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                const Text('max Guest\'s'),
+                                                Text(selectedHouse.maxguests
+                                                    .toString())
+                                              ],
+                                            ),
                                           ),
                                         ),
                                         Column(
@@ -200,10 +192,10 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                                     });
                                                   }
                                                 },
-                                                child: Text('check-in')),
+                                                child: const Text('check-in')),
                                             Text(checkindate == null
                                                 ? 'no -date'
-                                                : '${DateFormat.MMMd().format(checkindate as DateTime)}')
+                                                : DateFormat.MMMd().format(checkindate as DateTime))
                                           ],
                                         ),
                                         Column(
@@ -225,10 +217,10 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                                     });
                                                   }
                                                 },
-                                                child: Text('check-out')),
+                                                child: const Text('check-out')),
                                             Text(checkOutdate == null
                                                 ? 'no -date'
-                                                : '${DateFormat.MMMd().format(checkOutdate as DateTime)}'),
+                                                : DateFormat.MMMd().format(checkOutdate as DateTime)),
 
                                             // overflow: TextOverflow.fade,
                                           ],
@@ -259,7 +251,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     // width: 350,
                                     child:
                                         sugessionBuilder(appstate: appstate)),
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                               ],
                             ),
                           ),
@@ -272,7 +264,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
         bottomNavigationBar: Container(
           height: 70,
           color: Colors.white,
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -290,12 +282,12 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                       },
                       icon: appstate
                               .isFavourite(selectedHouse.propertyid.toString())
-                          ? Icon(
+                          ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
                             )
-                          : Icon(Icons.favorite_border, color: Colors.red))),
-              SizedBox(width: 20),
+                          : const Icon(Icons.favorite_border, color: Colors.red))),
+              const SizedBox(width: 20),
               Expanded(
                 child: InkWell(
                   onTap: () {
@@ -344,7 +336,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                 children: [
                   IconButton(
                     focusColor: Theme.of(context).primaryColor,
-                    icon: Icon(Icons.remove),
+                    icon: const Icon(Icons.remove),
                     onPressed: () {
                       setState(() {
                         if (_guests > 0) {
@@ -355,7 +347,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                   ),
                   Text('$_guests'),
                   IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () {
                       setState(() {
                         if (_guests < selectedHouse.maxguests) {
@@ -379,8 +371,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
 
   Widget buildContainer(Widget child, int height) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
-      padding: EdgeInsets.all(10),
+      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.all(10),
       height: height * 70.toDouble(),
       width: 500,
       child: child,

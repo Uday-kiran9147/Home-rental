@@ -3,7 +3,7 @@ import 'package:houserental/services/apiservice.dart';
 import '../models/property.dart';
 
 class MyAppState with ChangeNotifier {
-  List<HouseProperty> _favoriteslist = <HouseProperty>[];
+  final List<HouseProperty> _favoriteslist = <HouseProperty>[];
 
   void toggleFavorite(HouseProperty homeitem) {
     if (_favoriteslist.contains(homeitem)) {
@@ -51,49 +51,23 @@ class MyAppState with ChangeNotifier {
     return categories.toList();
   }
 
-  void addHouse(
-    int maxguests,
-    String propertyid,
-    String housetitle,
-    List<dynamic> photos,
-    double price,
-    Address address,
-    String checkintime,
-    String checkouttime,
-    double cleaningfee,
-    int bedcount,
-    List<String> category,
-    List<dynamic> housefeatures,
-  ) {
-    final newHouse = HouseProperty(
-        maxguests: maxguests,
-        owner: 'uday',
-        propertyid: propertyid,
-        housetitle: housetitle,
-        photos: photos,
-        price: price,
-        address: address,
-        checkintime: checkintime,
-        checkouttime: checkouttime,
-        cleaningfee: cleaningfee,
-        bedcount: bedcount,
-        category: category,
-        features: housefeatures);
+  void addHouse(HouseProperty newHouse) async {
     _allhouses.add(newHouse);
+    print(newHouse.toJson());
     notifyListeners();
-    ApiService.addHouse(newHouse);
+    await ApiService.addHouseWithImages(newHouse);
   }
 
   Future<void> fetechHouses() async {
     // _allhouses.addAll(await ApiService.fetchhouse());
-    dynamic fetchedHouses = await ApiService.fetchhouse();
-    for (var house in fetchedHouses) {
-      _allhouses.add(house);
-    }
-    notifyListeners();
+    // dynamic fetchedHouses = await ApiService.fetchHouses();
+    // for (var house in fetchedHouses) {
+    //   _allhouses.add(house);
+    // }
+    // notifyListeners();
   }
 
-  List<HouseProperty> _allhouses = [
+  final List<HouseProperty> _allhouses = [
     HouseProperty(
         maxguests: 7,
         owner: 'uday',
@@ -167,7 +141,8 @@ class MyAppState with ChangeNotifier {
         features: ['No sAmoking', 'No parties'],
         housetitle: 'Luxury Beverly Hills Mansion',
         photos: [
-          'https://www.nobroker.in/blog/wp-content/uploads/2022/07/Small-House-Designs.jpg'
+          'https://www.nobroker.in/blog/wp-content/uploads/2022/07/Small-House-Designs.jpg',
+          'https://assets-news.housing.com/news/wp-content/uploads/2022/04/07013406/ELEVATED-HOUSE-DESIGN-FEATURE-compressed.jpg'
         ],
         price: 1900000,
         propertyid: 'abcdefg12345hijkl'),
@@ -214,12 +189,7 @@ class MyAppState with ChangeNotifier {
         features: ['No smoking', 'No loud music'],
         housetitle: 'Secluded Villa in the Mountains',
         photos: [
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYvoUIq0tkDI8IKS4bRowhty6qs0CYUlde-Q&usqp=CAU',
+          "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8&w=1000&q=80"
         ],
         price: 750000,
         propertyid: 'asdfghjkl12345qwerty'),

@@ -1,16 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/screens/categoty_screen.dart';
+import 'package:houserental/screens/himpl.dart';
 import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
-import '../widgets/home_Item.dart';
-import '../widgets/styles.dart';
 import 'favourites_screen.dart';
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({
+    super.key,
+  });
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -38,145 +40,151 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final appstate = Provider.of<MyAppState>(context);
+    final appState = Provider.of<MyAppState>(context);
     var colorScheme = Theme.of(context).colorScheme;
 
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = HomeImplement();
+        page = const HomeImplement();
         break;
       case 1:
-        page = CategoryScreen();
+        page = const CategoryScreen();
         break;
       case 2:
-        page = FavoritesPage();
+        page = const FavoritesPage();
         break;
       case 3:
-        page = AccountScreen();
+        page = const AccountScreen();
         break;
       case 4:
-        page = RentHouses();
+        page = const RentHouses();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-    // The container for the current page, with its background color
-    // and subtle switching animation.
-    var mainArea = ColoredBox(
-      color: colorScheme.surfaceVariant,
-      child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 200),
-        child: page,
-      ),
-    );
-
     return Scaffold(
+      appBar: selectedIndex == 0
+          ? AppBar(
+              backgroundColor: Theme.of(context).primaryColor, // Set a background color
+              elevation: 2, // Add a subtle shadow
+              title: const Row(
+                children: [
+                  Text(
+                    'Home Rental',
+                    style: TextStyle(
+                      color: Colors.white, // Text color is white
+                      fontSize: 24, // Increase font size
+                      fontWeight: FontWeight.bold, // Add bold font weight
+                    ),
+                  ),
+                  SizedBox(width: 16), // Add spacing
+                ],
+              ),
+              actions: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.add,
+                    size: 32, // Increase icon size
+                  ),
+                  onPressed: () {
+                    // Add functionality to add a new house here.
+                  },
+                ),
+                const SizedBox(width: 16), // Add spacing
+                IconButton(
+                  icon: const Icon(
+                    Icons.notifications,
+                    size: 32, // Increase icon size
+                  ),
+                  onPressed: () {
+                    // Add functionality to show notifications here.
+                  },
+                ),
+              ],
+            )
+          : null,
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
-            // Use a more mobile-friendly layout with BottomNavigationBar
-            // on narrow screens.
+            // Use a more mobile-friendly layout with BottomNavigationBar on narrow screens.
             return Column(
               children: [
-                Expanded(child: mainArea),
-                SafeArea(
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                      // sets the background color of the `BottomNavigationBar`
-                      canvasColor: Colors.white,
-                      // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                      // primaryColor: Colors.red,
-                      // textTheme: Theme.of(context).textTheme.copyWith(
-                      // caption: new TextStyle(color: Colors.yellow))
+                Expanded(child: page),
+                BottomNavigationBar(
+                  backgroundColor: Colors.amberAccent,
+                  showUnselectedLabels: true,
+                  unselectedItemColor: Colors.grey,
+                  selectedItemColor: Theme.of(context).primaryColor,
+                  items: const <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      label: 'Home',
                     ),
-                    child: BottomNavigationBar(
-                      backgroundColor: Colors.amberAccent,
-                      unselectedItemColor: Colors.grey,
-                      selectedItemColor: Theme.of(context).primaryColor,
-                      items: <BottomNavigationBarItem>[
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.home),
-                          label: 'Home',
-                        ),
-                        BottomNavigationBarItem(
-                          icon: Icon(Icons.category_rounded),
-                          label: 'Categories',
-                        ),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.favorite,
-                            ),
-                            label: ' Favorites'),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.account_circle_sharp,
-                            ),
-                            label: ' Account'),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.cloud_upload_outlined,
-                            ),
-                            label: 'Rent a House')
-                      ],
-                      currentIndex: selectedIndex,
-                      onTap: (value) {
-                        setState(() {
-                          selectedIndex = value;
-                        });
-                      },
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.category),
+                      label: 'Categories',
                     ),
-                  ),
-                )
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite),
+                      label: 'Favorites',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.account_circle),
+                      label: 'Account',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.upload_outlined),
+                      label: 'Rent a House',
+                    ),
+                  ],
+                  currentIndex: selectedIndex,
+                  onTap: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
+                ),
               ],
             );
           } else {
-            return Container(
-              // height: 60,
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-              ),
-              child: Row(
-                children: [
-                  SafeArea(
-                    child: NavigationRail(
-                      backgroundColor: Colors.white70,
-                      extended: constraints.maxWidth >= 600,
-                      destinations: [
-                        NavigationRailDestination(
-                          icon: Icon(Icons.home),
-                          label: Text('Home'),
-                        ),
-                        NavigationRailDestination(
-                          icon: Icon(Icons.category_rounded),
-                          label: Text('Categories '),
-                        ),
-                        NavigationRailDestination(
-                            icon: BadgeCustom(appstate: appstate),
-                            label: Text('Favorites')),
-                        NavigationRailDestination(
-                            icon: Icon(Icons.account_circle_rounded),
-                            label: Text('Account')),
-                        NavigationRailDestination(
-                            icon: Icon(Icons.cloud_upload_outlined),
-                            label: Text('Rent a House'))
-                      ],
-                      selectedIndex: selectedIndex,
-                      onDestinationSelected: (value) {
-                        setState(() {
-                          selectedIndex = value;
-                        });
-                      },
+            return Row(
+              children: [
+                NavigationRail(
+                  // backgroundColor: Colors.white,
+                  extended: constraints.maxWidth >= 600,
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text('Home'),
                     ),
-                  ),
-                  Expanded(child: mainArea),
-                ],
-              ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.category),
+                      label: Text('Categories'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.favorite),
+                      label: Text('Favorites'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.account_circle),
+                      label: Text('Account'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.upload_outlined),
+                      label: Text('Rent a House'),
+                    ),
+                  ],
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
+                ),
+                Expanded(child: page),
+              ],
             );
           }
         },
@@ -196,107 +204,14 @@ class BadgeCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return badges.Badge(
-        badgeStyle: badges.BadgeStyle(
+        badgeStyle: const badges.BadgeStyle(
           shape: badges.BadgeShape.circle,
           elevation: 0,
         ),
         position: badges.BadgePosition.topEnd(),
         showBadge: true,
-        badgeAnimation: badges.BadgeAnimation.scale(),
+        badgeAnimation: const badges.BadgeAnimation.scale(),
         badgeContent: Text('${appstate.favouritelistGetter.length}'),
-        child: Icon(Icons.favorite));
-  }
-}
-
-class HomeImplement extends StatefulWidget {
-  @override
-  State<HomeImplement> createState() => _HomeImplementState();
-}
-
-class _HomeImplementState extends State<HomeImplement> {
-  String search = '';
-
-  @override
-  Widget build(BuildContext context) {
-    var appState = Provider.of<MyAppState>(context);
-    return Column(
-      children: [
-        Container(
-            padding: EdgeInsets.only(top: 10),
-            width: MediaQuery.of(context).size.width * 0.6,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: Styles.searchBackground,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 4,
-                  vertical: 8,
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      CupertinoIcons.search,
-                      color: Styles.searchIconColor,
-                    ),
-                    Expanded(
-                      child: CupertinoTextField(
-                        // controller: controller,
-                        onChanged: (value) {
-                          setState(() {
-                            search = value;
-                          });
-                        },
-                        // focusNode: widget.focusNode,
-                        style: Styles.searchText,
-                        cursorColor: CupertinoColors.systemYellow,
-                        decoration: null,
-                      ),
-                    ),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     setState(() {
-                    //       search = "";
-                    //     });
-                    //   },
-                    //   child: const Icon(
-                    //     CupertinoIcons.clear_thick_circled,
-                    //     color: Styles.searchIconColor,
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
-            )),
-        // SearchBar(controller: search ),
-        (appState.search_Houes(search).length > 0)
-            ? Expanded(
-                child: GridView(
-                    padding: EdgeInsets.all(15),
-                    children: appState
-                        .search_Houes(search)
-                        .map((val) => HomeItem(
-                            propertyid: val.propertyid,
-                            owner: 'uday',
-                            housetitle: val.housetitle,
-                            photos: val.photos,
-                            price: val.price,
-                            address: val.address,
-                            checkintime: val.checkintime,
-                            checkouttime: val.checkouttime,
-                            cleaningfee: val.cleaningfee,
-                            bedcount: val.bedcount,
-                            category: val.category,
-                            features: val.features))
-                        .toList(),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        mainAxisSpacing: 4,
-                        crossAxisSpacing: 8,
-                        maxCrossAxisExtent: 400)),
-              )
-            : Center(child: Text("No houses Found"))
-      ],
-    );
+        child: const Icon(Icons.favorite));
   }
 }
