@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:houserental/widgets/categoty_choice_chip.dart';
 import 'package:houserental/widgets/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
@@ -244,11 +245,16 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
                 dropDownBedCount(),
                 _addFeatureTile(),
                 _featureListView(),
+                ChoiceChipsExample(choicesref: _categoryCheckBox),
+                // categoryCheckBox(context),
                 const Divider(),
                 ImagePick(imageFiles: photoControllerList),
                 const SizedBox(height: 20),
                 OutlinedButton(
                   onPressed: () {
+                    print('category scren');
+                    categoryList = getKeysWithTrueValues(_categoryCheckBox);
+                    print(categoryList);
                     trySubmit(product);
                   },
                   child: const Text(
@@ -365,46 +371,27 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     // if (_formKey.currentState!.validate()) {
     // _formKey.currentState!.save();
     product.addHouse(HouseProperty(
-            maxguests: maxguests,
-            propertyid: HOUSE_ID.toString(),
-            createdAt: DateTime.now(),
-            updatedAt: DateTime.now(),
-            ownerId: "uday",
-            housetitle: titleController.text,
-            photos: photoControllerList.map((e) => e.path.toString()).toList(),
-            price: price,
-            address: Address(
-              city: cityController.text,
-              country: countryController.text,
-              state: stateController.text,
-              zipcode: zipcodeController.text,
-              street: streetController.text,
-            ),
-            checkintime: checkIndateTime.toString(),
-            checkouttime: checkOutdateTime.toString(),
-            cleaningfee: cleaningFee,
-            bedcount: bedcount,
-            category: categoryList.map((e) => e.toString()).toList(),
-            features: _featurescontroller.map((e) => e.text).toList())
-        // maxguests.toDouble(),
-        // HOUSE_ID.toString(),
-        // titleController.text,
-        // photoControllerList.map((e) => e.path.toString()).toList(),
-        // price,
-        // Address(
-        //   city: cityController.text,
-        //   country: countryController.text,
-        //   state: stateController.text,
-        //   zipcode: zipcodeController.text,
-        //   street: streetController.text,
-        // ),
-        // checkIndateTime.toString(),
-        // checkOutdateTime.toString(),
-        // cleaningFee,
-        // bedcount,
-        // categoryList.map((e) => e.toString()).toList(),
-        // _featurescontroller.map((e) => e.text).toList(),
-        );
+        maxguests: maxguests,
+        propertyid: HOUSE_ID.toString(),
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        ownerId: "uday",
+        housetitle: titleController.text,
+        photos: photoControllerList.map((e) => e.path.toString()).toList(),
+        price: price,
+        address: Address(
+          city: cityController.text,
+          country: countryController.text,
+          state: stateController.text,
+          zipcode: zipcodeController.text,
+          street: streetController.text,
+        ),
+        checkintime: checkIndateTime.toString(),
+        checkouttime: checkOutdateTime.toString(),
+        cleaningfee: cleaningFee,
+        bedcount: bedcount,
+        category: categoryList.map((e) => e.toString()).toList(),
+        features: _featurescontroller.map((e) => e.text).toList()));
     showSnackbarCustom(context, "House added Successfully", Colors.green);
     Navigator.of(context).pop();
     // } else {
