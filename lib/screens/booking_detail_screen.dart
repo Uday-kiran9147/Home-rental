@@ -10,6 +10,7 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/payments/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
 
+// ignore: must_be_immutable
 class BookingDetailScreen extends StatefulWidget {
   // DateTime bookingdate;
   // String bookingid;
@@ -53,9 +54,9 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
 
     double finalPrice = pricewithdays + cleaning;
 
-    print('Price: ${localprice.toStringAsFixed(2)}');
-    print('price with days: ${pricewithdays.toStringAsFixed(2)}');
-    print('Final Price: ${finalPrice.toStringAsFixed(2)}');
+    // print('Price: ${localprice.toStringAsFixed(2)}');
+    // print('price with days: ${pricewithdays.toStringAsFixed(2)}');
+    // print('Final Price: ${finalPrice.toStringAsFixed(2)}');
 
     return Scaffold(
       appBar: AppBar(
@@ -167,10 +168,10 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                       numberofdays: widget.numberofdays,
                       userid: widget.userid.toString(),
                       houseid: widget.houseid.toString());
-                  print(
-                    DateFormat.yMEd().format(widget.checkIn!).toString() +
-                        DateFormat.yMEd().format(widget.checkOut!).toString(),
-                  );
+                  // print(
+                  //   DateFormat.yMEd().format(widget.checkIn!).toString() +
+                  //       DateFormat.yMEd().format(widget.checkOut!).toString(),
+                  // );
                   final bookingstate = Provider.of<BookingProvider>(context,listen: false);
                   showSnackbarCustom(context, "Booking confirmed successful",
                       Colors.green);

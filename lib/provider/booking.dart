@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/services/apiservice.dart';
 import '../models/booking.dart';
 
-class BookingProvider with ChangeNotifier {
-  final List<Booking> _bookingslist = [];
+enum BookingStatus { current, past }
 
+class BookingProvider with ChangeNotifier {
+  final List<Booking> _currentBookingList = [];
+  final List<Booking> _pastBookingList = [];
+  List<Booking> get currentBookings=>_currentBookingList;
+  List<Booking> get pastBookings=>_pastBookingList;
+
+  bool isCurrentBooking(DateTime checkOut) {
+    DateTime currentDate = DateTime.now();
+    DateTime checkoutDate = DateTime.parse(checkOut.toString());
+
+    return checkoutDate.isAfter(currentDate);
+  }
   void bookhouse(Booking booking) async{
-    _bookingslist.add(booking);
-   await ApiService.bookhouse(booking);
+    _currentBookingList.add(booking);
+  //  await ApiService.bookhouse(booking);
     notifyListeners();
   }
 
   Future<void> fetchbookings() async {
-    ApiService.fetchbookings();
+    // ApiService.fetchbookings();
     notifyListeners();
   }
 
   List<Booking> get bookinglistgetter {
-    return [..._bookingslist];
+    return [..._currentBookingList];
   }
 }

@@ -11,23 +11,30 @@ part 'user.g.dart';
 
 @JsonSerializable(explicitToJson: true /*  for nested class this is required*/)
 class User {
+  String uid;
   String? name;
-  String? profile;
+  String? profileURL;
   UserAddress? address;
   String? gender;
   String? phonenumber;
   String? password;
   String? email;
   int? age;
+  final DateTime createdAt;
+  DateTime updatedAt;
+
   User({
+    required this.uid,
     @required this.name,
-    this.profile,
+    this.profileURL,
     this.address,
     this.gender,
     @required this.phonenumber,
     @required this.password,
     @required this.email,
     this.age,
+    required this.createdAt,
+    required this.updatedAt,
   });
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
@@ -43,6 +50,6 @@ class UserAddress {
   });
 
   factory UserAddress.fromJson(Map<String, dynamic> json) =>
-      _$AddressFromJson(json);
-  Map<String, dynamic> toJson() => _$AddressToJson(this);
+      _$UserAddressFromJson(json);
+  Map<String, dynamic> toJson() => _$UserAddressToJson(this);
 }

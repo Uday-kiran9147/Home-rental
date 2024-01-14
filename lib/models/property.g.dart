@@ -10,7 +10,7 @@ HouseProperty _$HousePropertyFromJson(Map<String, dynamic> json) =>
     HouseProperty(
       maxguests: json['maxguests'] as int,
       propertyid: json['propertyid'] as String,
-      owner: json['owner'] as String,
+      ownerId: json['owner'] as String,
       housetitle: json['housetitle'] as String,
       photos: json['photos'] as List<dynamic>,
       price: (json['price'] as num).toDouble(),
@@ -22,13 +22,15 @@ HouseProperty _$HousePropertyFromJson(Map<String, dynamic> json) =>
       category:
           (json['category'] as List<dynamic>).map((e) => e as String).toList(),
       features: json['features'] as List<dynamic>,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
 
 Map<String, dynamic> _$HousePropertyToJson(HouseProperty instance) =>
     <String, dynamic>{
       'maxguests': instance.maxguests,
       'propertyid': instance.propertyid,
-      'owner': instance.owner,
+      'owner': instance.ownerId,
       'housetitle': instance.housetitle,
       'photos': instance.photos,
       'price': instance.price,
@@ -39,6 +41,8 @@ Map<String, dynamic> _$HousePropertyToJson(HouseProperty instance) =>
       'bedcount': instance.bedcount,
       'category': instance.category,
       'features': instance.features,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
     };
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
@@ -46,7 +50,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       state: json['state'] as String,
       zipcode: json['zipcode'] as String,
       street: json['street'] as String,
-      city: json['city'],
+      city: json['city'] as String,
     );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/auth/authService.dart';
 import 'package:houserental/screens/home_screen.dart';
 
 import 'forgotpassword.dart';
@@ -88,8 +87,8 @@ class _LoginState extends State<Login> {
                     onPressed: () async {
                       // Validate returns true if the form is valid, otherwise false.
                       if (_formKey.currentState!.validate()) {
-                        bool success = await userLogin(context,
-                            emailController.text, passwordController.text);
+                        bool success = true; /* await userLogin(context,
+                            emailController.text, passwordController.text); */
                         if (success) {
                           Navigator.push(
                               context,

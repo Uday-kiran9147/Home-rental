@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:houserental/pickimage/imagepick.dart';
+import 'package:houserental/widgets/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +36,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   final List<TextEditingController> _featurescontroller = [];
   final List<TextField> _featureFields = [];
   List<File> photoControllerList = [];
-  final List<TextField> _photoFields = [];
+  // final List<TextField> _photoFields = [];
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final Map<String, bool?> _categoryCheckBox = {
     'pool': false,
@@ -367,7 +367,9 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     product.addHouse(HouseProperty(
             maxguests: maxguests,
             propertyid: HOUSE_ID.toString(),
-            owner: "Uday",
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+            ownerId: "uday",
             housetitle: titleController.text,
             photos: photoControllerList.map((e) => e.path.toString()).toList(),
             price: price,

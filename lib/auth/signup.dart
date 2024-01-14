@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'login.dart';
@@ -28,63 +28,63 @@ class _SignupState extends State<Signup> {
     super.dispose();
   }
 
-  registration() async {
-    if (passwordController.text == confirmPasswordController.text) {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-        print(userCredential);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text(
-              "Registered Successfully. Please Login..",
-              style: TextStyle(fontSize: 20.0),
-            ),
-          ),
-        );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Login(),
-          ),
-        );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          print("Password Provided is too Weak");
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              backgroundColor: Colors.orangeAccent,
-              content: Text(
-                "Password Provided is too Weak",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
-              ),
-            ),
-          );
-        } else if (e.code == 'email-already-in-use') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              backgroundColor: Colors.orangeAccent,
-              content: Text(
-                "Account Already exists",
-                style: TextStyle(fontSize: 18.0, color: Colors.black),
-              ),
-            ),
-          );
-        }
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.orangeAccent,
-          content: Text(
-            "Password and Confirm Password doesn't match",
-            style: TextStyle(fontSize: 16.0, color: Colors.black),
-          ),
-        ),
-      );
-    }
-  }
+  // registration() async {
+  //   if (passwordController.text == confirmPasswordController.text) {
+  //     try {
+  //       UserCredential userCredential = await FirebaseAuth.instance
+  //           .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+  //       print(userCredential);
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(
+  //           backgroundColor: Colors.redAccent,
+  //           content: Text(
+  //             "Registered Successfully. Please Login..",
+  //             style: TextStyle(fontSize: 20.0),
+  //           ),
+  //         ),
+  //       );
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => const Login(),
+  //         ),
+  //       );
+  //     } on FirebaseAuthException catch (e) {
+  //       if (e.code == 'weak-password') {
+  //         print("Password Provided is too Weak");
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           const SnackBar(
+  //             backgroundColor: Colors.orangeAccent,
+  //             content: Text(
+  //               "Password Provided is too Weak",
+  //               style: TextStyle(fontSize: 18.0, color: Colors.black),
+  //             ),
+  //           ),
+  //         );
+  //       } else if (e.code == 'email-already-in-use') {
+  //         ScaffoldMessenger.of(context).showSnackBar(
+  //           const SnackBar(
+  //             backgroundColor: Colors.orangeAccent,
+  //             content: Text(
+  //               "Account Already exists",
+  //               style: TextStyle(fontSize: 18.0, color: Colors.black),
+  //             ),
+  //           ),
+  //         );
+  //       }
+  //     }
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         backgroundColor: Colors.orangeAccent,
+  //         content: Text(
+  //           "Password and Confirm Password doesn't match",
+  //           style: TextStyle(fontSize: 16.0, color: Colors.black),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +170,7 @@ class _SignupState extends State<Signup> {
                       onPressed: () {
                         // Validate returns true if the form is valid, otherwise false.
                         if (_formKey.currentState!.validate()) {
-                          registration();
+                          // registration();
                         }
                       },
                       child: const Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/models/property.dart';
+import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     }
 
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      const ProfileHeadLine(title: 'Wishlist'),
       Padding(
         padding: const EdgeInsets.all(30),
         child: Text('You have '
@@ -38,11 +40,14 @@ class _FavoritesPageState extends State<FavoritesPage> {
               itemBuilder: (context, index) {
                 return HomeItem(
                     property: HouseProperty(
+                        createdAt:
+                            appState.favouritelistGetter[index].createdAt,
+                        updatedAt: appState.favouritelistGetter[index].updatedAt,
                         propertyid:
                             appState.favouritelistGetter[index].propertyid,
                         maxguests:
                             appState.favouritelistGetter[index].maxguests,
-                        owner: appState.favouritelistGetter[index].owner,
+                        ownerId: appState.favouritelistGetter[index].ownerId,
                         housetitle:
                             appState.favouritelistGetter[index].housetitle,
                         photos: appState.favouritelistGetter[index].photos,

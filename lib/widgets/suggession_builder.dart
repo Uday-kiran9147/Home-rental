@@ -1,4 +1,5 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:houserental/models/property.dart';
 
@@ -21,7 +22,7 @@ class sugessionBuilder extends StatelessWidget {
         itemBuilder: (context, index) => HomeItem(property:  HouseProperty( maxguests: appstate.allhouseGetter[index].maxguests,
             propertyid: appstate
                 .allhouseGetter[index].propertyid,
-            owner: 'uday',
+            ownerId: 'uday',
             housetitle: appstate
                 .allhouseGetter[index].housetitle,
             photos: appstate
@@ -43,6 +44,8 @@ class sugessionBuilder extends StatelessWidget {
                 .allhouseGetter[index].bedcount,
             category: appstate
                 .allhouseGetter[index].category,
+                createdAt: appstate.allhouseGetter[index].createdAt,
+                updatedAt: appstate.allhouseGetter[index].updatedAt,
             features: appstate
                 .allhouseGetter[index]
                 .features)));

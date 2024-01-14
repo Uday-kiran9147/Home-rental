@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:houserental/models/booking.dart';
+import 'package:houserental/screens/ownhouse_screen.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-import 'package:houserental/provider/booking.dart';
 import 'package:houserental/utils/pricebeautify.dart';
+
+import 'bookings_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class AccountScreen extends StatefulWidget {
 class ProfileSections {
   final String title;
   final IconData icon;
-  final Function onPressed;
+  final Function(BuildContext) onPressed;
   ProfileSections(
       {required this.title, required this.icon, required this.onPressed});
 }
@@ -23,7 +25,7 @@ class ProfileSections {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    final bookingprovider = Provider.of<BookingProvider>(context);
+    // final bookingprovider = Provider.of<BookingProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -78,15 +80,11 @@ class _AccountScreenState extends State<AccountScreen> {
                             settingName.icon,
                             size: 20,
                           ),
-                          trailing: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 10,
-                            ),
-                            onPressed: () {
-                              print(settingName.title);
-                            },
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios,
+                            size: 10,
                           ),
+                          onTap: () => settingName.onPressed(context),
                           dense: true,
                           enabled: true,
                         ))
@@ -132,17 +130,17 @@ class _AccountScreenState extends State<AccountScreen> {
     ProfileSections(
       title: 'Terms of Service',
       icon: Icons.safety_check,
-      onPressed: () {},
+      onPressed: (context) {},
     ),
     ProfileSections(
       title: 'Privacy Policy',
       icon: (Icons.privacy_tip_outlined),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
     ProfileSections(
       title: 'Trust & Safety',
       icon: (Icons.safety_check),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
   ];
 
@@ -150,27 +148,42 @@ class _AccountScreenState extends State<AccountScreen> {
     ProfileSections(
       title: 'Personal information',
       icon: (Icons.account_circle_outlined),
-      onPressed: () {},
+      onPressed: (context) {},
+    ),
+    ProfileSections(
+      title: 'My Properties',
+      icon: (Icons.home_rounded),
+      onPressed: (context) {
+        Navigator.pushNamed(context, OwnHousePage.ownHouseRoute);
+      },
+    ),
+    ProfileSections(
+      title: 'My Bookings',
+      icon: Icons.bookmark_added_outlined,
+      onPressed: (context) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => BookingsScreen()));
+      },
     ),
     ProfileSections(
       title: 'Login & Security',
       icon: (Icons.logout_outlined),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
     ProfileSections(
       title: 'Payments and Payouts',
       icon: (Icons.payments_outlined),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
     ProfileSections(
       title: 'Accessibility',
       icon: (Icons.accessibility),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
     ProfileSections(
       title: 'Notifications',
       icon: (Icons.notifications),
-      onPressed: () {},
+      onPressed: (context) {},
     ),
   ];
 }
@@ -194,77 +207,58 @@ class ProfileHeadLine extends StatelessWidget {
   }
 }
 
-class currentBookingsWidget extends StatelessWidget {
-  const currentBookingsWidget({
-    super.key,
-  });
+
+
+class BookingCardWidget extends StatelessWidget {
+  BookingCardWidget({super.key, required this.booking});
+  final Booking booking;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Text(
-            'Current Bookings',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
-            ),
-          ),
-        ),
-        Expanded(
-            child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) => Card(
-            elevation: 3,
-            margin: const EdgeInsets.all(10),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Booking Date: ${DateFormat.yMd().format(DateTime.parse(DateTime.now().toString()))}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Check-in: }',
-                  ),
-                  const Text(
-                    'Check-out: ',
-                  ),
-                  const Text(
-                    'Guests: 2}',
-                  ),
-                  const Text(
-                    'Days: 10}',
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Price: ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      dataTablepriceBeautify("1200"),
-                    ],
-                  ),
-                ],
+    return Card(
+      elevation: 3,
+      margin: const EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Booking Date: ${DateFormat.yMd().format(DateTime.parse(DateTime.now().toString()))}',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
               ),
             ),
-          ),
-        )),
-      ],
+            const SizedBox(height: 8),
+            Text(
+              'Check-in: ${booking.checkin}',
+            ),
+            Text(
+              'Check-out: ${booking.checkout}',
+            ),
+            Text(
+              'Guests: ${booking.guests}',
+            ),
+            Text(
+              'Days: ${booking.numberofdays}',
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Price: ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                dataTablepriceBeautify(booking.bookingprice.toString()),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

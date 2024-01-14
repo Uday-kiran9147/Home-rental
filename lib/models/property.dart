@@ -15,7 +15,7 @@ part 'property.g.dart';
 class HouseProperty {
   int maxguests;
   String propertyid;
-  String owner;
+  String ownerId;
   String housetitle;
   List<dynamic> photos;
   double price;
@@ -26,11 +26,13 @@ class HouseProperty {
   int bedcount;
   List<String> category;
   List<dynamic> features;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   HouseProperty({
     required this.maxguests,
     required this.propertyid,
-    required this.owner,
+    required this.ownerId,
     required this.housetitle,
     required this.photos,
     required this.price,
@@ -41,6 +43,9 @@ class HouseProperty {
     required this.bedcount,
     required this.category,
     required this.features,
+    required this.createdAt,
+    required this.updatedAt
+
   });
   factory HouseProperty.fromJson(Map<String, dynamic> json) =>
       _$HousePropertyFromJson(json);

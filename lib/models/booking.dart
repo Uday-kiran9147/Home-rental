@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'booking.g.dart';
+@JsonSerializable(explicitToJson: true)
 class Booking {
   String? bookingdate;
   String? bookingid;
@@ -21,31 +25,7 @@ class Booking {
     required this.houseid,
   });
 
-  Booking.fromJson(Map<String, dynamic> json) {
-    bookingdate = json['bookingdate'];
-    bookingid = json['bookingid'];
-    checkin = json['checkin'];
-    checkout = json['checkout'];
-    bookingprice=json['bookingprice'];
-    guests = json['guests'];
-    numberofdays = json['numberofdays'];
-    userid = json['userid'];
-    houseid = json['houseid'];
-    print(guests);
-    print(bookingid);
-  }
+ factory Booking.fromJson(Map<String, dynamic> json) =>_$BookingFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['bookingdate'] = bookingdate;
-    data['bookingid'] = bookingid;
-    data['checkin'] = checkin;
-    data['checkout'] = checkout;
-    data['bookingprice'] = bookingprice;
-    data['guests'] = guests;
-    data['numberofdays'] = numberofdays;
-    data['userid'] = userid;
-    data['houseid'] = houseid;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$BookingToJson(this);
 }

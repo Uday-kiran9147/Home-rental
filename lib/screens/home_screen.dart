@@ -120,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   showUnselectedLabels: true,
                   unselectedItemColor: Colors.grey,
                   selectedItemColor: Theme.of(context).primaryColor,
-                  items: const <BottomNavigationBarItem>[
+                  items: <BottomNavigationBarItem>[
                     BottomNavigationBarItem(
                       icon: Icon(Icons.home),
                       label: 'Home',
@@ -130,7 +130,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       label: 'Categories',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.favorite),
+                      icon: Stack(
+                        children: [
+                          Icon(Icons.favorite),
+                          BadgeCustom(appstate: appState)
+                        ],
+                      ),
                       label: 'Favorites',
                     ),
                     BottomNavigationBarItem(
@@ -157,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 NavigationRail(
                   // backgroundColor: Colors.white,
                   extended: constraints.maxWidth >= 600,
-                  destinations:  [
+                  destinations: [
                     NavigationRailDestination(
                       icon: Icon(Icons.home),
                       label: Text('Home'),
