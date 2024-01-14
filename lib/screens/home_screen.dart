@@ -6,6 +6,7 @@ import 'package:houserental/screens/renthouse_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
+import '../widgets/searchbar.dart';
 import 'favourites_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final appState = Provider.of<MyAppState>(context);
-    var colorScheme = Theme.of(context).colorScheme;
+    // var colorScheme = Theme.of(context).colorScheme;
 
     Widget page;
     switch (selectedIndex) {
@@ -67,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: selectedIndex == 0
           ? AppBar(
-              backgroundColor: Theme.of(context).primaryColor, // Set a background color
+              backgroundColor:
+                  Theme.of(context).primaryColor, // Set a background color
               elevation: 2, // Add a subtle shadow
               title: const Row(
                 children: [
@@ -84,13 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               actions: [
                 IconButton(
-                  icon: const Icon(
-                    Icons.add,
-                    size: 32, // Increase icon size
-                  ),
                   onPressed: () {
-                    // Add functionality to add a new house here.
+                    // method to show the search bar
+                    showSearch(
+                        context: context,
+                        // delegate to customize the search bar
+                        delegate: CustomSearchDelegate());
                   },
+                  icon: const Icon(Icons.search),
                 ),
                 const SizedBox(width: 16), // Add spacing
                 IconButton(
@@ -154,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 NavigationRail(
                   // backgroundColor: Colors.white,
                   extended: constraints.maxWidth >= 600,
-                  destinations: const [
+                  destinations:  [
                     NavigationRailDestination(
                       icon: Icon(Icons.home),
                       label: Text('Home'),
@@ -164,7 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       label: Text('Categories'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
+                      icon: Stack(
+                        children: [
+                          Icon(Icons.favorite),
+                          BadgeCustom(appstate: appState)
+                        ],
+                      ),
                       label: Text('Favorites'),
                     ),
                     NavigationRailDestination(
@@ -210,7 +218,7 @@ class BadgeCustom extends StatelessWidget {
         ),
         position: badges.BadgePosition.topEnd(),
         showBadge: true,
-        badgeAnimation: const badges.BadgeAnimation.scale(),
+        badgeAnimation: const badges.BadgeAnimation.rotation(),
         badgeContent: Text('${appstate.favouritelistGetter.length}'),
         child: const Icon(Icons.favorite));
   }
