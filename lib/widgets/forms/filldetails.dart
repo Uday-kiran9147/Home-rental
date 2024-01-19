@@ -6,9 +6,11 @@ import 'package:houserental/widgets/categoty_choice_chip.dart';
 import 'package:houserental/widgets/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/property.dart';
+import '../custom_textfield.dart';
 
 class FillHouseDetails extends StatefulWidget {
   const FillHouseDetails({super.key});
@@ -37,7 +39,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   final List<TextEditingController> _featurescontroller = [];
   final List<TextField> _featureFields = [];
   List<File> photoControllerList = [];
-  // final List<TextField> _photoFields = [];
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final Map<String, bool?> _categoryCheckBox = {
     'pool': false,
@@ -52,16 +53,19 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     'Camping': false,
   };
   List<String> categoryList = [];
+  int _currentPageIndex = 0;
 
   final _formKey = GlobalKey<FormState>();
 
+  PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final product = Provider.of<MyAppState>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Your House Details'),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
             icon: const Icon(
@@ -75,203 +79,249 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'House ID: $HOUSE_ID',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'House Title'),
-                  controller: titleController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Title cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))
-                  ],
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(labelText: 'Price per Day'),
-                  controller: priceController,
-                  onChanged: (value) {
-                    price = double.parse(priceController.text);
-                  },
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Price cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Country'),
-                  controller: countryController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Country cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'City'),
-                  controller: cityController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'City cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'State'),
-                  controller: stateController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'State cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: 'Street'),
-                  controller: streetController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Street cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))
-                  ],
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(labelText: 'Zip Code'),
-                  controller: zipcodeController,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Zip Code cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(labelText: 'Max Guests'),
-                  controller: maxguestController,
-                  onChanged: (value) =>
-                      maxguests = int.parse(maxguestController.text),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Max Guests cannot be empty';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(labelText: 'Cleaning Fee'),
-                  controller: cleaningfeeController,
-                  onChanged: (value) =>
-                      cleaningFee = double.parse(cleaningfeeController.text),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Cleaning Fee must be in decimal';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        _buildCheckInTimePicker(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.greenAccent,
-                        textStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      child: const Text('Check-In'),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        _buildCheckOutTimePicker(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade300,
-                        textStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      child: const Text('Check-Out'),
-                    ),
-                  ],
-                ),
-                const Text(
-                  'Number of Bed-rooms',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                dropDownBedCount(),
-                _addFeatureTile(),
-                _featureListView(),
-                ChoiceChipsExample(choicesref: _categoryCheckBox),
-                // categoryCheckBox(context),
-                const Divider(),
-                ImagePick(imageFiles: photoControllerList),
-                const SizedBox(height: 20),
-                OutlinedButton(
-                  onPressed: () {
-                    print('category scren');
-                    categoryList = getKeysWithTrueValues(_categoryCheckBox);
-                    print(categoryList);
-                    trySubmit(product);
-                  },
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
+      body: Form(
+        key: _formKey,
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _currentPageIndex = index;
+            });
+          },
+          children: [
+            _buildTitle(),
+            _buildAddress(),
+            _maxGuests(),
+            _buildChecking(context),
+            _buildRemaining(product),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildRemaining(MyAppState product) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ChoiceChipsExample(choicesref: _categoryCheckBox),
+          ImagePick(imageFiles: photoControllerList),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.90,
+            height: 50,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  side: const BorderSide(style: BorderStyle.none),
+                  elevation: 5,
+                  shadowColor: Colors.grey.shade300,
+                  backgroundColor: Color.fromARGB(255, 91, 205, 46)),
+              onPressed: () {
+                categoryList = getKeysWithTrueValues(_categoryCheckBox);
+                print(categoryList);
+                trySubmit(product);
+              },
+              child: const Text(
+                'Next',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  ListView _buildChecking(BuildContext context) {
+    return ListView(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                _buildCheckInTimePicker(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.greenAccent,
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              child: const Text('Check-In'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _buildCheckOutTimePicker(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade300,
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              child: const Text('Check-Out'),
+            ),
+          ],
+        ),
+        const Text(
+          'Number of Bed-rooms',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 20),
+        dropDownBedCount(),
+        _addFeatureTile(),
+        _featureListView(),
+        _nextButton(pageController: _pageController),
+      ],
+    );
+  }
+
+  Widget _maxGuests() {
+    return ListView(
+      children: [
+        CustomNumericTextField(
+          // keyboardType: TextInputType.number,
+          labelText: 'Max Guests',
+          controller: maxguestController,
+          onChanged: (value) => maxguests = int.parse(maxguestController.text),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Max Guests cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomNumericTextField(
+          labelText: 'Cleaning Fee',
+          controller: cleaningfeeController,
+          onChanged: (value) =>
+              cleaningFee = double.parse(cleaningfeeController.text),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Cleaning Fee must be in decimal';
+            }
+            return null;
+          },
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        _nextButton(pageController: _pageController),
+      ],
+    );
+  }
+
+  Widget _buildAddress() {
+    return ListView(
+      children: [
+        CustomizedTextField(
+          controller: countryController,
+          labelText: 'Country',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Country cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomizedTextField(
+          controller: cityController,
+          labelText: 'City',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'City cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomizedTextField(
+          controller: stateController,
+          labelText: 'State',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'State cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomizedTextField(
+          controller: streetController,
+          labelText: 'Street',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Street cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomizedTextField(
+          controller: zipcodeController,
+          labelText: 'Zip Code',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Zip Code cannot be empty';
+            }
+            return null;
+          },
+        ),
+        _nextButton(pageController: _pageController),
+      ],
+    );
+  }
+
+  Widget _buildTitle() {
+    return ListView(
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'House ID: $HOUSE_ID',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 20),
+        CustomizedTextField(
+          controller: titleController,
+          labelText: 'House Title',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Title cannot be empty';
+            }
+            return null;
+          },
+        ),
+        CustomizedTextField(
+          controller: priceController,
+          labelText: 'Price per Day',
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Price cannot be empty';
+            }
+            return null;
+          },
+          onChanged: (value) {
+            price = double.parse(priceController.text);
+          },
+        ),
+        _nextButton(pageController: _pageController),
+      ],
     );
   }
 
@@ -317,6 +367,15 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   @override
   void dispose() {
     titleController.dispose();
+    // dispose all the reamining controllers
+    priceController.dispose();
+    countryController.dispose();
+    stateController.dispose();
+    streetController.dispose();
+    zipcodeController.dispose();
+    cityController.dispose();
+    cleaningfeeController.dispose();
+    maxguestController.dispose();
 
     for (final controller in _featurescontroller) {
       controller.dispose();
@@ -368,35 +427,35 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
 
   void trySubmit(MyAppState product) {
     // final isvalid =
-    // if (_formKey.currentState!.validate()) {
-    // _formKey.currentState!.save();
-    product.addHouse(HouseProperty(
-        maxguests: maxguests,
-        propertyid: HOUSE_ID.toString(),
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-        ownerId: "uday",
-        housetitle: titleController.text,
-        photos: photoControllerList.map((e) => e.path.toString()).toList(),
-        price: price,
-        address: Address(
-          city: cityController.text,
-          country: countryController.text,
-          state: stateController.text,
-          zipcode: zipcodeController.text,
-          street: streetController.text,
-        ),
-        checkintime: checkIndateTime.toString(),
-        checkouttime: checkOutdateTime.toString(),
-        cleaningfee: cleaningFee,
-        bedcount: bedcount,
-        category: categoryList.map((e) => e.toString()).toList(),
-        features: _featurescontroller.map((e) => e.text).toList()));
-    showSnackbarCustom(context, "House added Successfully", Colors.green);
-    Navigator.of(context).pop();
-    // } else {
-    // showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);
-    // }
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      product.addHouse(HouseProperty(
+          maxguests: maxguests,
+          propertyid: HOUSE_ID.toString(),
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+          ownerId: "uday",
+          housetitle: titleController.text,
+          photos: photoControllerList.map((e) => e).toList(),
+          price: price,
+          address: Address(
+            city: cityController.text,
+            country: countryController.text,
+            state: stateController.text,
+            zipcode: zipcodeController.text,
+            street: streetController.text,
+          ),
+          checkintime: checkIndateTime.toString(),
+          checkouttime: checkOutdateTime.toString(),
+          cleaningfee: cleaningFee,
+          bedcount: bedcount,
+          category: categoryList.map((e) => e.toString()).toList(),
+          features: _featurescontroller.map((e) => e.text).toList()));
+      showSnackbarCustom(context, "House added Successfully", Colors.green);
+      Navigator.of(context).pop();
+    } else {
+      showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);
+    }
   }
 
   Future _buildCheckOutTimePicker(BuildContext context) async {
@@ -425,5 +484,33 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         checkIndateTime = newtime;
       });
     }
+  }
+}
+
+class _nextButton extends StatelessWidget {
+  const _nextButton({
+    super.key,
+    required PageController pageController,
+  }) : _pageController = pageController;
+
+  final PageController _pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: IconButton(
+          onPressed: () {
+            _pageController.nextPage(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            );
+          },
+          icon: const Icon(Icons.arrow_forward),
+        ),
+      ),
+    );
   }
 }

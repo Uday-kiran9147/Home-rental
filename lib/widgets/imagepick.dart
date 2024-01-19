@@ -7,33 +7,73 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePick extends StatefulWidget {
-  final List<File> imageFiles;
-   const ImagePick({
+  List<File>? imageFiles;
+  ImagePick({
     Key? key,
-   required this.imageFiles,
+    this.imageFiles,
   }) : super(key: key);
   @override
   _ImagePickState createState() => _ImagePickState();
 }
 
 class _ImagePickState extends State<ImagePick> {
-  // List<File> _imageFiles = [];
   void _clearImages() {
     setState(() {
-      widget.imageFiles.clear();
+      widget.imageFiles = null;
+      isselectingImages = false;
     });
   }
 
-  Future<void> _pickImages() async {
+  _selectImage() {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.15,
+          child: Column(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: const Text('Camera'),
+                onTap: () {
+                  _pickImages(source: ImageSource.camera);
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.photo_album),
+                title: const Text('Gallery'),
+                onTap: () {
+                  _pickImages(source: ImageSource.gallery);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  bool isselectingImages = false;
+  Future<void> _pickImages({required ImageSource source}) async {
+    setState(() {
+      isselectingImages = true;
+    });
     List<XFile>? selectedImages = await ImagePicker().pickMultiImage(
       imageQuality: 70,
       maxWidth: 250,
     );
+    if (selectedImages == null) return;
+
     for (int i = 0; i < selectedImages.length; i++) {
       setState(() {
-         widget.imageFiles.add(File(selectedImages[i].path));
+        widget.imageFiles!.add(File(selectedImages[i].path));
       });
     }
+    setState(() {
+      isselectingImages = false;
+    });
   }
 
   @override
@@ -42,45 +82,73 @@ class _ImagePickState extends State<ImagePick> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(
-              height: 200,
-              child:  widget.imageFiles != null
-                  ? ListView.builder(
-                      itemCount:  widget.imageFiles.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            // crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                  flex: 4,
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Image.file(
-                                          File( widget.imageFiles[index].path)))),
-                              const SizedBox(height: 8),
-                            ],
-                          ),
-                        );
-                      },
-                    )
-                  : Container()),
-          const SizedBox(height: 16),
+          isselectingImages
+              ? const LinearProgressIndicator(
+                  semanticsLabel: 'Loading images',
+                )
+              : Container(),
+          widget.imageFiles != null && widget.imageFiles!.isNotEmpty
+              ? Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                          height: 250,
+                          child: ListView.builder(
+                            itemCount: widget.imageFiles!.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                // An Expanded widget must be a descendant of a Row, Column, or Flex,
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border:
+                                              Border.all(color: Colors.black),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20)),
+                                            child: Image.file(
+                                              widget.imageFiles![index],
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        )),
+                                  ),
+                                ],
+                              );
+                            },
+                          )),
+                      Positioned(
+                        right: 5,
+                        top: 5,
+                        child: IconButton(
+                          onPressed: _clearImages,
+                          icon: const Icon(Icons.close),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Container(),
+          // const SizedBox(height: 16),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: _pickImages,
-            child: const Text('Choose from Gallery'),
+            onPressed: _selectImage,
+            child: const Text('Pick Images'),
           ),
           const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: _clearImages,
-            child: const Text('Clear Images'),
-          ),
         ],
       ),
     );
