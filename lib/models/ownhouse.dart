@@ -10,6 +10,6 @@ class OwnHouse {
     required this.ownerId,
   });
   
-  factory OwnHouse.fromJson(Map<String,dynamic> json)=> _$OwnHousesFromJson(json);
-  Map<String,dynamic> toJson()=> _$OwnHousesToJson(this);
+  factory OwnHouse.fromJson(Map<String,dynamic> json)=> _$OwnHouseFromJson(json);
+  Map<String,dynamic> toJson()=> _$OwnHouseToJson(this);
 }

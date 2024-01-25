@@ -6,11 +6,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'custom_image.dart';
+
 class ImagePick extends StatefulWidget {
   List<File>? imageFiles;
+  List<String> photoUrlList;
   ImagePick({
     Key? key,
     this.imageFiles,
+    required this.photoUrlList,
   }) : super(key: key);
   @override
   _ImagePickState createState() => _ImagePickState();
@@ -30,23 +34,27 @@ class _ImagePickState extends State<ImagePick> {
       builder: (context) {
         return Container(
           height: MediaQuery.of(context).size.height * 0.15,
-          child: Column(
+          child: Flex(direction: Axis.vertical,
             children: [
-              ListTile(
-                leading: const Icon(Icons.camera_alt),
-                title: const Text('Camera'),
-                onTap: () {
-                  _pickImages(source: ImageSource.camera);
-                  Navigator.pop(context);
-                },
+              Expanded(
+                child: ListTile(
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text('Camera'),
+                  onTap: () {
+                    _pickImages(source: ImageSource.camera);
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-              ListTile(
-                leading: const Icon(Icons.photo_album),
-                title: const Text('Gallery'),
-                onTap: () {
-                  _pickImages(source: ImageSource.gallery);
-                  Navigator.pop(context);
-                },
+              Expanded(
+                child: ListTile(
+                  leading: const Icon(Icons.photo_album),
+                  title: const Text('Gallery'),
+                  onTap: () {
+                    _pickImages(source: ImageSource.gallery);
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ],
           ),
@@ -69,6 +77,7 @@ class _ImagePickState extends State<ImagePick> {
     for (int i = 0; i < selectedImages.length; i++) {
       setState(() {
         widget.imageFiles!.add(File(selectedImages[i].path));
+        widget.photoUrlList.add(selectedImages[i].path);
       });
     }
     setState(() {
@@ -119,9 +128,10 @@ class _ImagePickState extends State<ImagePick> {
                                           child: ClipRRect(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(20)),
-                                            child: Image.file(
-                                              widget.imageFiles![index],
-                                              fit: BoxFit.cover,
+                                            child: CustomImageView(
+                                              imagePath:
+                                                  '${widget.photoUrlList[index]}',
+                                              fit: BoxFit.fill,
                                             ),
                                           ),
                                         )),

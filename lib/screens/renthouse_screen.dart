@@ -23,6 +23,41 @@ class _RentHousesState extends State<RentHouses> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 20,
+          ),
+          SizedBox(
+              height: 140,
+              width: MediaQuery.of(context).size.width * 0.90,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Theme.of(context).primaryColor.withOpacity(0.3),
+                  gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).primaryColorDark,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        width: MediaQuery.of(context).size.width * 0.90 / 3,
+                        child: Text(
+                          'Uday kiran',
+                          textAlign: TextAlign.center,
+                        )),
+                    Image.network(
+                      'https://clipart-library.com/image_gallery/n746946.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
+              )),
           Card(
             // height: 80,
             child: Padding(

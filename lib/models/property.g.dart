@@ -10,7 +10,7 @@ HouseProperty _$HousePropertyFromJson(Map<String, dynamic> json) =>
     HouseProperty(
       maxguests: json['maxguests'] as int,
       propertyid: json['propertyid'] as String,
-      ownerId: json['owner'] as String,
+      ownerId: json['ownerId'] as String,
       housetitle: json['housetitle'] as String,
       photos: json['photos'] as List<dynamic>,
       price: (json['price'] as num).toDouble(),
@@ -30,7 +30,7 @@ Map<String, dynamic> _$HousePropertyToJson(HouseProperty instance) =>
     <String, dynamic>{
       'maxguests': instance.maxguests,
       'propertyid': instance.propertyid,
-      'owner': instance.ownerId,
+      'ownerId': instance.ownerId,
       'housetitle': instance.housetitle,
       'photos': instance.photos,
       'price': instance.price,

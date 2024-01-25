@@ -4,20 +4,39 @@ import '../models/booking.dart';
 enum BookingStatus { current, past }
 
 class BookingProvider with ChangeNotifier {
-  final List<Booking> _currentBookingList = [];
-  final List<Booking> _pastBookingList = [];
-  List<Booking> get currentBookings=>_currentBookingList;
-  List<Booking> get pastBookings=>_pastBookingList;
+  List<Booking> _currentBookingList = [];
+  List<Booking> _bookings = [];
+  List<Booking> _pastBookingList = [];
+  List<Booking> get currentBookings => _currentBookingList;
+  List<Booking> get bookings => _bookings;
+  List<Booking> get pastBookings => _pastBookingList;
 
-  bool isCurrentBooking(DateTime checkOut) {
-    DateTime currentDate = DateTime.now();
-    DateTime checkoutDate = DateTime.parse(checkOut.toString());
-
-    return checkoutDate.isAfter(currentDate);
+  void filterBookings() {
+    _currentBookingList = getCurrentBookings();
+    _pastBookingList = getPastBookings();
   }
-  void bookhouse(Booking booking) async{
-    _currentBookingList.add(booking);
-  //  await ApiService.bookhouse(booking);
+
+  List<Booking> getCurrentBookings() {
+    DateTime currentDate = DateTime.now();
+    return bookings.where((booking) {
+      return booking.checkin!.isBefore(currentDate) &&
+          booking.checkout!.isAfter(currentDate);
+    }).toList();
+  }
+
+  List<Booking> getPastBookings() {
+    DateTime currentDate = DateTime.now();
+    return bookings.where((booking) {
+      return booking.checkout!.isBefore(currentDate);
+    }).toList();
+  }
+
+  // write function to saperate current bookings and past bookings list
+
+  void bookhouse(Booking booking) async {
+    // _currentBookingList.add(booking);
+    _bookings.add(booking);
+    //  await ApiService.bookhouse(booking);
     notifyListeners();
   }
 

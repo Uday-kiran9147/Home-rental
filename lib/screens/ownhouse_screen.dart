@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/models/property.dart';
-import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
@@ -21,14 +20,17 @@ class _OwnHousePageState extends State<OwnHousePage> {
     Provider.of<MyAppState>(context, listen: false).getownHouseList();
     super.initState();
   }
+  
 
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     if (appState.ownHouseGetter.isEmpty) {
-      return const Center(
-        child: Text('No favorites yet.'),
+      return Scaffold(appBar: AppBar(backgroundColor: Colors.red,),
+        body: const Center(
+          child: Text('No Properties yet.'),
+        ),
       );
     }
 
@@ -37,7 +39,7 @@ class _OwnHousePageState extends State<OwnHousePage> {
         title: const Text('My Properties'),
       ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const ProfileHeadLine(title: 'My Properties'),
+        // const ProfileHeadLine(title: 'My Properties'),
         Center(
           child: Text('You have '
               '${appState.ownHouseGetter.length} properties'),

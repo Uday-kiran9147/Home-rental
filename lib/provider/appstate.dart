@@ -4,13 +4,21 @@ import '../models/property.dart';
 class MyAppState with ChangeNotifier {
   final List<HouseProperty> _wishlist = <HouseProperty>[];
   List<HouseProperty> _ownhouseList = <HouseProperty>[];
-  List<HouseProperty> get ownHouseGetter => _ownhouseList;
+  List<HouseProperty> get ownHouseGetter => [..._ownhouseList];
+  
+  List<HouseProperty> get allhouseGetter {
+    return [..._allhouses];
+  }
 
-  void getownHouseList()  {
+  List<HouseProperty> get favouritelistGetter {
+    return [..._wishlist];
+  }
+
+  void getownHouseList() {
     // await Future.delayed(Duration(seconds: 3));
     _ownhouseList =
         _allhouses.where((house) => house.ownerId.contains('kiran')).toList();
-    notifyListeners();
+    // notifyListeners(); // commented due to rebuild issue.
   }
 
   void toggleFavorite(HouseProperty homeitem) {
@@ -32,14 +40,6 @@ class MyAppState with ChangeNotifier {
                 .toLowerCase()
                 .contains(searchQuery.toLowerCase()))
         .toList();
-  }
-
-  List<HouseProperty> get allhouseGetter {
-    return [..._allhouses];
-  }
-
-  List<HouseProperty> get favouritelistGetter {
-    return [..._wishlist];
   }
 
   bool isFavourite(String houseID) {

@@ -30,6 +30,7 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
+        backgroundColor: Theme.of(context).primaryColor,
         actions: [
           Tooltip(
             message: "Logout",
@@ -45,7 +46,7 @@ class _AccountScreenState extends State<AccountScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ListTile(
                 title: const Text(
@@ -69,6 +70,46 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                   onPressed: () {},
                 ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                    height: 140,
+                    width: MediaQuery.of(context).size.width * 0.90 ,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [],
+                        borderRadius: BorderRadius.circular(15),
+                        color: Theme.of(context).primaryColor.withOpacity(0.45),
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context).primaryColor,
+                            Theme.of(context).primaryColorDark,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                              width:
+                                  MediaQuery.of(context).size.width * 0.90 / 3,
+                              child: Text(
+                                'Uday kiran',
+                                textAlign: TextAlign.center,
+                              )),
+                          Expanded(
+                            child: Image.network(
+                              'https://clipart-library.com/image_gallery/n746946.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
               ),
               const SizedBox(height: 16),
               const ProfileHeadLine(title: "Settings"),
@@ -207,8 +248,6 @@ class ProfileHeadLine extends StatelessWidget {
   }
 }
 
-
-
 class BookingCardWidget extends StatelessWidget {
   BookingCardWidget({super.key, required this.booking});
   final Booking booking;
@@ -232,10 +271,10 @@ class BookingCardWidget extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Check-in: ${booking.checkin}',
+              'Check-in: ${DateFormat.yMd().format(DateTime.parse(booking.checkin.toString()))}',
             ),
             Text(
-              'Check-out: ${booking.checkout}',
+              'Check-out: ${DateFormat.yMd().format(DateTime.parse(booking.checkout.toString()))}',
             ),
             Text(
               'Guests: ${booking.guests}',

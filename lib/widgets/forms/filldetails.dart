@@ -38,7 +38,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
   double cleaningFee = 500;
   final List<TextEditingController> _featurescontroller = [];
   final List<TextField> _featureFields = [];
-  List<File> photoControllerList = [];
+  List<String> photoUrlList = [];
+  List<File> photoFileList = [];
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final Map<String, bool?> _categoryCheckBox = {
     'pool': false,
@@ -105,7 +106,10 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
       child: Column(
         children: [
           ChoiceChipsExample(choicesref: _categoryCheckBox),
-          ImagePick(imageFiles: photoControllerList),
+          ImagePick(
+            imageFiles: photoFileList,
+            photoUrlList: photoUrlList,
+          ),
           const SizedBox(height: 10),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.90,
@@ -436,7 +440,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
           updatedAt: DateTime.now(),
           ownerId: "uday",
           housetitle: titleController.text,
-          photos: photoControllerList.map((e) => e).toList(),
+          photos: photoUrlList.map((e) => e).toList(),
           price: price,
           address: Address(
             city: cityController.text,
@@ -489,7 +493,6 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
 
 class _nextButton extends StatelessWidget {
   const _nextButton({
-    super.key,
     required PageController pageController,
   }) : _pageController = pageController;
 
@@ -501,14 +504,20 @@ class _nextButton extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.bottomRight,
-        child: IconButton(
+        child: ElevatedButton(
           onPressed: () {
             _pageController.nextPage(
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut,
             );
           },
-          icon: const Icon(Icons.arrow_forward),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Next'),
+              const Icon(Icons.arrow_forward),
+            ],
+          ),
         ),
       ),
     );

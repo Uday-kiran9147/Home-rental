@@ -160,9 +160,9 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                       bookingid:
                           DateTime.now().millisecondsSinceEpoch.toString(),
                       checkin:
-                          DateFormat.yMEd().format(widget.checkIn!).toString(),
+                          widget.checkIn!,
                       checkout:
-                          DateFormat.yMEd().format(widget.checkOut!).toString(),
+                          widget.checkOut!,
                       bookingprice: finalPrice.toDouble(),
                       guests: widget.guests,
                       numberofdays: widget.numberofdays,
@@ -176,8 +176,8 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   showSnackbarCustom(context, "Booking confirmed successful",
                       Colors.green);
                   bookingstate.bookhouse(newbooking);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PaymentScreen()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },
                 child: Container(
                   height: 50,

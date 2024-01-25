@@ -7,6 +7,7 @@ import 'package:houserental/screens/house_detail_screen.dart';
 
 import '../models/property.dart';
 import '../provider/appstate.dart';
+import 'custom_image.dart';
 
 class HomeItem extends StatefulWidget {
   final HouseProperty property;
@@ -51,7 +52,7 @@ class _HomeItemState extends State<HomeItem> {
                     color: Colors.transparent,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: Image.network(
+                      child: CustomImageView(imagePath: 
                         '${widget.property.photos[0]}',
                         fit: BoxFit.fill,
                       ),

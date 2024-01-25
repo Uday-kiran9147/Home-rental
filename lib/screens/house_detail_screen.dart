@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/booking_detail_screen.dart';
 import 'package:houserental/utils/snackbar.dart';
+import 'package:houserental/widgets/custom_image.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../utils/pricebeautify.dart';
@@ -56,9 +57,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                    fit: BoxFit.cover,
-                                    "${selectedHouse.photos[index]}"),
+                                child: CustomImageView(imagePath: 
+                                    "${selectedHouse.photos[index]}",fit: BoxFit.fill,),
                               ),
                             ),
                           )),

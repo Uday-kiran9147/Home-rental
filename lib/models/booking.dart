@@ -5,8 +5,8 @@ part 'booking.g.dart';
 class Booking {
   String? bookingdate;
   String? bookingid;
-  String? checkin;
-  String? checkout;
+  DateTime? checkin;
+  DateTime? checkout;
   double? bookingprice;
   int? guests;
   int? numberofdays;

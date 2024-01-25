@@ -44,7 +44,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor:
-              Colors.blue, // Set your desired app bar background color
+             Theme.of(context).primaryColor, // Set your desired app bar background color
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.yellow, // Set tab indicator color
