@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:houserental/models/booking.dart';
 import 'package:houserental/provider/booking.dart';
+import 'package:houserental/utils/notifications.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,8 @@ import 'package:provider/provider.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/payments/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
+
+import '../main.dart';
 
 // ignore: must_be_immutable
 class BookingDetailScreen extends StatefulWidget {
@@ -153,7 +156,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                 ],
               ),
               InkWell(
-                onTap: () {
+                onTap: ()async {
                   // newbooking();
                   Booking newbooking = Booking(
                       bookingdate: DateTime.now().toString(),
@@ -176,6 +179,8 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   showSnackbarCustom(context, "Booking confirmed successful",
                       Colors.green);
                   bookingstate.bookhouse(newbooking);
+                  AppNotifications appNotifications = new AppNotifications();
+                await appNotifications .showNotification(widget.checkIn!,'Booking confirmed successfully');
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },
