@@ -46,19 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
     Widget page;
     switch (selectedIndex) {
+      // case 0:
+      //   page = const HomeImplement();
+      //   break;
       case 0:
-        page = const HomeImplement();
-        break;
-      case 1:
         page = const CategoryScreen();
         break;
-      case 2:
+      case 1:
         page = const FavoritesPage();
         break;
-      case 3:
+      case 2:
         page = const AccountScreen();
         break;
-      case 4:
+      case 3:
         page = const RentHouses();
         break;
       default:
@@ -66,48 +66,49 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     return Scaffold(
-      appBar: selectedIndex == 0
-          ? AppBar(
-              backgroundColor:
-                  Theme.of(context).primaryColor, // Set a background color
-              elevation: 2, // Add a subtle shadow
-              title: const Row(
-                children: [
-                  Text(
-                    'Home Rental',
-                    style: TextStyle(
-                      color: Colors.white, // Text color is white
-                      fontSize: 24, // Increase font size
-                      fontWeight: FontWeight.bold, // Add bold font weight
-                    ),
-                  ),
-                  SizedBox(width: 16), // Add spacing
-                ],
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    // method to show the search bar
-                    showSearch(
-                        context: context,
-                        // delegate to customize the search bar
-                        delegate: CustomSearchDelegate());
-                  },
-                  icon: const Icon(Icons.search),
-                ),
-                const SizedBox(width: 16), // Add spacing
-                IconButton(
-                  icon: const Icon(
-                    Icons.notifications,
-                    size: 32, // Increase icon size
-                  ),
-                  onPressed: () {
-                    // Add functionality to show notifications here.
-                  },
-                ),
-              ],
-            )
-          : null,
+      backgroundColor: Colors.white,
+      // appBar: selectedIndex == 0
+      //     ? AppBar(
+      //         backgroundColor:
+      //             Theme.of(context).primaryColor, // Set a background color
+      //         elevation: 2, // Add a subtle shadow
+      //         title: const Row(
+      //           children: [
+      //             Text(
+      //               'Home Rental',
+      //               style: TextStyle(
+      //                 color: Colors.white, // Text color is white
+      //                 fontSize: 24, // Increase font size
+      //                 fontWeight: FontWeight.bold, // Add bold font weight
+      //               ),
+      //             ),
+      //             SizedBox(width: 16), // Add spacing
+      //           ],
+      //         ),
+      //         actions: [
+      //           IconButton(
+      //             onPressed: () {
+      //               // method to show the search bar
+      //               showSearch(
+      //                   context: context,
+      //                   // delegate to customize the search bar
+      //                   delegate: CustomSearchDelegate());
+      //             },
+      //             icon: const Icon(Icons.search),
+      //           ),
+      //           const SizedBox(width: 16), // Add spacing
+      //           IconButton(
+      //             icon: const Icon(
+      //               Icons.notifications,
+      //               size: 32, // Increase icon size
+      //             ),
+      //             onPressed: () {
+      //               // Add functionality to show notifications here.
+      //             },
+      //           ),
+      //         ],
+      //       )
+      //     : null,
       body: LayoutBuilder(
         builder: (context, constraints) {
           if (constraints.maxWidth < 450) {
@@ -121,25 +122,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   unselectedItemColor: Colors.grey,
                   selectedItemColor: Theme.of(context).primaryColor,
                   items: <BottomNavigationBarItem>[
+                    // BottomNavigationBarItem(
+                    //   icon: Icon(Icons.home),
+                    //   label: 'Home',
+                    // ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.home),
-                      label: 'Home',
-                    ),
-                    BottomNavigationBarItem(
-                      icon: Icon(Icons.category),
-                      label: 'Categories',
+                      icon: Icon(Icons.search_rounded),
+                      label: 'Explore',
                     ),
                     BottomNavigationBarItem(
                       icon: Stack(
                         children: [
-                          Icon(Icons.favorite),
+                          Icon(Icons.favorite_outline_rounded),
                           BadgeCustom(appstate: appState)
                         ],
                       ),
-                      label: 'Favorites',
+                      label: 'Wishlist',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.account_circle),
+                      icon: Icon(Icons.account_circle_outlined),
                       label: 'Account',
                     ),
                     BottomNavigationBarItem(
@@ -163,25 +164,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   // backgroundColor: Colors.white,
                   extended: constraints.maxWidth >= 600,
                   destinations: [
+                    // NavigationRailDestination(
+                    //   icon: Icon(Icons.home),
+                    //   label: Text('Home'),
+                    // ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('Home'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.category),
+                      icon: Icon(Icons.search_rounded),
                       label: Text('Categories'),
                     ),
                     NavigationRailDestination(
                       icon: Stack(
                         children: [
-                          Icon(Icons.favorite),
+                          Icon(Icons.favorite_outline_rounded),
                           BadgeCustom(appstate: appState)
                         ],
                       ),
                       label: Text('Favorites'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.account_circle),
+                      icon: Icon(Icons.account_circle_outlined),
                       label: Text('Account'),
                     ),
                     NavigationRailDestination(

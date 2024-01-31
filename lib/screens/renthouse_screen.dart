@@ -51,9 +51,11 @@ class _RentHousesState extends State<RentHouses> {
                           'Uday kiran',
                           textAlign: TextAlign.center,
                         )),
-                    Image.network(
-                      'https://clipart-library.com/image_gallery/n746946.png',
-                      fit: BoxFit.cover,
+                    Expanded(flex: 3,
+                      child: Image.network(
+                        'https://clipart-library.com/image_gallery/n746946.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ],
                 ),

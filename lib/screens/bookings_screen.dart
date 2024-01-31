@@ -24,7 +24,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
     super.initState();
   }
 
-  String getFilerName() {
+  String getFilterName() {
     switch (filter) {
       case BookingFilter.all:
         return 'All Bookings';
@@ -42,7 +42,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
   @override
   Widget build(BuildContext context) {
     final bookingState = Provider.of<BookingProvider>(context);
-    final String currentFilter = getFilerName();
+    final String currentFilter = getFilterName();
     final bookings = filter == BookingFilter.current
         ? bookingState.currentBookings
         : filter == BookingFilter.past
@@ -61,7 +61,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
           ),
           itemBuilder: (_) => [
             PopupMenuItem(
-              child: Text('Show All '),
+              child: Text('Show All'),
               value: BookingFilter.all,
             ),
             PopupMenuItem(
@@ -75,13 +75,13 @@ class _BookingsScreenState extends State<BookingsScreen> {
           ],
         ),
       ]),
-      body: ListView(
+      body: ListView(padding: EdgeInsets.all(8.0),
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ProfileHeadLine(title: '\t $currentFilter'),
+              ProfileHeadLine(title: '$currentFilter'),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(right: 12),
@@ -112,7 +112,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
           filter == BookingFilter.saperate
               ? Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const ProfileHeadLine(title: '\tPast Bookings'),
+                    const ProfileHeadLine(title: 'Past Bookings'),
                     ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

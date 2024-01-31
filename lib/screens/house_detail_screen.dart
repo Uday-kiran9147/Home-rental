@@ -57,8 +57,10 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                               padding: const EdgeInsets.all(8.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
-                                child: CustomImageView(imagePath: 
-                                    "${selectedHouse.photos[index]}",fit: BoxFit.fill,),
+                                child: CustomImageView(
+                                  imagePath: "${selectedHouse.photos[index]}",
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
                           )),
@@ -127,7 +129,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                 ),
                                 buildContainer(
                                     ListView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       itemCount: selectedHouse.features.length,
                                       itemBuilder: (context, index) => ListTile(
                                         // color: Theme.of(context).primaryColor,
@@ -145,12 +148,13 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                SingleChildScrollView(
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
+                                Flex(
+                                    direction: Axis.horizontal,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(flex: 2,
+                                        child: Container(
                                           margin:
                                               const EdgeInsets.only(right: 6),
                                           width: 110,
@@ -173,7 +177,10 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                             ),
                                           ),
                                         ),
-                                        Column(
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
                                           children: [
                                             OutlinedButton(
                                                 onPressed: () async {
@@ -188,17 +195,23 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                                               DateTime(2101));
                                                   if (pickedDate != null) {
                                                     setState(() {
-                                                      checkindate = pickedDate;
+                                                      checkindate =
+                                                          pickedDate;
                                                     });
                                                   }
                                                 },
-                                                child: const Text('check-in')),
+                                                child:
+                                                    const Text('check-in')),
                                             Text(checkindate == null
                                                 ? 'no -date'
-                                                : DateFormat.MMMd().format(checkindate as DateTime))
+                                                : DateFormat.MMMd().format(
+                                                    checkindate as DateTime))
                                           ],
                                         ),
-                                        Column(
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Column(
                                           children: [
                                             OutlinedButton(
                                                 onPressed: () async {
@@ -213,20 +226,24 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                                               DateTime(2101));
                                                   if (pickedDate != null) {
                                                     setState(() {
-                                                      checkOutdate = pickedDate;
+                                                      checkOutdate =
+                                                          pickedDate;
                                                     });
                                                   }
                                                 },
-                                                child: const Text('check-out')),
+                                                child:
+                                                    const Text('check-out')),
                                             Text(checkOutdate == null
                                                 ? 'no -date'
-                                                : DateFormat.MMMd().format(checkOutdate as DateTime)),
-
+                                                : DateFormat.MMMd().format(
+                                                    checkOutdate
+                                                        as DateTime)),
+                                
                                             // overflow: TextOverflow.fade,
                                           ],
                                         ),
-                                      ]),
-                                ),
+                                      ),
+                                    ]),
                                 const SizedBox(height: 15),
                                 Container(
                                   decoration: BoxDecoration(
@@ -286,7 +303,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                               Icons.favorite,
                               color: Colors.red,
                             )
-                          : const Icon(Icons.favorite_border, color: Colors.red))),
+                          : const Icon(Icons.favorite_border,
+                              color: Colors.red))),
               const SizedBox(width: 20),
               Expanded(
                 child: InkWell(
@@ -319,7 +337,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: Colors.black,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15),border: Border.all(color: Colors.grey)
                     ),
                     child: Text(
                       'Reserve',

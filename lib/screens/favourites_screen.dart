@@ -16,7 +16,7 @@ class FavoritesPage extends StatefulWidget {
 class _FavoritesPageState extends State<FavoritesPage> {
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    var appState = context.read<MyAppState>();
 
     if (appState.favouritelistGetter.isEmpty) {
       return const Center(
@@ -24,12 +24,13 @@ class _FavoritesPageState extends State<FavoritesPage> {
       );
     }
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-      const ProfileHeadLine(title: 'Wishlist'),
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-        padding: const EdgeInsets.all(30),
-        child: Text('You have '
-            '${appState.favouritelistGetter.length} favorites'),
+        padding: const EdgeInsets.only(left: 15,top: 30),
+        child: Text(
+          'Wishlist',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        ),
       ),
       Expanded(
           //we can use GridView as map as used previously in homeScreen
@@ -42,7 +43,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     property: HouseProperty(
                         createdAt:
                             appState.favouritelistGetter[index].createdAt,
-                        updatedAt: appState.favouritelistGetter[index].updatedAt,
+                        updatedAt:
+                            appState.favouritelistGetter[index].updatedAt,
                         propertyid:
                             appState.favouritelistGetter[index].propertyid,
                         maxguests:

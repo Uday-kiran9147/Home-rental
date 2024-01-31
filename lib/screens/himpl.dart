@@ -22,10 +22,10 @@ class _HomeImplementState extends State<HomeImplement> {
     return GridView(
       shrinkWrap: true,
       physics: const AlwaysScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(5),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
         maxCrossAxisExtent: 400,
       ),
       children: appState.search_Houes(search).map((val) {

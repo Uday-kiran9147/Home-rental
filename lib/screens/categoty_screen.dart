@@ -3,6 +3,8 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/searchbar.dart';
+
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({
     super.key,
@@ -44,20 +46,78 @@ class _CategoryScreenState extends State<CategoryScreen> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor:
-             Theme.of(context).primaryColor, // Set your desired app bar background color
+              Colors.white, // Set your desired app bar background color
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.yellow, // Set tab indicator color
-            labelColor: Colors.white, // Set selected tab label color
+            labelColor: Colors.pink, // Set selected tab label color
             unselectedLabelColor:
                 Colors.black54, // Set unselected tab label color
             tabs: categories.map((e) => Tab(text: e.toString())).toList(),
           ),
-          title: const Text(
-            'Categories',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          actions: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.1,
+                child: Icon(Icons.sort))
+          ],
+          title: InkWell(
+            onTap: () {
+              // method to show the search bar
+              showSearch(
+                  context: context,
+                  // delegate to customize the search bar
+                  delegate: CustomSearchDelegate());
+            },
+            child: Container(
+              padding: EdgeInsets.all(8),
+              height: AppBar().preferredSize.height - 10,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(20),
+                // border: Border.all(
+                //   color: Colors.black,
+                //   width: 1.0,
+                // )
+              ),
+              child: Row(
+                children: [
+                  Expanded(child: Icon(Icons.search)),
+                  Expanded(
+                      flex: 3,
+                      child: RichText(
+                        overflow: TextOverflow.ellipsis,
+                        text: TextSpan(children: [
+                          TextSpan(
+                            text: 'Where to?\n',
+                            style: TextStyle(
+                              color: Colors.black, // Text color is white
+                              fontSize: 14, // Increase font size
+                              fontWeight:
+                                  FontWeight.w500, // Add bold font weight
+                            ),
+                          ),
+                          TextSpan(
+                            text: 'Anywhere • Any week • Add guests',
+                            style: TextStyle(
+                              color: Colors.black, // Text color is white
+                              fontSize: 9, // Increase font size
+                              fontWeight:
+                                  FontWeight.w500, // Add bold font weight
+                            ),
+                          ),
+                        ]),
+                      )),
+                  SizedBox(width: 16), // Add spacing
+                ],
+              ),
             ),
           ),
         ),

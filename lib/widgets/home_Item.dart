@@ -42,7 +42,7 @@ class _HomeItemState extends State<HomeItem> {
             //     width: 1.0, // sets the width of the border to 1 pixel
             //   ),
             // ),
-            margin: const EdgeInsets.all(5),
+            margin: const EdgeInsets.all(10),
             child: Flex(
               crossAxisAlignment: CrossAxisAlignment.start,
               direction: Axis.vertical,
@@ -52,37 +52,31 @@ class _HomeItemState extends State<HomeItem> {
                     color: Colors.transparent,
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(15)),
-                      child: CustomImageView(imagePath: 
-                        '${widget.property.photos[0]}',
+                      child: CustomImageView(
+                        imagePath: '${widget.property.photos[0]}',
                         fit: BoxFit.fill,
                       ),
                     ),
-                    // height: MediaQuery.of(context).size.height * 0.2
                   ),
                 ),
                 Text(widget.property.housetitle.toString(),
                     style: GoogleFonts.poppins(
-                      fontSize: 20,
+                      fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 47, 42, 42),
                     )),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(widget.property.price.toString(),
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).hintColor,
-                        )),
-                  ],
-                ),
                 Text(
-                    "${widget.property.address.country}, ${widget.property.address.state}, ${widget.property.address.city}, ${widget.property.address.zipcode}",
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
+                    "${widget.property.address.country}, ${widget.property.address.state}, ${widget.property.address.city}, ${widget.property.address.zipcode}, ${widget.property.address.street}",
+                    maxLines: 2,style: GoogleFonts.poppins(
+                      fontSize: 13,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).hintColor,
+                    )),
+                Text("\$${widget.property.price}",
+                    style: GoogleFonts.poppins(decoration: TextDecoration.underline,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
                     )),
               ],
             ),
@@ -101,7 +95,7 @@ class _HomeItemState extends State<HomeItem> {
                       )
                     : const Icon(
                         Icons.favorite_border,
-                        color: Colors.red,
+                        color: Colors.white,
                       )),
           )
         ],
