@@ -1,0 +1,1 @@
+export 'filldetails.dart';

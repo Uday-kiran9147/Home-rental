@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/models/booking.dart';
+import 'package:houserental/data/data.dart';
 import 'package:houserental/screens/ownhouse_screen.dart';
 import 'package:intl/intl.dart';
 

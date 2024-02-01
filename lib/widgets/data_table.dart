@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../models/property.dart';
+import '../data/data.dart';
 
 class dataTable extends StatelessWidget {
   const dataTable({

@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/screens/account_screen.dart';
-import 'package:houserental/screens/categoty_screen.dart';
-import 'package:houserental/screens/himpl.dart';
-import 'package:houserental/screens/renthouse_screen.dart';
+import 'screens.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
 import '../provider/appstate.dart';
-import '../widgets/searchbar.dart';
-import 'favourites_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({

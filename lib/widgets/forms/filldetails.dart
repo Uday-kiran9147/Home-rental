@@ -9,7 +9,7 @@ import 'package:houserental/utils/snackbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/property.dart';
+import '../../data/data.dart';
 import '../custom_textfield.dart';
 
 class FillHouseDetails extends StatefulWidget {

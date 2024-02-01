@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:houserental/screens/house_detail_screen.dart';
 
-import '../models/property.dart';
+import '../data/data.dart';
 import '../provider/appstate.dart';
 import 'custom_image.dart';
 

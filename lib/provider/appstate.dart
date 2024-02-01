@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/property.dart';
 
+import '../data/data.dart';
 class MyAppState with ChangeNotifier {
   final List<HouseProperty> _wishlist = <HouseProperty>[];
   List<HouseProperty> _ownhouseList = <HouseProperty>[];

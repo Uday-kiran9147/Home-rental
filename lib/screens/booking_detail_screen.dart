@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:houserental/models/booking.dart';
+import 'package:houserental/data/data.dart';
 import 'package:houserental/provider/booking.dart';
 import 'package:houserental/utils/notifications.dart';
 import 'package:houserental/utils/snackbar.dart';

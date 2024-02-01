@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/booking.dart';
+import '../data/data.dart';
 
 enum BookingStatus { current, past }
 
