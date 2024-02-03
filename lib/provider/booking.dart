@@ -12,30 +12,39 @@ class BookingProvider with ChangeNotifier {
   List<Booking> get pastBookings => _pastBookingList;
 
   void filterBookings() {
-    _currentBookingList = getCurrentBookings();
-    _pastBookingList = getPastBookings();
+    _currentBookingList.clear();
+    _pastBookingList.clear();
+    DateTime currentDate = DateTime.now();
+    _bookings.forEach((element) {
+      if (element.checkout!.isBefore(currentDate)) {
+        _pastBookingList.add(element);
+      } else {
+        _currentBookingList.add(element);
+      }
+    });
   }
 
-  List<Booking> getCurrentBookings() {
-    DateTime currentDate = DateTime.now();
-    return bookings.where((booking) {
-      return booking.checkin!.isBefore(currentDate) &&
-          booking.checkout!.isAfter(currentDate);
-    }).toList();
-  }
+  // List<Booking> getCurrentBookings() {
+  //   DateTime currentDate = DateTime.now();
+  //   return _bookings.where((booking) {
+  //     return booking.checkin!.isAfter(currentDate) &&
+  //         booking.checkout!.isAfter(currentDate);
+  //   }).toList();
+  // }
 
-  List<Booking> getPastBookings() {
-    DateTime currentDate = DateTime.now();
-    return bookings.where((booking) {
-      return booking.checkout!.isBefore(currentDate);
-    }).toList();
-  }
+  // List<Booking> getPastBookings() {
+  //   DateTime currentDate = DateTime.now();
+  //   return _bookings.where((booking) {
+  //     return booking.checkout!.isBefore(currentDate);
+  //   }).toList();
+  // }
 
   // write function to saperate current bookings and past bookings list
 
   void bookhouse(Booking booking) async {
     // _currentBookingList.add(booking);
     _bookings.add(booking);
+    filterBookings();
     //  await ApiService.bookhouse(booking);
     notifyListeners();
   }
@@ -43,9 +52,5 @@ class BookingProvider with ChangeNotifier {
   Future<void> fetchbookings() async {
     // ApiService.fetchbookings();
     notifyListeners();
-  }
-
-  List<Booking> get bookinglistgetter {
-    return [..._currentBookingList];
   }
 }

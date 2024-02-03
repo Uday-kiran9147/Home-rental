@@ -153,7 +153,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Expanded(flex: 2,
+                                      Expanded(
+                                        flex: 2,
                                         child: Container(
                                           margin:
                                               const EdgeInsets.only(right: 6),
@@ -179,70 +180,20 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                         ),
                                       ),
                                       Expanded(
-                                        flex: 2,
-                                        child: Column(
-                                          children: [
-                                            OutlinedButton(
-                                                onPressed: () async {
-                                                  DateTime? pickedDate =
-                                                      await showDatePicker(
-                                                          context: context,
-                                                          initialDate: DateTime
-                                                              .now(), //get today's date
-                                                          firstDate: DateTime(
-                                                              2000), //DateTime.now() - not to allow to choose before today.
-                                                          lastDate:
-                                                              DateTime(2101));
-                                                  if (pickedDate != null) {
+                                          flex: 3,
+                                          child: ElevatedButton(
+                                              onPressed: () async {
+                                                await _showDateRange(context)
+                                                    .then((value) {
+                                                  if (value != null) {
                                                     setState(() {
-                                                      checkindate =
-                                                          pickedDate;
+                                                      checkindate = value.start;
+                                                      checkOutdate = value.end;
                                                     });
                                                   }
-                                                },
-                                                child:
-                                                    const Text('check-in')),
-                                            Text(checkindate == null
-                                                ? 'no -date'
-                                                : DateFormat.MMMd().format(
-                                                    checkindate as DateTime))
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Column(
-                                          children: [
-                                            OutlinedButton(
-                                                onPressed: () async {
-                                                  DateTime? pickedDate =
-                                                      await showDatePicker(
-                                                          context: context,
-                                                          initialDate: DateTime
-                                                              .now(), //get today's date
-                                                          firstDate: DateTime(
-                                                              2000), //DateTime.now() - not to allow to choose before today.
-                                                          lastDate:
-                                                              DateTime(2101));
-                                                  if (pickedDate != null) {
-                                                    setState(() {
-                                                      checkOutdate =
-                                                          pickedDate;
-                                                    });
-                                                  }
-                                                },
-                                                child:
-                                                    const Text('check-out')),
-                                            Text(checkOutdate == null
-                                                ? 'no -date'
-                                                : DateFormat.MMMd().format(
-                                                    checkOutdate
-                                                        as DateTime)),
-                                
-                                            // overflow: TextOverflow.fade,
-                                          ],
-                                        ),
-                                      ),
+                                                });
+                                              },
+                                              child: Text('select')))
                                     ]),
                                 const SizedBox(height: 15),
                                 Container(
@@ -336,9 +287,9 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(15),border: Border.all(color: Colors.grey)
-                    ),
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.grey)),
                     child: Text(
                       'Reserve',
                       style: GoogleFonts.poppins(
@@ -385,6 +336,16 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
             ],
           ),
         ));
+  }
+
+  Future<DateTimeRange?> _showDateRange(BuildContext context) {
+    return showDateRangePicker(
+        context: context,
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(const Duration(days: 300)),
+        initialDateRange: DateTimeRange(
+            start: DateTime.now(),
+            end: DateTime.now().add(const Duration(days: 3))));
   }
 
   Widget buildContainer(Widget child, int height) {
