@@ -49,7 +49,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               Colors.white, // Set your desired app bar background color
           bottom: TabBar(
             isScrollable: true,
-            indicatorColor: Colors.yellow, // Set tab indicator color
+            indicatorColor: Colors.black, // Set tab indicator color
             labelColor: Colors.pink, // Set selected tab label color
             unselectedLabelColor:
                 Colors.black54, // Set unselected tab label color
@@ -69,7 +69,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   delegate: CustomSearchDelegate());
             },
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.zero,
               height: AppBar().preferredSize.height - 10,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -99,7 +99,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             text: 'Where to?\n',
                             style: TextStyle(
                               color: Colors.black, // Text color is white
-                              fontSize: 14, // Increase font size
+                              fontSize: 13, // Increase font size
                               fontWeight:
                                   FontWeight.w500, // Add bold font weight
                             ),

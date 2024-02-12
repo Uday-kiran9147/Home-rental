@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:houserental/data/data.dart';
-import 'package:houserental/screens/account_screen.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
-        padding: const EdgeInsets.only(left: 15,top: 30),
+        padding: const EdgeInsets.only(left: 15,top: 60),
         child: Text(
           'Wishlist',
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
@@ -34,7 +33,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       ),
       Expanded(
           //we can use GridView as map as used previously in homeScreen
-          child: GridView.builder(
+          child: GridView.builder(padding: EdgeInsets.zero,
               itemCount: appState.favouritelistGetter.length,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 400),

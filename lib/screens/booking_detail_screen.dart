@@ -180,7 +180,9 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                       Colors.green);
                   bookingstate.bookhouse(newbooking);
                   AppNotifications appNotifications = new AppNotifications();
-                await appNotifications .showNotification(widget.checkIn!,'Booking confirmed successfully');
+                await appNotifications .showNotification(widget.checkIn!,'Booking confirmed successfully').whenComplete((){
+                  print('Notification sent');
+                });
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },
