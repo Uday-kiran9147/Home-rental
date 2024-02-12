@@ -3,6 +3,7 @@ import 'package:houserental/screens/account_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/booking.dart';
+import '../widgets/booking_card.dart';
 
 enum BookingFilter { current, past, all, saperate }
 
@@ -100,7 +101,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
               ),
             ],
           ),
-          ListView.builder(
+         bookings.isEmpty? Center(child: Image.network('https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif')): ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: bookings.length,
@@ -113,7 +114,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
               ? Column(crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const ProfileHeadLine(title: 'Past Bookings'),
-                    ListView.builder(
+                   bookingState.pastBookings.isEmpty? Center(child: Image.network('https://i.pinimg.com/originals/5d/35/e3/5d35e39988e3a183bdc3a9d2570d20a9.gif')):  ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: bookingState.pastBookings.length,
