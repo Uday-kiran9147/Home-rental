@@ -42,16 +42,15 @@ class _HomeItemState extends State<HomeItem> {
             //     width: 1.0, // sets the width of the border to 1 pixel
             //   ),
             // ),
-            margin: const EdgeInsets.all(10),
+            margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0),
             child: Flex(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               direction: Axis.vertical,
               children: [
                 Expanded(
                   child: Card(
-                    color: Colors.transparent,
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: CustomImageView(
                         imagePath: '${widget.property.photos[0]}',
                         fit: BoxFit.fill,
@@ -61,20 +60,20 @@ class _HomeItemState extends State<HomeItem> {
                 ),
                 Text(widget.property.housetitle.toString(),
                     style: GoogleFonts.poppins(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                       color: const Color.fromARGB(255, 47, 42, 42),
                     )),
                 Text(
                     "${widget.property.address.country}, ${widget.property.address.state}, ${widget.property.address.city}, ${widget.property.address.zipcode}, ${widget.property.address.street}",
                     maxLines: 2,style: GoogleFonts.poppins(
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).hintColor,
                     )),
                 Text("\$${widget.property.price}",
                     style: GoogleFonts.poppins(decoration: TextDecoration.underline,
-                      fontSize: 13,
+                      fontSize: 15,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     )),
@@ -82,8 +81,8 @@ class _HomeItemState extends State<HomeItem> {
             ),
           ),
           Positioned(
-            top: 10,
-            right: 20,
+            top: 20,
+            right: 30,
             child: IconButton(
                 onPressed: () {
                   appState.toggleFavorite(selectedHouse);
