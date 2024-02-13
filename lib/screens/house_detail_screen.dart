@@ -4,7 +4,6 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/booking_detail_screen.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:houserental/widgets/custom_image.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../utils/pricebeautify.dart';
 import '../widgets/data_table.dart';

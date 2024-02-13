@@ -3,7 +3,7 @@ import 'package:houserental/data/data.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
-import '../provider/appstate.dart';
+import '../../provider/appstate.dart';
 
 class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});

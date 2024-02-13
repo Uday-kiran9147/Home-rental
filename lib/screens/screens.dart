@@ -1,11 +1,10 @@
 export 'home_screen.dart';
-export 'account_screen.dart';
+export 'navScreens/account_screen.dart';
 export 'bookings_screen.dart';
 export 'booking_detail_screen.dart';
-export 'categoty_screen.dart';
-export 'favourites_screen.dart';
-export 'himpl.dart';
+export 'navScreens/categoty_screen.dart';
+export 'navScreens/favourites_screen.dart';
 export 'house_detail_screen.dart';
 export 'ownhouse_screen.dart';
-export 'renthouse_screen.dart';
+export 'navScreens/renthouse_screen.dart';
 export 'auth/auth.dart';

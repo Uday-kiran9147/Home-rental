@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:houserental/widgets/categoty_choice_chip.dart';
 import 'package:houserental/widgets/imagepick.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/snackbar.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/data.dart';

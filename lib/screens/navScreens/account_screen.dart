@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/data/data.dart';
+
 import 'package:houserental/screens/ownhouse_screen.dart';
-import 'package:intl/intl.dart';
 
-import 'package:houserental/utils/pricebeautify.dart';
 
-import 'bookings_screen.dart';
+import '../bookings_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({Key? key}) : super(key: key);

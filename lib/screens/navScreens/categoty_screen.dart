@@ -3,7 +3,7 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/widgets/home_Item.dart';
 import 'package:provider/provider.dart';
 
-import '../widgets/searchbar.dart';
+import '../../widgets/searchbar.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({
@@ -23,7 +23,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     Widget buildListView(String category) {
       return GridView.builder(
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 400,
+          maxCrossAxisExtent: 450,
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
         ),

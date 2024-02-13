@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/appstate.dart';
+import '../../provider/appstate.dart';
 
 class RentHouses extends StatefulWidget {
   const RentHouses({

@@ -4,14 +4,11 @@ import 'package:houserental/data/data.dart';
 import 'package:houserental/provider/booking.dart';
 import 'package:houserental/utils/notifications.dart';
 import 'package:houserental/utils/snackbar.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:houserental/provider/appstate.dart';
-import 'package:houserental/screens/payments/paymentScreen.dart';
 import 'package:houserental/utils/pricebeautify.dart';
 
-import '../main.dart';
 
 // ignore: must_be_immutable
 class BookingDetailScreen extends StatefulWidget {

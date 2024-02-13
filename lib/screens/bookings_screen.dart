@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:houserental/screens/account_screen.dart';
+import 'package:houserental/screens/navScreens/account_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/booking.dart';
