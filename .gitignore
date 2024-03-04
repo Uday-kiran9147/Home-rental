@@ -1,7 +1,16 @@
 SERVER/node_modules
+
+AppServer/node_modules
+AppServer/dist
+AppServer/src/config/firebase_config.ts
+AppServer/src/config/service_account.json
+AppServer/package-lock.json
+
+
 *lib/android/app/google-services.json
 SERVER/package-lock.json
 profilebadg.html
+
 *.vscode/
 # Miscellaneous
 *.class
