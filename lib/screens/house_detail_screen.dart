@@ -4,10 +4,11 @@ import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/screens/booking_detail_screen.dart';
 import 'package:houserental/utils/snackbar.dart';
 import 'package:houserental/widgets/custom_image.dart';
+import 'package:houserental/widgets/suggession_builder.dart';
 import 'package:provider/provider.dart';
 import '../utils/pricebeautify.dart';
 import '../widgets/data_table.dart';
-import '../widgets/suggession_builder.dart';
+// import '../widgets/suggession_builder.dart';
 
 class HouseDetailScreen extends StatefulWidget {
   static const routeName = 'house-detail';
@@ -180,7 +181,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                       ),
                                       Expanded(
                                           flex: 3,
-                                          child: ElevatedButton(
+                                          child: ElevatedButton.icon(
                                               onPressed: () async {
                                                 await _showDateRange(context)
                                                     .then((value) {
@@ -192,7 +193,8 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                                   }
                                                 });
                                               },
-                                              child: Text('select')))
+                                              label:  Text('Date'),
+                                              icon:Icon(Icons.date_range)))
                                     ]),
                                 const SizedBox(height: 15),
                                 Container(
@@ -205,20 +207,21 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                       dataTable(selectedHouse: selectedHouse),
                                 ),
                                 const SizedBox(height: 15),
-                                Text(
-                                  'Similar This',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                // Text(
+                                //   'Similar This',
+                                //   style: GoogleFonts.poppins(
+                                //     fontSize: 16,
+                                //     fontWeight: FontWeight.w600,
+                                //   ),
+                                // ),
                                 const SizedBox(height: 10),
-                                SizedBox(
-                                    height: 300,
-                                    // width: 350,
-                                    child:
-                                        sugessionBuilder(appstate: appstate)),
-                                const SizedBox(height: 20),
+                                // SizedBox(
+                                //     height: 300,
+                                //     width: 350,
+                                //     child:
+                                //         sugessionBuilder(appstate: appstate)
+                                //     ),
+                                // const SizedBox(height: 20),
                               ],
                             ),
                           ),

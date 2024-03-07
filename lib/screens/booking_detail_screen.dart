@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 import 'package:houserental/provider/appstate.dart';
 import 'package:houserental/utils/pricebeautify.dart';
 
-
 // ignore: must_be_immutable
 class BookingDetailScreen extends StatefulWidget {
   // DateTime bookingdate;
@@ -49,7 +48,7 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
       (element) => element.propertyid == widget.houseid,
     );
     double? localprice = widget.bookingprice;
-    double? pricewithdays = localprice * 3;
+    double? pricewithdays = localprice * widget.numberofdays;
     double? cleaning = selectedHouse.cleaningfee;
 
     double finalPrice = pricewithdays + cleaning;
@@ -153,16 +152,14 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                 ],
               ),
               InkWell(
-                onTap: ()async {
+                onTap: () async {
                   // newbooking();
                   Booking newbooking = Booking(
                       bookingdate: DateTime.now().toString(),
                       bookingid:
                           DateTime.now().millisecondsSinceEpoch.toString(),
-                      checkin:
-                          widget.checkIn!,
-                      checkout:
-                          widget.checkOut!,
+                      checkin: widget.checkIn!,
+                      checkout: widget.checkOut!,
                       bookingprice: finalPrice.toDouble(),
                       guests: widget.guests,
                       numberofdays: widget.numberofdays,
@@ -172,14 +169,19 @@ class _BookingDetailScreenState extends State<BookingDetailScreen> {
                   //   DateFormat.yMEd().format(widget.checkIn!).toString() +
                   //       DateFormat.yMEd().format(widget.checkOut!).toString(),
                   // );
-                  final bookingstate = Provider.of<BookingProvider>(context,listen: false);
-                  showSnackbarCustom(context, "Booking confirmed successful",
-                      Colors.green);
+                  final bookingstate =
+                      Provider.of<BookingProvider>(context, listen: false);
+                  showSnackbarCustom(
+                      context, "Booking confirmed successful", Colors.green);
                   bookingstate.bookhouse(newbooking);
                   AppNotifications appNotifications = new AppNotifications();
-                await appNotifications .showNotification(widget.checkIn!,'Booking confirmed successfully').whenComplete((){
-                  print('Notification sent');
-                });
+                  await Future.delayed(Duration(seconds: 5));
+                  await appNotifications
+                      .showNotification(
+                          widget.checkIn!, 'Booking confirmed successfully')
+                      .whenComplete(() {
+                    print('Notification sent');
+                  });
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => PaymentScreen()));
                 },

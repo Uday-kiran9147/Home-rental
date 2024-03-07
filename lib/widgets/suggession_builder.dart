@@ -17,7 +17,7 @@ class sugessionBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.horizontal,shrinkWrap: true,
         itemCount: appstate.allhouseGetter.length,
         itemBuilder: (context, index) => HomeItem(property:  HouseProperty( maxguests: appstate.allhouseGetter[index].maxguests,
             propertyid: appstate
