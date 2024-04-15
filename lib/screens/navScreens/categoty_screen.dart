@@ -18,7 +18,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     final appstate = Provider.of<MyAppState>(context);
-    List<String> categories = appstate.getCategories();
+    Set<String> categories = appstate.getCategories();
 
     Widget buildListView(String category) {
       return GridView.builder(

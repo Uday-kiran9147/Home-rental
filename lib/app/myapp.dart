@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => MyAppState()),
-        ChangeNotifierProvider(create: (context) => BookingProvider())
+        ChangeNotifierProvider(create: (context) => BookingProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -60,7 +60,8 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 207, 184, 9)),
         ),
-        home: /* isloggedin!? */ const MyHomePage(), //: const Login(),
+        // home: isloggedin!? const MyHomePage(): const Login(),
+        home: const MyHomePage(),
         routes: {
           '/home': (context) => const MyHomePage(),
           '/login': (context) => const LoginPage(),

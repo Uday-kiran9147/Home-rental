@@ -204,7 +204,7 @@ class _HouseDetailScreenState extends State<HouseDetailScreen> {
                                         15,
                                       )),
                                   child:
-                                      dataTable(selectedHouse: selectedHouse),
+                                      HouseDataTable(selectedHouse: selectedHouse),
                                 ),
                                 const SizedBox(height: 15),
                                 // Text(

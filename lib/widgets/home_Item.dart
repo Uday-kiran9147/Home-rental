@@ -7,6 +7,7 @@ import 'package:houserental/screens/house_detail_screen.dart';
 
 import '../data/data.dart';
 import '../provider/appstate.dart';
+import '../utils/pricebeautify.dart';
 import 'custom_image.dart';
 
 class HomeItem extends StatefulWidget {
@@ -71,7 +72,7 @@ class _HomeItemState extends State<HomeItem> {
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).hintColor,
                     )),
-                Text("\$${widget.property.price}",
+                priceBeautify("${widget.property.price}",
                     style: GoogleFonts.poppins(decoration: TextDecoration.underline,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,

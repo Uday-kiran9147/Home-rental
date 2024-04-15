@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../data/data.dart';
 
-class dataTable extends StatelessWidget {
-  const dataTable({
+class HouseDataTable extends StatelessWidget {
+  const HouseDataTable({
     super.key,
     required this.selectedHouse,
   });

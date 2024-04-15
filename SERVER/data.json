@@ -18,8 +18,8 @@
         "cleaningfee": 17000,
         "bedcount": 4,
         "category": [
-            "pool",
-            "beach"
+            "Pool",
+            "Beach"
         ],
         "houserules": [
             "Treat People and Property With Respect.",
@@ -51,7 +51,7 @@
         "bedcount": 2,
         "category": [
             "apartment",
-            "island"
+            "Island"
         ],
         "houserules": [
             "No smoking",

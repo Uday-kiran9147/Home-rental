@@ -11,56 +11,55 @@ import '../../data/data.dart';
 import '../custom_textfield.dart';
 
 class FillHouseDetails extends StatefulWidget {
-  const FillHouseDetails({super.key});
+  const FillHouseDetails({Key? key}) : super(key: key);
 
   @override
   State<FillHouseDetails> createState() => _FillHouseDetailsState();
 }
 
 class _FillHouseDetailsState extends State<FillHouseDetails> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final PageController _pageController = PageController();
   final HOUSE_ID = DateTime.now().millisecondsSinceEpoch;
   TimeOfDay checkIndateTime = TimeOfDay.now();
   TimeOfDay checkOutdateTime = TimeOfDay.now();
-  final titleController = TextEditingController();
-  final countryController = TextEditingController();
-  final stateController = TextEditingController();
-  final streetController = TextEditingController();
-  final zipcodeController = TextEditingController();
-  final priceController = TextEditingController();
-  final cityController = TextEditingController();
-  final cleaningfeeController = TextEditingController();
-  final maxguestController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController stateController = TextEditingController();
+  TextEditingController streetController = TextEditingController();
+  TextEditingController zipcodeController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController cleaningfeeController = TextEditingController();
+  TextEditingController maxguestController = TextEditingController();
+  TextEditingController bedCountController = TextEditingController(text: 0.toString());
   double price = 0;
-  int bedcount = 0;
   int maxguests = 2;
   double cleaningFee = 500;
   final List<TextEditingController> _featurescontroller = [];
   final List<TextField> _featureFields = [];
   List<String> photoUrlList = [];
   List<File> photoFileList = [];
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   final Map<String, bool?> _categoryCheckBox = {
-    'pool': false,
-    'beach': false,
+    'Pool': false,
+    'Beach': false,
     'Lakefront': false,
-    'windmill': false,
-    'historical_home': false,
-    'private_home': false,
+    'Windmill': false,
+    'Historical_home': false,
+    'Private_home': false,
     'National_Park': false,
     'Trending': false,
     'Island': false,
     'Camping': false,
   };
-  List<String> categoryList = [];
+  Set<String> categoryList = {};
   int _currentPageIndex = 0;
+  var beds = [0,1,2,3,4,5,6];
 
-  final _formKey = GlobalKey<FormState>();
-
-  PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final product = Provider.of<MyAppState>(context);
+    final product = Provider.of<MyAppState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Your House Details'),
@@ -72,9 +71,7 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
               color: Colors.white,
               size: 24.0,
             ),
-            onPressed: () {
-              trySubmit(product);
-            },
+            onPressed: trySubmit,
           ),
         ],
       ),
@@ -82,24 +79,24 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
         key: _formKey,
         child: PageView(
           controller: _pageController,
-          onPageChanged: (index) {
-            setState(() {
-              _currentPageIndex = index;
-            });
-          },
-          children: [
-            _buildTitle(),
-            _buildAddress(),
-            _maxGuests(),
-            _buildChecking(context),
-            _buildRemaining(product),
-          ],
+          onPageChanged: onPageChanged,
+          children: _buildPages(),
         ),
       ),
     );
   }
 
-  Widget _buildRemaining(MyAppState product) {
+  List<Widget> _buildPages() {
+    return [
+      _buildTitle(),
+      _buildAddress(),
+      _maxGuests(),
+      _buildChecking(),
+      _buildRemaining(),
+    ];
+  }
+
+  Widget _buildRemaining() {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -114,17 +111,19 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
             height: 50,
             child: OutlinedButton(
               style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  side: const BorderSide(style: BorderStyle.none),
-                  elevation: 5,
-                  shadowColor: Colors.grey.shade300,
-                  backgroundColor: Color.fromARGB(255, 91, 205, 46)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                side: const BorderSide(style: BorderStyle.none),
+                elevation: 5,
+                shadowColor: Colors.grey.shade300,
+                backgroundColor: Color.fromARGB(255, 91, 205, 46),
+              ),
               onPressed: () {
+                var appState = Provider.of<MyAppState>(context, listen: false);
                 categoryList = getKeysWithTrueValues(_categoryCheckBox);
                 print(categoryList);
-                trySubmit(product);
+                trySubmit();
               },
               child: const Text(
                 'Next',
@@ -142,62 +141,11 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
-  ListView _buildChecking(BuildContext context) {
-    return ListView(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                _buildCheckInTimePicker(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.greenAccent,
-                textStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              child: const Text('Check-In'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _buildCheckOutTimePicker(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue.shade300,
-                textStyle: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              child: const Text('Check-Out'),
-            ),
-          ],
-        ),
-        const Text(
-          'Number of Bed-rooms',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 20),
-        dropDownBedCount(),
-        _addFeatureTile(),
-        _featureListView(),
-        _nextButton(pageController: _pageController),
-      ],
-    );
-  }
-
   Widget _maxGuests() {
     return ListView(
+      padding: EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
       children: [
         CustomNumericTextField(
-          // keyboardType: TextInputType.number,
           labelText: 'Max Guests',
           controller: maxguestController,
           onChanged: (value) => maxguests = int.parse(maxguestController.text),
@@ -228,8 +176,69 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
+  Widget _buildChecking() {
+    return ListView(
+      padding: EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  _buildCheckInTimePicker(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.greenAccent,
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: const Text('Check-In'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  _buildCheckOutTimePicker(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue.shade300,
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                child: const Text('Check-Out'),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        const Text(
+          'Number of Bed rooms',
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: dropDownBedCount(),
+        ),
+        const SizedBox(height: 20),
+        _addFeatureTile(),
+        _featureListView(),
+        _nextButton(pageController: _pageController),
+      ],
+    );
+  }
+
   Widget _buildAddress() {
     return ListView(
+      padding: EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
       children: [
         CustomizedTextField(
           controller: countryController,
@@ -288,16 +297,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
 
   Widget _buildTitle() {
     return ListView(
-      // crossAxisAlignment: CrossAxisAlignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20).copyWith(top: 20),
       children: [
-        Text(
-          'House ID: $HOUSE_ID',
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
         const SizedBox(height: 20),
         CustomizedTextField(
           controller: titleController,
@@ -327,8 +328,8 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
-  List<String> getKeysWithTrueValues(Map<String, bool?> myMap) {
-    List<String> result = [];
+  Set<String> getKeysWithTrueValues(Map<String, bool?> myMap) {
+    Set<String> result = {};
     for (var entry in myMap.entries) {
       if (entry.value == true) {
         result.add(entry.key);
@@ -337,52 +338,30 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     return result;
   }
 
-  DropdownButton<int> dropDownBedCount() {
-    return DropdownButton<int>(
-      iconSize: 50,
-      borderRadius: BorderRadius.circular(15),
-      hint: const Text("Select Bed rooms"),
-      value: bedcount,
-      onChanged: (int? newvalue) {
+  Widget dropDownBedCount() {
+    return DropdownMenu(
+      label: Text('select'),
+      controller: bedCountController,
+      enableFilter: true,
+      enableSearch: true,
+      leadingIcon: Icon(Icons.bed),
+      requestFocusOnTap: true,
+      inputDecorationTheme: const InputDecorationTheme(
+        filled: true,
+        contentPadding: EdgeInsets.symmetric(vertical: 5.0),
+      ),
+      dropdownMenuEntries: beds
+          .map((e) => DropdownMenuEntry(
+                value: bedCountController,
+                label: e.toString(),
+              ))
+          .toList(),
+      onSelected: (value) {
         setState(() {
-          bedcount = newvalue!;
+          bedCountController = value!;
         });
       },
-      icon: const Icon(
-        Icons.arrow_circle_down_rounded,
-        size: 30,
-        color: Colors.green,
-      ),
-      items: <int>[0, 1, 2, 3, 4, 5, 6].map<DropdownMenuItem<int>>((int value) {
-        return DropdownMenuItem(
-          alignment: Alignment.center,
-          value: value,
-          child: Text(
-            value.toString(),
-            style: const TextStyle(color: Colors.green),
-          ),
-        );
-      }).toList(),
     );
-  }
-
-  @override
-  void dispose() {
-    titleController.dispose();
-    // dispose all the reamining controllers
-    priceController.dispose();
-    countryController.dispose();
-    stateController.dispose();
-    streetController.dispose();
-    zipcodeController.dispose();
-    cityController.dispose();
-    cleaningfeeController.dispose();
-    maxguestController.dispose();
-
-    for (final controller in _featurescontroller) {
-      controller.dispose();
-    }
-    super.dispose();
   }
 
   Widget _addFeatureTile() {
@@ -427,37 +406,45 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
     );
   }
 
-  void trySubmit(MyAppState product) {
-    // final isvalid =
+  void trySubmit() {
+    var appState = Provider.of<MyAppState>(context, listen: false);
+    print(appState.allhouseGetter);
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      product.addHouse(HouseProperty(
-          maxguests: maxguests,
-          propertyid: HOUSE_ID.toString(),
-          createdAt: DateTime.now(),
-          updatedAt: DateTime.now(),
-          ownerId: "uday",
-          housetitle: titleController.text,
-          photos: photoUrlList.map((e) => e).toList(),
-          price: price,
-          address: Address(
-            city: cityController.text,
-            country: countryController.text,
-            state: stateController.text,
-            zipcode: zipcodeController.text,
-            street: streetController.text,
-          ),
-          checkintime: checkIndateTime.toString(),
-          checkouttime: checkOutdateTime.toString(),
-          cleaningfee: cleaningFee,
-          bedcount: bedcount,
-          category: categoryList.map((e) => e.toString()).toList(),
-          features: _featurescontroller.map((e) => e.text).toList()));
+      appState.addHouse(HouseProperty(
+        maxguests: maxguests,
+        propertyid: HOUSE_ID.toString(),
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        ownerId: "uday",
+        housetitle: titleController.text,
+        photos: photoUrlList.map((e) => e).toList(),
+        price: price,
+        address: Address(
+          city: cityController.text,
+          country: countryController.text,
+          state: stateController.text,
+          zipcode: zipcodeController.text,
+          street: streetController.text,
+        ),
+        checkintime: checkIndateTime.toString(),
+        checkouttime: checkOutdateTime.toString(),
+        cleaningfee: cleaningFee,
+        bedcount: int.parse(bedCountController.text),
+        category: categoryList.map((e) => e.toString()).toList(),
+        features: _featurescontroller.map((e) => e.text).toList(),
+      ));
       showSnackbarCustom(context, "House added Successfully", Colors.green);
       Navigator.of(context).pop();
     } else {
       showSnackbarCustom(context, 'Input fields are incorrect', Colors.red);
     }
+  }
+
+  void onPageChanged(int index) {
+    setState(() {
+      _currentPageIndex = index;
+    });
   }
 
   Future _buildCheckOutTimePicker(BuildContext context) async {
@@ -487,24 +474,15 @@ class _FillHouseDetailsState extends State<FillHouseDetails> {
       });
     }
   }
-}
 
-class _nextButton extends StatelessWidget {
-  const _nextButton({
-    required PageController pageController,
-  }) : _pageController = pageController;
-
-  final PageController _pageController;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _nextButton({required PageController pageController}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.bottomRight,
         child: ElevatedButton(
           onPressed: () {
-            _pageController.nextPage(
+            pageController.nextPage(
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut,
             );

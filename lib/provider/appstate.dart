@@ -51,17 +51,19 @@ class MyAppState with ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> getCategories() {
+  Set<String> getCategories() {
     Set<String> categories = {};
     for (var house in _allhouses) {
       categories.addAll(house.category);
     }
-    return categories.toList();
+    return categories.toSet();
   }
 
   void addHouse(HouseProperty newHouse) async {
+    print(_allhouses.length);
     _allhouses.add(newHouse);
     print(newHouse.toJson());
+    print(_allhouses.length);
     notifyListeners();
   }
 
@@ -79,11 +81,11 @@ class MyAppState with ChangeNotifier {
         maxguests: 7,
         ownerId: 'uday',
         address: Address(
-            city: 'city',
-            country: 'country',
-            state: 'state',
-            zipcode: 'zipcode',
-            street: 'street'),
+            city: 'Los Angeles',
+            country: 'United States',
+            state: 'California',
+            zipcode: '90028',
+            street: 'Hollywood Boulevard'),
         bedcount: 4,
         category: [
           'Pool',
@@ -101,7 +103,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '10 am',
         cleaningfee: 12000,
         features: ['Tv', 'stadium near by', 'peaceful villa'],
-        housetitle: 'Switzerland-kingdom',
+        housetitle: 'Serene Retreat in the Heart of Nature',
         photos: [
           'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
@@ -127,7 +129,7 @@ class MyAppState with ChangeNotifier {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         features: ['rule1', 'rule2'],
-        housetitle: 'Switzerland-kingdom',
+        housetitle: 'Oceanview Paradise Getaway',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
@@ -139,7 +141,7 @@ class MyAppState with ChangeNotifier {
         maxguests: 2,
         ownerId: 'kiran',
         address: Address(
-            city: 'city',
+            city: 'Beverly Hills',
             country: 'United States',
             state: 'California',
             zipcode: '90210',
@@ -152,7 +154,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '11am',
         cleaningfee: 15000,
         features: ['No sAmoking', 'No parties'],
-        housetitle: 'Luxury Beverly Hills Mansion',
+        housetitle: 'Tranquil Lakeside Haven',
         photos: [
           'https://www.nobroker.in/blog/wp-content/uploads/2022/07/Small-House-Designs.jpg',
           'https://assets-news.housing.com/news/wp-content/uploads/2022/04/07013406/ELEVATED-HOUSE-DESIGN-FEATURE-compressed.jpg'
@@ -165,7 +167,7 @@ class MyAppState with ChangeNotifier {
         updatedAt: DateTime.now(),
         ownerId: 'uday',
         address: Address(
-            city: 'city',
+            city: 'Toronto',
             country: 'Canada',
             state: 'Ontario',
             zipcode: 'M5V 1J2',
@@ -176,7 +178,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '12pm',
         cleaningfee: 8000,
         features: ['No pets allowed', 'Quiet after 10pm'],
-        housetitle: 'Stylish Downtown Toronto Condo',
+        housetitle: 'Urban Chic Luxury in the City',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJgKkiwYzoFNUOA3HUK-xHfoEnCcRd7emMZQ&usqp=CAU',
@@ -193,7 +195,7 @@ class MyAppState with ChangeNotifier {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         address: Address(
-            city: 'city',
+            city: 'Damun',
             country: 'Spain',
             state: 'Andalusia',
             zipcode: '29650',
@@ -204,7 +206,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '10am',
         cleaningfee: 10000,
         features: ['No smoking', 'No loud music'],
-        housetitle: 'Secluded Villa in the Mountains',
+        housetitle: 'Historical Charm meets Modern Comfort',
         photos: [
           "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8&w=1000&q=80"
         ],
@@ -216,7 +218,7 @@ class MyAppState with ChangeNotifier {
         maxguests: 15,
         ownerId: 'uday',
         address: Address(
-            city: 'city',
+            city: 'Hue-city',
             country: 'Australia',
             state: 'New South Wales',
             zipcode: '2021',
@@ -227,7 +229,7 @@ class MyAppState with ChangeNotifier {
         checkouttime: '11am',
         cleaningfee: 12000,
         features: ['No parties', 'No smoking'],
-        housetitle: 'Luxury Sydney Harbor Mansion',
+        housetitle: 'Private Island Escape',
         photos: [
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3WGYM7W4je7mKmpTIL2eNHxZw0885DjEwQ&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg3WGYM7W4je7mKmpTIL2eNHxZw0885DjEwQ&usqp=CAU',
@@ -239,7 +241,7 @@ class MyAppState with ChangeNotifier {
         ownerId: 'uday',
         price: 139877,
         propertyid: '1681180640031',
-        housetitle: 'Uday appartment',
+        housetitle: 'Rustic Elegance by the Beach',
         photos: [
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9AeqRbMKScPQCLogjMQE4VhT1_54S1Lmvw&usqp=CAU",
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4AzjjitSz9qV07LEAcey5JXGIWsRPfEwyyVaWjTwrTq2bTGWb9XX6NerA8BENtk3CpY&usqp=CAU',
@@ -248,14 +250,14 @@ class MyAppState with ChangeNotifier {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         address: Address(
-            city: 'city',
+            city: 'Gandhinagar',
             country: 'india',
             state: 'gujarat',
             zipcode: '382421',
             street: 'koba'),
         checkintime: '(22:25)',
         checkouttime: '(04:07)',
-        cleaningfee: 1200.0,
+        cleaningfee: 1000.0,
         bedcount: 4,
         category: ['Island', 'Camping', 'Private_home', 'National_Park'],
         features: ['TV', 'Garden', 'Ocean fishes', 'Stadium nearby'])

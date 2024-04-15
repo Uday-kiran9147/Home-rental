@@ -27,8 +27,9 @@ class _ChoiceChipsExampleState extends State<ChoiceChipsExample> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: [const SizedBox(height: 10.0),
         ProfileHeadLine(title: 'Category'),
+        const SizedBox(height: 10.0),
         Wrap(
           children: choices.map((String choice) {
             return Padding(

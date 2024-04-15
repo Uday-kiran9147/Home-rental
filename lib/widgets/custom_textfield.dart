@@ -13,7 +13,7 @@ class CustomizedTextField extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String? Function(String?) validator;
-  void Function(String?)? onChanged;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +22,27 @@ class CustomizedTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,
-        validator: validator,
+        validator: validator, // Pass the validator directly here
         decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-            borderSide: BorderSide.merge(BorderSide(), BorderSide()),
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(),
           ),
           labelText: labelText,
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.secondary),
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(color: Colors.red),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(color: Colors.red),
           ),
         ),
@@ -69,25 +72,28 @@ class CustomNumericTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,
-        validator: validator,
+        validator: validator, // Pass the validator directly here
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
           labelText: labelText,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.secondary),
+            borderRadius: BorderRadius.circular(5.0),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(color: Colors.red),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(5.0),
             borderSide: BorderSide(color: Colors.red),
           ),
         ),

@@ -58,24 +58,26 @@ class BookingCardWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    dataTablepriceBeautify(booking.bookingprice.toString()),
+                    FittedBox(fit: BoxFit.contain,child: dataTablepriceBeautify(booking.bookingprice.toString())),
                   ],
                 ),
               ],
             ),
-            Container(
-              height: 130,
-              width: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                // border:
-                //     Border.all( width: 1),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: CustomImageView(
-                  imagePath: currentHouse.photos[0],
-                  fit: BoxFit.cover,
+            Expanded(
+              child: Container(
+               constraints: BoxConstraints(maxHeight: 130,maxWidth: 120),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+              
+                  // border:
+                  //     Border.all( width: 1),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  child: CustomImageView(
+                    imagePath: currentHouse.photos[0],
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             )
