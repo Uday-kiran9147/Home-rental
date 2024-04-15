@@ -60,6 +60,26 @@ propertyRoute.put('/properties/:id', async (req, res) => {
         return res.status(500).json({ message: `Error updating property`, error: err });
     }
 });
+
+
+// get properties by id
+propertyRoute.get('/properties/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+        const property =await mongoose.model('Property', propertySchema).findById(id);
+
+
+        if (!property) {
+            return res.status(404).json({ message: `Property not found` });
+        }
+
+        return res.status(200).json(property);
+    } catch (error) {
+        console.error(`Error fetching property: ${error}`);
+        return res.status(500).json({ message: `Error fetching property`, error: error.message });
+    }
+});
+
 //get all properties
 propertyRoute.get('/properties', async (req, res) => {
     try {
@@ -70,7 +90,7 @@ propertyRoute.get('/properties', async (req, res) => {
     }
 });
 
-// delete property 
+// delete property
 propertyRoute.delete('/properties/:id', async (req, res) => {
     let id = req.params.id;
     try {

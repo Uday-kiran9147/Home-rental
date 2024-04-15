@@ -1,5 +1,6 @@
 SERVER/node_modules
 
+# AppServer
 AppServer/node_modules
 AppServer/dist
 AppServer/src/config/firebase_config.ts
