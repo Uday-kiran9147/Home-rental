@@ -33,8 +33,6 @@ class _BookingsScreenState extends State<BookingsScreen> {
         return 'Current Bookings';
       case BookingFilter.past:
         return ' Past Bookings';
-      case BookingFilter.saperate:
-        return 'Current Bookings';
       default:
         return 'Bookings';
     }
