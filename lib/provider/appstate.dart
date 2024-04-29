@@ -108,7 +108,7 @@ class MyAppState with ChangeNotifier {
           'https://images.unsplash.com/photo-1594568284297-7c64464062b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bm8lMjBjb3B5cmlnaHR8ZW58MHx8MHx8&w=1000&q=80'
               'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFk3sf9c-vUGkQV9gTTwRYOkms-vAYntTNA&usqp=CAU',
         ],
-        price: 1033345,
+        price: 18000,
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         propertyid: 'qwertyui87654erty'),
@@ -135,7 +135,7 @@ class MyAppState with ChangeNotifier {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeAKcPNUDrsGj12N4UV2RsiXH9NatLyXfPvA&usqp=CAU',
         ],
-        price: 1033345,
+        price: 4500,
         propertyid: 'qfgfd345egfsfs'),
     HouseProperty(
         maxguests: 2,

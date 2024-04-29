@@ -8,7 +8,7 @@ import { bookingRoute } from "./Routers/bookings";
 
 
 const mongooseUrl = "mongodb+srv://udaykiran9147:zoGPC7VIL3pZStRI@cluster0.pap26w0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-const PORT = 3000;
+const PORT = 5000;
 
 const app = express();
 app.use(express.json())
@@ -30,5 +30,5 @@ app.use(signUpRoute);
 app.use(loginRoute);
 app.use(propertyRoute);
 app.use(bookingRoute);
-app.listen(PORT, () => console.log(`Server started on port https://houserental.onrender.com`));
+app.listen(PORT, () => console.log(`Server started on port https://localhost:${PORT}`));
 

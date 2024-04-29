@@ -3,6 +3,12 @@ export var loginRoute = Router();
 import mongoose from 'mongoose';
 import { IUser, userSchema } from '../Models/user';
 
+
+loginRoute.get('/', (req, res) => {
+    res.send('Hello world!');
+})
+
+
 loginRoute.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
