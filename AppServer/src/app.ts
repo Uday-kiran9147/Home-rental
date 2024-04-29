@@ -30,5 +30,5 @@ app.use(signUpRoute);
 app.use(loginRoute);
 app.use(propertyRoute);
 app.use(bookingRoute);
-app.listen(3000, () => console.log(`Server started on port https://houserental.onrender.com`));
+app.listen(PORT, () => console.log(`Server started on port https://houserental.onrender.com`));
 
