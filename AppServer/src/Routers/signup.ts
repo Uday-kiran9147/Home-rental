@@ -7,7 +7,7 @@ import admin from 'firebase-admin';
 export const signUpRoute = Router();
 
 // Initialize Firebase Admin SDK with your service account credentials
-const serviceAccount = require('../config/service_account.json');
+const serviceAccount = require('../../service_account.json');
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
