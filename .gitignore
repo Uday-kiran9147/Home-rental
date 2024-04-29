@@ -3,8 +3,8 @@ SERVER/node_modules
 # AppServer
 AppServer/node_modules
 AppServer/dist
-AppServer/src/config/firebase_config.ts
-AppServer/src/config/service_account.json
+# AppServer/src/config/firebase_config.ts
+# AppServer/src/config/service_account.json
 AppServer/package-lock.json
 
 
